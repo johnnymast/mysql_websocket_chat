@@ -14,7 +14,6 @@ class Chat implements MessageComponentInterface {
      * @param ConnectionInterface $conn
      */
     public function onOpen(ConnectionInterface $conn) {
-        echo "NEW CONNECTION!!\n";
         $this->clients->attach($conn);
     }
 
