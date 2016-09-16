@@ -1,0 +1,18 @@
+.chat_dialog {
+    width: 90%;
+    height: 500px;
+    display: block;
+    border: 1px solid black;
+}
+
+.client_chat {
+    width: 94% !important;
+}
+
+.input-group.client {
+    width: 91% !important;;
+}
+
+.input-group-btn {
+    float: left;
+}
