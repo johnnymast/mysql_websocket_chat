@@ -8,9 +8,21 @@ that could be loggin to a database. So here is what you need to get this up and 
 
 First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Dont wurry it might seem intimidating but its realy not.
 
-# Step 2: Create a project using composer
+# Step 2: Install the project
 
-In this example i am using a mac so my prompt will display diffrent then you if you are on windows. Dont wurry about that to mutch and execute the following command.
+If you download this package in a zip file from [phpclasses.org](http://www.phpclasses.org/package/9947-PHP-Websocket-starter-project.html) you will have to extract the zip package to a location of your liking. Then 
+CD into that directory and execute the following command on your prompt.
+
+In this example i am using a mac so my prompt will display different then you if you are on windows. Don't worry about that to much and execute the following command.
+
+
+```bash
+$ cd chat
+$ composer install
+```
+
+On the other hand with composer installed you could use a more confiniant method by installing the project via the composer create-project option.
+This will automaticaly download and install the project into the chat directory.
 
 ```bash
 $ composer create-project johnnymast/mysql_websocket_chat chat
