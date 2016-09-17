@@ -1,6 +1,51 @@
-# mysql_websocket_chat
+# MYSQL WEBSOCKET CHAT
+
+welcome to this hackaton project i created for user hrushi on [phclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
+that could be loggin to a database. So here is what you need to get this up and running.
+
+# Step 1: install composer
+
+First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Dont wurry it might seem intimidating but its realy not.
+
+# Step 2: Create a project using composer
+
+In this example i am using a mac so my prompt will display diffrent then you if you are on windows. Dont wurry about that to mutch and execute the following command.
+
+```bash
+$ composer create-project johnnymast/mysql_websocket_chat chat
+```
+
+This will now download the whole project for you so you can run it.
+
+# Step 3: Configure the server
+
+This server can run with or without a database. By default i have disabled the use of a database server but you can enable it by switching the ENABLE_DATABASE to true
+in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. Please not if you enable the databse make sure you
+update the credentials as well (see other defines).
+
+If you enable the database make sure you imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
 
+# Step 4: Fire up the server
+
+CD in to the chat directory and fire up the server.
+
+```bash
+$ cd chat
+$ php ./server.php
+```
+
+When you see no output and the command seems to hang thats when you know its running.
+
+
+# Step 5: Point a webserver to the chat directory
+
+In the chat directory you will find index.php. This file will be the client for your chat application. Make sure you set any
+webserver its document root to this location.
+
+# Step 6: Chat away!
+
+Now open up 2 chat tabs and point them to localhost (or maybe a virtual host you configured) and chat away with your self.
 
 
 
