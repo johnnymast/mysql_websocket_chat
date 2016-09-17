@@ -21,14 +21,14 @@ $ cd chat
 $ composer install
 ```
 
-On the other hand with composer installed you could use a more confiniant method by installing the project via the composer create-project option.
+On the other hand with composer installed you could use a more confidant method by installing the project via the composer create-project option.
 This will automatically download and install the project into the chat directory.
 
 ```bash
 $ composer create-project johnnymast/mysql_websocket_chat chat
 ```
 
-This will now download the whole project for you so you can run it.
+This will now download the whole project (and its dependencies) for you so you can run it.
 
 # Step 3: Configure the server
 
@@ -48,7 +48,7 @@ $ cd chat
 $ php ./server.php
 ```
 
-When you see no output and the command seems to hang thats when you know its running.
+When you see no output and the command seems to hang that's when you know its running.
 
 
 # Step 5: Point a webserver to the chat directory
