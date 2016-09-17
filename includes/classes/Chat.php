@@ -17,7 +17,7 @@ class Chat implements MessageComponentInterface
     protected $db = null;
 
 
-    public function __construct(Database $db)
+    public function __construct($db)
     {
         $this->clients = new \SplObjectStorage;
         $this->db = $db;
