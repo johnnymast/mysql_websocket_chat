@@ -15,12 +15,16 @@ use Ratchet\WebSocket\WsServer;
  * to our chat class later on in
  * the code.
  */
-$db = new Database(
-    DATABASE_USERNAME,
-    DATABASE_PASSWORD,
-    DATABASE_HOST,
-    DATABASE_DB
-);
+if (ENABLE_DATABASE == true) {
+    $db = new Database(
+        DATABASE_USERNAME,
+        DATABASE_PASSWORD,
+        DATABASE_HOST,
+        DATABASE_DB
+    );
+} else {
+    $db = null;
+}
 
 /**
  * Instantiate the chat server

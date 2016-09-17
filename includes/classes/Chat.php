@@ -55,7 +55,6 @@ class Chat implements MessageComponentInterface
                              * Defined in includes/config.php
                              */
                             if (ENABLE_DATABASE == true) {
-
                                 if (isset($package->user) and is_object($package->user) == true) {
                                     $this->db->insert(
                                         $package->to_user,
@@ -64,7 +63,6 @@ class Chat implements MessageComponentInterface
                                         $client->remoteAddress
                                     );
                                 }
-
                             }
                             $client->send($msg);
                         }
