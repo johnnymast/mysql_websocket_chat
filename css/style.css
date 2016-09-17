@@ -16,3 +16,7 @@
 .input-group-btn {
     float: left;
 }
+
+.input-group-addon.name_bit {
+    font-weight: bold;
+}
