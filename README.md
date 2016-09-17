@@ -36,7 +36,7 @@ This server can run with or without a database. By default i have disabled the u
 in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. ***Please note*** if you enable the database make sure you
 update the credentials as well (see other defines).
 
-Also if you enable the database make sure you imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
+Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
 
 # Step 4: Fire up the server
