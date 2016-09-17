@@ -12,7 +12,6 @@ conn.onopen = function(e) {
  */
 $('.btn-send').on('click', function() {
     var input_value = $('.client_chat').val();
-    console.log(conn);
-    console.log(input_value);
     conn.send(input_value);
+
     $('.client_chat').val('')});

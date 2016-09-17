@@ -57,9 +57,8 @@ require 'includes/config.php';
 <div class="container">
 
     <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-            mostly barebones HTML document.</p>
+        <h1>Websockets chat example</h1>
+        <p class="lead">Open this url in a second browser and chat away! Depending on includes/config.php it will report to the database or not. All interactions are controlled by includes/classes/Chat.php</p>
         <textarea class="chat_dialog"></textarea>
         <div class="input-group client">
             <input type="text" class="form-control client_chat" placeholder="Type your message...">
