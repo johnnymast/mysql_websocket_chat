@@ -33,7 +33,7 @@ This will now download the whole project (and its dependencies) for you so you c
 # Step 3: Configure the server
 
 This server can run with or without a database. By default i have disabled the use of a database server but you can enable it by switching the ENABLE_DATABASE to true
-in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. Please not if you enable the database make sure you
+in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. ***Please note*** if you enable the database make sure you
 update the credentials as well (see other defines).
 
 If you enable the database make sure you imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
