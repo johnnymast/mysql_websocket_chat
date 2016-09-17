@@ -9,7 +9,7 @@ $faker = Faker\Factory::create();
 
 $user = [
     'id' => $faker->randomDigit, /* This will create a random number */
-    'username' => $faker->name /* Give the user a random name */
+    'username' => addslashes($faker->name) /* Give the user a random name */
 ];
 ?>
 <!DOCTYPE html>

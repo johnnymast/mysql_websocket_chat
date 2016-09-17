@@ -4,10 +4,20 @@ use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 class Chat implements MessageComponentInterface {
-    protected $clients;
 
-    public function __construct() {
+    /**
+     * @var SplObjectStorage
+     */
+    protected $clients = null;
+
+    /**
+     * @var Database
+     */
+    protected $db = null;
+
+    public function __construct(Database $db) {
         $this->clients = new \SplObjectStorage;
+        $this->db = $db;
     }
 
     /**
@@ -23,8 +33,32 @@ class Chat implements MessageComponentInterface {
      */
     public function onMessage(ConnectionInterface $from, $msg) {
         foreach ($this->clients as $client) {
-            if ($from != $client) {
-                $client->send($msg);
+            $package = json_decode($msg);
+
+            if (is_object($package) == true) {
+                switch($package->type) {
+                    case 'message':
+                        if ($from != $client) {
+
+                            /**
+                             * Defined in includes/config.php
+                             */
+                            if (ENABLE_DATABASE == true) {
+
+                                if (isset($package->user) and is_object($package->user) == true) {
+                                    $this->db->insert(
+                                        $package->to_user,
+                                        $package->user->id,
+                                        $package->message,
+                                        $client->remoteAddress
+                                    );
+                                }
+
+                            }
+                            $client->send($msg);
+                        }
+                    break;
+                }
             }
         }
     }

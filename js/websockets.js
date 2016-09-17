@@ -36,7 +36,9 @@ $('.btn-send.chat_btn').on('click', function() {
      */
     var package = {
         'user': chat_user, /* Defined in index.php */
-        'message' : chat_message
+        'message' : chat_message,
+        'to_user' : 25,
+        'type' : 'message',
     };
 
     /**
