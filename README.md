@@ -1,12 +1,12 @@
 # MYSQL WEBSOCKET CHAT
 
 Welcome to this hackaton project i created for user hrushi on [phclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
-that could be loggin to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 5.6 this is not because it wanted this but its because of the depententies this project has.
+that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 5.6 this is not because it wanted this but its because of the dependencies this project has.
 
 
 # Step 1: install composer
 
-First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Dont wurry it might seem intimidating but its realy not.
+First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but its really not.
 
 # Step 2: Install the project
 
@@ -22,7 +22,7 @@ $ composer install
 ```
 
 On the other hand with composer installed you could use a more confiniant method by installing the project via the composer create-project option.
-This will automaticaly download and install the project into the chat directory.
+This will automatically download and install the project into the chat directory.
 
 ```bash
 $ composer create-project johnnymast/mysql_websocket_chat chat
@@ -33,7 +33,7 @@ This will now download the whole project for you so you can run it.
 # Step 3: Configure the server
 
 This server can run with or without a database. By default i have disabled the use of a database server but you can enable it by switching the ENABLE_DATABASE to true
-in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. Please not if you enable the databse make sure you
+in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. Please not if you enable the database make sure you
 update the credentials as well (see other defines).
 
 If you enable the database make sure you imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
