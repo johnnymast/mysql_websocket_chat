@@ -3,6 +3,8 @@
     height: 500px;
     display: block;
     border: 1px solid black;
+    text-align: left;
+    padding: 5px;
 }
 
 .client_chat {
@@ -11,6 +13,11 @@
 
 .input-group.client {
     width: 91% !important;;
+}
+
+.connection_alert {
+    margin-top: 15px;
+    width: 90% !important;
 }
 
 .input-group-btn {

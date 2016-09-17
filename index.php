@@ -37,8 +37,22 @@ $user = [
     <link rel="stylesheet" href="/css/starter-template.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
     <script type="text/javascript">
+        /**
+         * You might want to configure this to your
+         * settings. The settings can be found in includes/config.php
+         *
+         * @type {string}
+         */
         var socket_host = '<?php print CHAT_SERVER_HOST ?>';
         var socket_port = '<?php print CHAT_SERVER_PORT ?>';
+
+        /**
+         * Also when your script is live make shure this user object
+         * doest not show to much information. Like for example passwords
+         * should be excluded. Add only the information you need on the server
+         * for this user.
+         */
+        var chat_user   = JSON.parse('<?php print json_encode($user); ?>');
     </script>
 </head>
 
@@ -70,17 +84,21 @@ $user = [
         <h1>Websockets chat example</h1>
         <p class="lead">Open this url in a second browser and chat away! Depending on includes/config.php it will report
             to the database or not. All interactions are controlled by includes/classes/Chat.php</p>
-        <textarea class="chat_dialog"></textarea>
+        <div class="chat_dialog"></div>
 
-        <form method="" action="">
-            <div class="input-group client">
-                <span class="input-group-addon name_bit" id="basic-addon3">You: <?php print $user['username']; ?></span>
-                <input type="text" class="form-control client_chat" placeholder="Type your message...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default btn-send" type="button">Go!</button>
-                </span>
-            </div><!-- /input-group -->
-        </form>
+        <div class="alert alert-danger connection_alert" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Currenty there is no connection to the server.
+        </div>
+
+        <div class="input-group client">
+            <span class="input-group-addon name_bit" id="basic-addon3">You: <?php print $user['username']; ?></span>
+            <input type="text" class="form-control client_chat" placeholder="Type your message...">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-send chat_btn" type="button">Go!</button>
+            </span>
+        </div><!-- /input-group -->
 
 
     </div>
