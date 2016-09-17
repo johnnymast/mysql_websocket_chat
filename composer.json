@@ -1,12 +1,12 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
+  "name": "johnnymast/mysql_websocket_chat",
+  "description": "Quickly get a websocket chat up and running.",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
-      "name": "author's name",
-      "email": "email@example.com"
+      "name": "Johnny Mast",
+      "email": "mastjohnny@gmail.com"
     }
   ],
   "require": {

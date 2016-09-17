@@ -3,7 +3,8 @@
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-class Chat implements MessageComponentInterface {
+class Chat implements MessageComponentInterface
+{
 
     /**
      * @var SplObjectStorage
@@ -15,7 +16,9 @@ class Chat implements MessageComponentInterface {
      */
     protected $db = null;
 
-    public function __construct(Database $db) {
+
+    public function __construct(Database $db)
+    {
         $this->clients = new \SplObjectStorage;
         $this->db = $db;
     }
@@ -23,7 +26,8 @@ class Chat implements MessageComponentInterface {
     /**
      * @param ConnectionInterface $conn
      */
-    public function onOpen(ConnectionInterface $conn) {
+    public function onOpen(ConnectionInterface $conn)
+    {
         $this->clients->attach($conn);
     }
 
@@ -31,12 +35,19 @@ class Chat implements MessageComponentInterface {
      * @param ConnectionInterface $from
      * @param string $msg
      */
-    public function onMessage(ConnectionInterface $from, $msg) {
+    public function onMessage(ConnectionInterface $from, $msg)
+    {
         foreach ($this->clients as $client) {
             $package = json_decode($msg);
 
             if (is_object($package) == true) {
-                switch($package->type) {
+                /**
+                 * We need to switch the message type because in the futhure
+                 * this could be a message or maybe a request for all chatters
+                 * in the chat. For now we only use the message type but we can
+                 * build on that later.
+                 */
+                switch ($package->type) {
                     case 'message':
                         if ($from != $client) {
 
@@ -57,7 +68,7 @@ class Chat implements MessageComponentInterface {
                             }
                             $client->send($msg);
                         }
-                    break;
+                        break;
                 }
             }
         }
@@ -66,7 +77,8 @@ class Chat implements MessageComponentInterface {
     /**
      * @param ConnectionInterface $conn
      */
-    public function onClose(ConnectionInterface $conn) {
+    public function onClose(ConnectionInterface $conn)
+    {
         $this->clients->detach($conn);
     }
 
@@ -74,7 +86,8 @@ class Chat implements MessageComponentInterface {
      * @param ConnectionInterface $conn
      * @param Exception $e
      */
-    public function onError(ConnectionInterface $conn, \Exception $e) {
+    public function onError(ConnectionInterface $conn, \Exception $e)
+    {
         $conn->close();
     }
 }
