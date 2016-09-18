@@ -3,6 +3,8 @@
  * side of the screen.
  */
 function clear_userlist() {
+
+
     /**
      * First of all clear the current userlist
      */
@@ -28,7 +30,8 @@ function dialog_output(package) {
 }
 
 /**
- * TODO
+ * Update the user list in the UI
+ *
  * @param users
  */
 function users_output(users) {
@@ -40,6 +43,7 @@ function users_output(users) {
      * fow new users.
      */
     var selected_user = user_list.value;
+
 
     /**
      * Before we start adding users
@@ -78,6 +82,7 @@ function users_output(users) {
  */
 function register_client() {
 
+
     /**
      * Create a registration package to send to the
      * server.
@@ -87,13 +92,14 @@ function register_client() {
         'type': 'registration',
     };
 
+
     package = JSON.stringify(package);
+
 
     /**
      * Send the package to the server
      */
     conn.send(package);
-
 }
 
 /**
@@ -105,6 +111,7 @@ function request_userlist() {
     setInterval(function () {
         if (conn.readyState != WebSocket.CLOSING && conn.readyState != WebSocket.CLOSED) {
 
+
             /**
              * Create a package to request the list of users
              */
@@ -112,6 +119,7 @@ function request_userlist() {
                 'user': chat_user, /* Defined in index.php */
                 'type': 'userlist',
             };
+
 
             /**
              * We need a object copy of package
@@ -129,6 +137,8 @@ function request_userlist() {
 }
 
 function send_message() {
+
+
     /**
      * Catch the chat text
      * @type {any}

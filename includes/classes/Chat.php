@@ -46,6 +46,8 @@ class Chat implements MessageComponentInterface
             $package = json_decode($msg);
 
             if (is_object($package) == true) {
+
+
                 /**
                  * We need to switch the message type because in the future
                  * this could be a message or maybe a request for all chatters
@@ -59,10 +61,6 @@ class Chat implements MessageComponentInterface
 
                             if (empty($package->to_user) == false) {
 
-                                /**
-                                 * Send a message to one single client.
-                                 * The is a private message.
-                                 */
 
                                 /**
                                  * Find the client to send the message to
@@ -71,11 +69,13 @@ class Chat implements MessageComponentInterface
                                     if ($resourceId == $from->resourceId)
                                         continue;
 
+
                                     /**
                                      * Non target users will not see this message
                                      * on their screens.
                                      */
                                     if ($user['user']->id == $package->to_user) {
+
 
                                         /**
                                          * Defined in includes/config.php
@@ -97,6 +97,7 @@ class Chat implements MessageComponentInterface
                                     }
                                 }
                             }
+
 
                             /**
                              * Defined in includes/config.php

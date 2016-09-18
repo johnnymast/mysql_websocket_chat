@@ -1,6 +1,6 @@
 # MYSQL WEBSOCKET CHAT
 
-Welcome to this hackaton project i created for user hrushi on [phclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
+Welcome to this hackaton project i created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
 that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 5.6 this is not because it wanted this but its because of the dependencies this project has.
 
 
