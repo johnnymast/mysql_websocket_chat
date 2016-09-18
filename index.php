@@ -8,9 +8,9 @@ require 'includes/config.php';
 $faker = Faker\Factory::create();
 
 $user = [
-    'id' => $faker->randomDigit, /* This will create a random number */
-    'username' => addslashes($faker->name) /* Give the user a random name */
+    'username' => $faker->name /* Give the user a random name */
 ];
+$user['id'] = md5($user['username']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ $user = [
          * should be excluded. Add only the information you need on the server
          * for this user.
          */
-        var chat_user   = JSON.parse('<?php print json_encode($user); ?>');
+        var chat_user  = JSON.parse('<?php print addslashes(json_encode($user)); ?>');
     </script>
 </head>
 
@@ -85,6 +85,8 @@ $user = [
         <p class="lead">Open this url in a second browser and chat away! Depending on includes/config.php it will report
             to the database or not. All interactions are controlled by includes/classes/Chat.php</p>
         <div class="chat_dialog"></div>
+        <select class="user_list" multiple></select>
+        <div class="clear">&nbsp;</div>
 
         <div class="alert alert-danger connection_alert" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -112,7 +114,9 @@ $user = [
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script type="text/javascript" src="/js/websockets.js"/>
+<script type="text/javascript" src="/js/websockets.js"></script>
+<script type="text/javascript" src="/js/interface.js"></script>
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
