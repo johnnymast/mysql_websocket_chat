@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 17, 2016 at 01:01 PM
+-- Generation Time: Sep 18, 2016 at 03:50 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -22,8 +22,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `chat_interactions` (
   `message_id` int(11) NOT NULL,
-  `to_id` int(11) NOT NULL,
-  `from_id` int(11) NOT NULL,
+  `to_id` varchar(255) NOT NULL,
+  `from_id` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip_address` varchar(255) NOT NULL

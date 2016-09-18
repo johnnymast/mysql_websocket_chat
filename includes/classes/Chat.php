@@ -76,6 +76,21 @@ class Chat implements MessageComponentInterface
                                      * on their screens.
                                      */
                                     if ($user['user']->id == $package->to_user) {
+
+                                        /**
+                                         * Defined in includes/config.php
+                                         */
+                                        if (ENABLE_DATABASE == true) {
+                                            if (isset($package->user) and is_object($package->user) == true) {
+                                                $this->db->insert(
+                                                    $package->to_user,
+                                                    $package->user->id,
+                                                    $package->message,
+                                                    $client->remoteAddress
+                                                );
+                                            }
+                                        }
+
                                         $targetClient = $user['client'];
                                         $targetClient->send($msg);
                                         return;
