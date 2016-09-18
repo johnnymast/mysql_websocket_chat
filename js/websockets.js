@@ -1,5 +1,3 @@
-console.log('init');
-
 /**
  * Remove all users from the users on the
  * side of the screen.
@@ -21,13 +19,12 @@ function clear_userlist() {
  */
 function dialog_output(package) {
 
-
-    var className = '';
-    if (package.to_user == chat_user.id) {
-        className = 'priv_msg';
+    if (package.to_user.length > 0) {
+        $('.chat_dialog').append('<b class="priv_msg">Private message: ' + package.user.username + '</b>: ' + package.message + '<br/>');
+    } else {
+        $('.chat_dialog').append('<b>' + package.user.username + '</b>: ' + package.message + '<br/>');
     }
 
-    $('.chat_dialog').append('<b class="'+className+'">' + package.user.username + '</b>: ' + package.message + '<br/>');
 }
 
 /**
@@ -106,7 +103,7 @@ function register_client() {
  */
 function request_userlist() {
     setInterval(function () {
-        if (conn) {
+        if (conn.readyState != WebSocket.CLOSING && conn.readyState != WebSocket.CLOSED) {
 
             /**
              * Create a package to request the list of users
@@ -131,27 +128,12 @@ function request_userlist() {
     }, 2000);
 }
 
-/**
- * Just to make it feel like a real chat.
- * Send the message if enter has been pressed.
- */
-$('.client_chat').on('keypress', function (evt) {
-    if (evt.keyCode == 13) {
-        $('.btn-send.chat_btn').click();
-    }
-});
-
-/**
- * Submit has been pressed execute sending
- * to server.
- */
-$('.btn-send.chat_btn').on('click', function () {
-
+function send_message() {
     /**
      * Catch the chat text
      * @type {any}
      */
-     var chat_message = $('.client_chat').val();
+    var chat_message = $('.client_chat').val();
 
 
     /**
@@ -172,6 +154,7 @@ $('.btn-send.chat_btn').on('click', function () {
         to_user = user_list.value;
     }
 
+
     /**
      * Create a package to send to the
      * server.
@@ -182,6 +165,7 @@ $('.btn-send.chat_btn').on('click', function () {
         'to_user': to_user,
         'type': 'message',
     };
+
 
     /**
      * We need a object copy of package
@@ -194,6 +178,7 @@ $('.btn-send.chat_btn').on('click', function () {
      */
     var package_object = package;
     package = JSON.stringify(package);
+
 
     /**
      * Send the package to the server
@@ -212,8 +197,7 @@ $('.btn-send.chat_btn').on('click', function () {
      * we don't need it anymore.
      */
     $('.client_chat').val('')
-    }
-)
+}
 
 /**
  * Start the connection
@@ -249,7 +233,6 @@ conn.onerror = function (e) {
 
 conn.onopen = function (e) {
 
-
     console.log("Connection established!");
 
     $('.client_chat').prop('disabled', false);
@@ -263,7 +246,9 @@ conn.onopen = function (e) {
     register_client();
 
     /**
-     * TODO
+     * Request the user list from
+     * the server. If the server replies the user list
+     * will be populated.
      */
     request_userlist();
 };

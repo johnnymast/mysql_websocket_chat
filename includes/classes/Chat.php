@@ -54,40 +54,65 @@ class Chat implements MessageComponentInterface
                  */
                 switch ($package->type) {
                     case 'message':
+
                         if ($from != $client) {
 
                             if (empty($package->to_user) == false) {
+
                                 /**
                                  * Send a message to one single client.
                                  * The is a private message.
                                  */
 
-                            } else {
-
                                 /**
-                                 * Defined in includes/config.php
+                                 * Find the client to send the message to
                                  */
-                                if (ENABLE_DATABASE == true) {
-                                    if (isset($package->user) and is_object($package->user) == true) {
-                                        $this->db->insert(
-                                            $package->to_user,
-                                            $package->user->id,
-                                            $package->message,
-                                            $client->remoteAddress
-                                        );
+                                foreach ($this->users as $resourceId => $user) {
+                                    if ($resourceId == $from->resourceId)
+                                        continue;
+
+                                    /**
+                                     * Non target users will not see this message
+                                     * on their screens.
+                                     */
+                                    if ($user['user']->id == $package->to_user) {
+                                        $targetClient = $user['client'];
+                                        $targetClient->send($msg);
+                                        return;
                                     }
                                 }
-                                $client->send($msg);
                             }
+
+                            /**
+                             * Defined in includes/config.php
+                             */
+                            if (ENABLE_DATABASE == true) {
+                                if (isset($package->user) and is_object($package->user) == true) {
+                                    $this->db->insert(
+                                        $package->to_user,
+                                        $package->user->id,
+                                        $package->message,
+                                        $client->remoteAddress
+                                    );
+                                }
+                            }
+                            $client->send($msg);
                         }
                         break;
                     case 'registration':
-                        $this->users[$from->resourceId] = $package->user;
+                        $this->users[$from->resourceId] = [
+                            'user' => $package->user,
+                            'client' => $from
+                        ];
                         break;
                     case 'userlist':
+                        $list = [];
+                        foreach ($this->users as $resourceId => $value) {
+                            $list[$resourceId] = $value['user'];
+                        }
                         $new_package = [
-                            'users' => $this->users,
-                            'type'  => 'userlist'
+                            'users' => $list,
+                            'type' => 'userlist'
                         ];
                         $new_package = json_encode($new_package);
                         $client->send($new_package);

@@ -10,12 +10,22 @@
  */
 $('.connection_alert').hide();
 
+
 /**
  * Just to make it feel like a real chat.
  * Send the message if enter has been pressed.
  */
 $('.client_chat').on('keypress', function (evt) {
     if (evt.keyCode == 13) {
-        $('.btn-send.chat_btn').click();
+        send_message();
     }
+});
+
+
+/**
+ * Submit has been pressed execute sending
+ * to server.
+ */
+$('.btn-send.chat_btn').on('click', function () {
+    send_message();
 });

@@ -9,5 +9,6 @@ define ('DATABASE_DB', 'socket_chat');
 define ('ENABLE_DATABASE', false);
 
 define('CHAT_SERVER_HOST', 'localhost');
+define('CHAT_SERVER_IP',   '0.0.0.0');
 define('CHAT_SERVER_PORT', '8080');
 
