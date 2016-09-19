@@ -13,6 +13,7 @@ function clear_userlist() {
     }
 }
 
+
 /**
  * Put a package (message) on the screen
  * for you or others to read.
@@ -28,6 +29,7 @@ function dialog_output(package) {
     }
 
 }
+
 
 /**
  * Update the user list in the UI
@@ -75,6 +77,7 @@ function users_output(users) {
     }
 }
 
+
 /**
  * We need to register this browser window (client)
  * to the server. We do this so we can sent private
@@ -101,6 +104,7 @@ function register_client() {
      */
     conn.send(package);
 }
+
 
 /**
  * Request a list of current active
@@ -136,6 +140,10 @@ function request_userlist() {
     }, 2000);
 }
 
+
+/**
+ * Send a chat message to the server
+ */
 function send_message() {
 
 
@@ -202,6 +210,7 @@ function send_message() {
      */
     dialog_output(package_object);
 
+
     /**
      * Empty the chat input bar
      * we don't need it anymore.
@@ -209,12 +218,14 @@ function send_message() {
     $('.client_chat').val('')
 }
 
+
 /**
  * Start the connection
  * @type {WebSocket}
  */
 var conn = new WebSocket('ws://' + socket_host + ':' + socket_port);
 var user_list = $('.user_list').get(0);
+
 
 /**
  * Notify the user that the connection is closed
@@ -230,6 +241,7 @@ conn.onclose = function (e) {
     clear_userlist();
 };
 
+
 /**
  * Display a message in the terminal if
  * we run into an error.
@@ -241,6 +253,12 @@ conn.onerror = function (e) {
 
 };
 
+
+/**
+ * Connection has been established
+ *
+ * @param e
+ */
 conn.onopen = function (e) {
 
     console.log("Connection established!");
@@ -263,6 +281,12 @@ conn.onopen = function (e) {
     request_userlist();
 };
 
+
+/**
+ * A new message (read package) has been received.
+ *
+ * @param event
+ */
 conn.onmessage = function (event) {
     var package = JSON.parse(event.data);
 
@@ -271,5 +295,4 @@ conn.onmessage = function (event) {
     } else if (package.type == 'userlist') {
         users_output(package.users);
     }
-}
-
+};
