@@ -41,10 +41,10 @@ $server = IoServer::factory(
         )
     ),
     CHAT_SERVER_PORT,
-    CHAT_SERVER_IP
+    CHAT_SERVER_HOST
 );
 
-echo "Server running at ".CHAT_SERVER_IP.":".CHAT_SERVER_PORT."\n";
+echo "Server running at ".CHAT_SERVER_HOST.":".CHAT_SERVER_PORT."\n";
 
 
 /**

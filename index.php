@@ -44,7 +44,7 @@ $user['id'] = md5($user['username']);
          * @type {string}
          */
         var socket_host = '<?php print CHAT_SERVER_IP ?>';
-        var socket_port = '<?php print CHAT_SERVER_PORT ?>';
+        var socket_port = '<?php print CHAT_SERVER_HOST ?>';
 
         /**
          * Also when your script is live make shure this user object

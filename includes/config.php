@@ -8,6 +8,11 @@ define ('DATABASE_PASSWORD', 'root');
 define ('DATABASE_DB', 'socket_chat');
 define ('ENABLE_DATABASE', false);
 
-define('CHAT_SERVER_IP',   '0.0.0.0');
+/**
+ * The host can either be an IP or a hostname
+ * on this machine. The port is just the port
+ * plain and simple.
+ */
+define('CHAT_SERVER_HOST',   'localhost');
 define('CHAT_SERVER_PORT', '8080');
 
