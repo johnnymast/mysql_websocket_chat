@@ -46,7 +46,6 @@ $server = IoServer::factory(
 
 echo "Server running at ".CHAT_SERVER_HOST.":".CHAT_SERVER_PORT."\n";
 
-
 /**
  * Run the server
  */
