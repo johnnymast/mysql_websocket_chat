@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', true);
 date_default_timezone_set('EUROPE/AMSTERDAM');
 
 define ('DATABASE_HOST', 'localhost');
