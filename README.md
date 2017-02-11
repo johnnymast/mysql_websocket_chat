@@ -1,3 +1,5 @@
+[![Code Triagers Badge](https://www.codetriage.com/johnnymast/mysql_websocket_chat/badges/users.svg)](https://www.codetriage.com/johnnymast/mysql_websocket_chat)
+
 # MYSQL WEBSOCKET CHAT
 
 Welcome to this hackaton project i created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
