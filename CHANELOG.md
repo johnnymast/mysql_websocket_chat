@@ -1,3 +1,6 @@
+## 1.3
+ - 
+ 
 ## 1.2 
 
 After doing some research on windows 10 i found one limitation. Windows does not allow the default configured 0.0.0.0 as a valid host to connect to. This update will update the default code to host on localhost (127.0.0.1) and connect to localhost as well.
