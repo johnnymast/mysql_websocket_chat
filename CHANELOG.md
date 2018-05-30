@@ -7,7 +7,7 @@ It will also make the whole footprint of the package smaller.
  - Closed issue to add .gitignore. We already had it. Closed and ignored #16
  - Updated CHANGELOG.md to be more detailed about bugs being fixed. Fixing #12
  - Added the License inside the README.md file. fixing #10
- 
+  
  
 ## 1.2 Small changes
 
