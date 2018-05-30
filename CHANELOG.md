@@ -1,6 +1,9 @@
 ## 1.3
-ikolkjlklkl
- - 
+
+This update will fix some small things to make the package more easy to use overall.
+It will also make the whole footprint of the package smaller.
+
+ - Added the License inside the README.md file.
  
 ## 1.2 
 
