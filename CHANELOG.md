@@ -3,6 +3,7 @@
 This update will fix some small things to make the package more easy to use overall.
 It will also make the whole footprint of the package smaller.
 
+ - Removed the dependency on jQuery because its slowly dieing. Fixing #9
  - Updated LICENSE.md to reflect the copyright of 2018, fixing #11
  - Updated the javascript code to ES2015, fixing #13
  - Closed issue to add .gitignore. We already had it. Closed and ignored #16
