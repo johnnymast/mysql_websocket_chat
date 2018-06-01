@@ -11,7 +11,7 @@ _dom.prototype.hide = function () {
 }
 
 _dom.prototype.on = function (event, callback) {
-
+  this.elm.addEventListener(event, callback)
 }
 
 let dom = (selector) => {
