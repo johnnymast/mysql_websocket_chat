@@ -20,13 +20,11 @@ function clear_userlist () {
  * @param {object} pkg - The package object to display
  */
 function dialog_output (pkg) {
-
   if (pkg.to_user.length > 0) {
-    $('.chat_dialog').append('<b class="priv_msg">Private message: ' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
+    dom('.chat_dialog').append('<b class="priv_msg">Private message: ' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
   } else {
-    $('.chat_dialog').append('<b>' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
+    dom('.chat_dialog').append('<b>' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
   }
-
 }
 
 /**
@@ -138,7 +136,7 @@ function send_message () {
    * Catch the chat text
    * @type {any}
    */
-  let chat_message = $('.client_chat').val()
+  let chat_message = dom('.client_chat').val()
 
   /**
    * When to_user is empty the
@@ -195,7 +193,7 @@ function send_message () {
    * Empty the chat input bar
    * we don't need it anymore.
    */
-  $('.client_chat').val('')
+  dom('.client_chat').val('')
 }
 
 /**
@@ -203,7 +201,7 @@ function send_message () {
  * @type {WebSocket}
  */
 let conn = new WebSocket('ws://' + socket_host + ':' + socket_port)
-let user_list = $('.user_list').get(0)
+let user_list = dom('.user_list').get()
 
 /**
  * Notify the user that the connection is closed
@@ -214,8 +212,8 @@ let user_list = $('.user_list').get(0)
 conn.onclose = function (event) {
   console.log('Connection closed!')
 
-  $('.client_chat').prop('disabled', true)
-  $('.connection_alert').show()
+  dom('.client_chat').prop('disabled', true)
+  dom('.connection_alert').show()
   clear_userlist()
 }
 
@@ -239,7 +237,7 @@ conn.onopen = function (event) {
 
   console.log('Connection established!')
 
-  $('.client_chat').prop('disabled', false)
+  dom('.client_chat').prop('disabled', false)
 
   /**
    * Register te client to the

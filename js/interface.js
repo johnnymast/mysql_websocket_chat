@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
    * Just to make it feel like a real chat.
    * Send the message if enter has been pressed.
    */
-  $('.client_chat').on('keypress', function (evt) {
-    if (evt.keyCode == 13) {
+  dom('.client_chat').on('keypress', function (evt) {
+    if (evt.keyCode === 13) {
       send_message()
     }
   })
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    * Submit has been pressed execute sending
    * to server.
    */
-  $('.btn-send.chat_btn').on('click', function () {
+  dom('.btn-send.chat_btn').on('click', function () {
     send_message()
   })
 });
