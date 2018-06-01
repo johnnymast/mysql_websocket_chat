@@ -33,8 +33,6 @@ $user['id'] = md5($user['username']);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="/css/starter-template.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
     <script type="text/javascript">
         /**
@@ -43,8 +41,8 @@ $user['id'] = md5($user['username']);
          *
          * @type {string}
          */
-        var socket_host = '<?php print CHAT_SERVER_HOST ?>';
-        var socket_port = '<?php print CHAT_SERVER_PORT ?>';
+        let socket_host = '<?php print CHAT_SERVER_HOST ?>';
+        let socket_port = '<?php print CHAT_SERVER_PORT ?>';
 
         /**
          * Also when your script is live make shure this user object
@@ -52,7 +50,7 @@ $user['id'] = md5($user['username']);
          * should be excluded. Add only the information you need on the server
          * for this user.
          */
-        var chat_user  = JSON.parse('<?php print addslashes(json_encode($user)); ?>');
+        let chat_user  = JSON.parse('<?php print addslashes(json_encode($user)); ?>');
     </script>
 </head>
 
@@ -117,13 +115,6 @@ $user['id'] = md5($user['username']);
 <script type="text/javascript" src="/js/dom.js"></script>
 <script type="text/javascript" src="/js/websockets.js"></script>
 <script type="text/javascript" src="/js/interface.js"></script>
-
-
-<!-- Latest compiled and minified JavaScript -->1
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
 
 </body>
 </html>
