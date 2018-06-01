@@ -44,10 +44,19 @@ _dom.prototype.prop = function (attribute, value) {
     return this.elm.getAttribute(attribute)
 }
 
+/**
+ * 
+ * @param html
+ */
 _dom.prototype.append = function (html) {
   this.elm.insertAdjacentHTML('beforeend', html)
 }
 
+/**
+ *
+ * @param value
+ * @returns {string | number}
+ */
 _dom.prototype.val = function (value) {
   if (typeof  value !== 'undefined') {
     this.elm.value = value
