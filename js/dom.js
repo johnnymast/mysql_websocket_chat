@@ -3,6 +3,7 @@
  */
 
 /**
+ * Construct with a selector thats all to it.
  *
  * @param selector
  * @private
@@ -12,15 +13,16 @@ let _dom = function (selector) {
 }
 
 /**
- *
+ * Put display style block on the current element.
  */
 _dom.prototype.hide = function () {
   this.elm.style.display = 'none'
 }
 
 /**
+ * Ad a EventListener for the domelement
  *
- * @param event
+ * @param {Evennt} event The x evemt
  * @param callback
  */
 _dom.prototype.on = function (event, callback) {
@@ -32,9 +34,12 @@ _dom.prototype.get = function () {
 }
 
 /**
+ * Get or set a property on a dom element. Don't pass
+ * the value parameter if you want to get the value.
+ * If you want to set the value pass the value.
  *
- * @param attribute
- * @param value
+ * @param {string} attribute The attribute name
+ * @param {string}[value] Value to set (optional)
  * @returns {string | null}
  */
 _dom.prototype.prop = function (attribute, value) {
@@ -45,7 +50,7 @@ _dom.prototype.prop = function (attribute, value) {
 }
 
 /**
- * 
+ *
  * @param html
  */
 _dom.prototype.append = function (html) {
