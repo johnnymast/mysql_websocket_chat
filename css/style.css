@@ -16,7 +16,10 @@ body {
     float: left;
 }
 
-.chat_dialog .priv_msg { color: blue; font-style: italic;}
+.chat_dialog .priv_msg {
+    color: blue;
+    font-style: italic;
+}
 
 .user_list {
     width: 20%;
@@ -50,4 +53,10 @@ body {
 
 .input-group-addon.name_bit {
     font-weight: bold;
+}
+
+.client_chat.error {
+    background-color: #fce4e4;
+    border: 1px solid #cc0033;
+    outline: none;
 }

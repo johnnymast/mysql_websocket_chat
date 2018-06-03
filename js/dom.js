@@ -70,11 +70,33 @@ _dom.prototype.append = function (html) {
  * @param {string} [value] value
  * @returns {string | number}
  */
-_dom.prototype.val = function (value) {
-  if (typeof  value !== 'undefined') {
+_dom.prototype.val = function (value = '') {
+  if (typeof  value !== 'undefined' && value.length <= 0) {
     this.elm.value = value
   } else
     return this.elm.value
+}
+
+/**
+ * Add a class to the given element
+ *
+ * @param {string} className class to add
+ */
+_dom.prototype.addClass = function (className) {
+  this.elm.className += ' ' + className
+}
+
+/**
+ * Remove a class from the given element
+ *
+ * @param {string} className class to remove
+ */
+_dom.prototype.removeClass = function (className) {
+  var elClass = ' ' + this.elm.className + ' '
+  while (elClass.indexOf(' ' + className + ' ') !== -1) {
+    elClass = elClass.replace(' ' + className + ' ', '')
+  }
+  this.elm.className = elClass
 }
 
 /**

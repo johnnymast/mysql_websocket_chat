@@ -3,6 +3,8 @@
 This update will fix some small things to make the package more easy to use overall.
 It will also make the whole footprint of the package smaller.
 
+ - Empty text should not be sent, now there will be a css animation for the input box. Fixing #22
+ - Updated the comments for JSDOCS3, fixing #14
  - Removed the dependency on jQuery because its slowly dieing. Fixing #9
  - Updated LICENSE.md to reflect the copyright of 2018, fixing #11
  - Updated the javascript code to ES2015, fixing #13

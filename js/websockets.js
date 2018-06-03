@@ -134,15 +134,22 @@ function send_message () {
 
   /**
    * Catch the chat text
-   * @type {any}
+   * @type {string}
    */
   let chat_message = dom('.client_chat').val()
 
+  if (typeof chat_message === 'undefined' || chat_message.length === 0) {
+    dom('.client_chat ').addClass('error')
+    setTimeout(() => {
+      dom('.client_chat ').removeClass('error')
+    }, 500)
+    return
+  }
   /**
    * When to_user is empty the
    * message will be sent to all users
    * in the chat room.
-   * @type {number}
+   * @type {string}
    */
   let to_user = ''
 
