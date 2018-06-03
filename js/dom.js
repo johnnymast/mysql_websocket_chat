@@ -5,7 +5,7 @@
 /**
  * Construct with a selector that's all to it.
  *
- * @param selector
+ * @param {string} selector
  * @private
  */
 let _dom = function (selector) {
@@ -20,13 +20,13 @@ _dom.prototype.hide = function () {
 }
 
 /**
- * Ad a EventListener for the domelement
+ * Ad a EventListener for the dom element
  *
- * @param {Event event The x evemt
+ * @param {Event} event The x event
  * @param callback
  */
 _dom.prototype.on = function (event, callback) {
-  this.elm.addEventListener(event, callback)
+  this.elm.addEventListener(event, callback, false)
 }
 
 /**
@@ -57,7 +57,7 @@ _dom.prototype.prop = function (attribute, value) {
 /**
  * Append a html string to the end if the element.
  *
- * @param html
+ * @param {string} html html string to append to the element
  */
 _dom.prototype.append = function (html) {
   this.elm.insertAdjacentHTML('beforeend', html)
@@ -67,7 +67,7 @@ _dom.prototype.append = function (html) {
  * Get the value of element. If value is passed the value will be set
  * to this value instead.
  *
- * @param value
+ * @param {string} [value] value
  * @returns {string | number}
  */
 _dom.prototype.val = function (value) {
