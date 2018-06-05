@@ -3,6 +3,7 @@
 This update will fix some small things to make the package more easy to use overall.
 It will also make the whole footprint of the package smaller.
 
+ - Updated Faker to version 1.7 and Ratchet to 0.4.1. Fixing #5
  - Added auto reconnect (if server restarts or if the internet goes down). Fixing #6
  - Empty text should not be sent, now there will be a css animation for the input box. Fixing #22
  - Updated the comments for JSDOCS3, fixing #14
