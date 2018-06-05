@@ -25,7 +25,7 @@ WebSocket.prototype.reconnect = function (callback) {
 let connect = function () {
 
   if (ws.conn) {
-    if (ws.conn.readyState === WebSocket.CONNECTING || ws.conn.readyState === WebSocket.OPEN) {
+    if (ws.conn.readyState === WebSocket.OPEN) {
       ws.conn.close()
     }
     delete ws.conn
@@ -84,7 +84,6 @@ let connect = function () {
   ws.conn.onclose = function (event) {
     console.log('Connection closed!')
 
-    // TODO: Reconnecting
     dom('.client_chat').prop('disabled', true)
     dom('.connection_alert').show()
     clear_userlist()
@@ -107,10 +106,7 @@ let connect = function () {
     if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
       event.target.reconnect(connect)
     }
-
-    console.log(event)
   }
-
 }
 
 /**
@@ -126,7 +122,6 @@ document.addEventListener('DOMContentLoaded', connect)
  * side of the screen.
  */
 function clear_userlist () {
-
 
   /**
    * First of all clear the current userlist
@@ -215,7 +210,7 @@ function register_client () {
   /**
    * Send the package to the server
    */
-  if (ws.conn) {
+  if (ws.conn && ws.conn.readyState === WebSocket.OPEN) {
     ws.conn.send(pkg)
   }
 }
@@ -247,7 +242,7 @@ function request_userlist () {
        * @type {{user, message: any}}
        */
       pkg = JSON.stringify(pkg)
-      if (ws.conn) {
+      if (ws.conn && ws.conn.readyState === WebSocket.OPEN) {
         ws.conn.send(pkg)
       }
     }
@@ -318,7 +313,7 @@ function send_message () {
   /**
    * Send the package to the server
    */
-  if (ws.conn) {
+  if (ws.conn && ws.conn.readyState === WebSocket.OPEN) {
     ws.conn.send(pkg)
   }
 
