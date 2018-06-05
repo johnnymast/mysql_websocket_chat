@@ -1,3 +1,126 @@
+const RECONNECT_IN_SEC = 10
+let ws = {
+  conn: null,
+}
+
+WebSocket.prototype.reconnect = function (callback) {
+
+  if (this.readyState !== WebSocket.CLOSING || this.readyState !== WebSocket.CLOSED) {
+    this.close()
+  }
+
+  let seconds = RECONNECT_IN_SEC
+  let container = dom('.connection_alert .error_reconnect_countdown')
+  let countHandle = setInterval(() => {
+    if (--seconds <= 0) {
+      clearInterval(countHandle)
+      delete container
+
+      callback()
+    }
+    container.text(seconds.toString())
+  }, 1000)
+}
+
+let connect = function () {
+
+  if (ws.conn) {
+    if (ws.conn.readyState === WebSocket.CONNECTING || ws.conn.readyState === WebSocket.OPEN) {
+      ws.conn.close()
+    }
+    delete ws.conn
+  }
+  ws.conn = new WebSocket('ws://' + socket_host + ':' + socket_port)
+
+  /**
+   * Connection has been established
+   *
+   * @param {Event} event The onopen event
+   */
+  ws.conn.onopen = function (event) {
+
+    console.log('Connection established!')
+
+    dom('.client_chat').prop('disabled', false)
+    dom('.connection_alert').hide()
+
+    /**
+     * Register te client to the
+     * server. This allows the server
+     * to return a list of chat clients
+     * to list on the side.
+     */
+    register_client()
+
+    /**
+     * Request the user list from
+     * the server. If the server replies the user list
+     * will be populated.
+     */
+    request_userlist()
+  }
+
+  /**
+   * A new message (read package) has been received.
+   *
+   * @param {Event} event the onmessage event
+   */
+  ws.conn.onmessage = function (event) {
+    let pkg = JSON.parse(event.data)
+
+    if (pkg.type === 'message') {
+      dialog_output(pkg)
+    } else if (pkg.type === 'userlist') {
+      users_output(pkg.users)
+    }
+  }
+
+  /**
+   * Notify the user that the connection is closed
+   * and disable the chat bar.
+   *
+   * @param {Event} event The onclose event
+   */
+  ws.conn.onclose = function (event) {
+    console.log('Connection closed!')
+
+    // TODO: Reconnecting
+    dom('.client_chat').prop('disabled', true)
+    dom('.connection_alert').show()
+    clear_userlist()
+
+    if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
+      event.target.reconnect(connect)
+    }
+  }
+
+  /**
+   * Display a message in the terminal if
+   * we run into an error.
+   *
+   * @param {Event} event The error event
+   */
+  ws.conn.onerror = function (event) {
+    console.log('We have received an error!')
+
+    // TODO: Reconnecting
+    if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
+      event.target.reconnect(connect)
+    }
+
+    console.log(event)
+  }
+
+}
+
+/**
+ * Start the connection
+ * @type {WebSocket}
+ */
+let user_list = dom('.user_list').get()
+
+document.addEventListener('DOMContentLoaded', connect)
+
 /**
  * Remove all users from the users on the
  * side of the screen.
@@ -92,7 +215,9 @@ function register_client () {
   /**
    * Send the package to the server
    */
-  conn.send(pkg)
+  if (ws.conn) {
+    ws.conn.send(pkg)
+  }
 }
 
 /**
@@ -102,7 +227,7 @@ function register_client () {
  */
 function request_userlist () {
   setInterval(function () {
-    if (conn.readyState !== WebSocket.CLOSING && conn.readyState !== WebSocket.CLOSED) {
+    if (ws.conn.readyState !== WebSocket.CLOSING && ws.conn.readyState !== WebSocket.CLOSED) {
 
       /**
        * Create a package to request the list of users
@@ -122,7 +247,9 @@ function request_userlist () {
        * @type {{user, message: any}}
        */
       pkg = JSON.stringify(pkg)
-      conn.send(pkg)
+      if (ws.conn) {
+        ws.conn.send(pkg)
+      }
     }
   }, 2000)
 }
@@ -145,6 +272,9 @@ function send_message () {
     }, 500)
     return
   }
+
+  // TODO: ALLEEN ALS CONNECTED
+
   /**
    * When to_user is empty the
    * message will be sent to all users
@@ -188,7 +318,9 @@ function send_message () {
   /**
    * Send the package to the server
    */
-  conn.send(pkg)
+  if (ws.conn) {
+    ws.conn.send(pkg)
+  }
 
   /**
    * Display the message we just wrote
@@ -201,78 +333,4 @@ function send_message () {
    * we don't need it anymore.
    */
   dom('.client_chat').val('')
-}
-
-/**
- * Start the connection
- * @type {WebSocket}
- */
-let conn = new WebSocket('ws://' + socket_host + ':' + socket_port)
-let user_list = dom('.user_list').get()
-
-/**
- * Notify the user that the connection is closed
- * and disable the chat bar.
- *
- * @param {Event} event The onclose event
- */
-conn.onclose = function (event) {
-  console.log('Connection closed!')
-
-  dom('.client_chat').prop('disabled', true)
-  dom('.connection_alert').show()
-  clear_userlist()
-}
-
-/**
- * Display a message in the terminal if
- * we run into an error.
- *
- * @param {Event} event The error event
- */
-conn.onerror = function (event) {
-  console.log('We have received an error!')
-
-}
-
-/**
- * Connection has been established
- *
- * @param {Event} event The onopen event
- */
-conn.onopen = function (event) {
-
-  console.log('Connection established!')
-
-  dom('.client_chat').prop('disabled', false)
-
-  /**
-   * Register te client to the
-   * server. This allows the server
-   * to return a list of chat clients
-   * to list on the side.
-   */
-  register_client()
-
-  /**
-   * Request the user list from
-   * the server. If the server replies the user list
-   * will be populated.
-   */
-  request_userlist()
-}
-
-/**
- * A new message (read package) has been received.
- *
- * @param {Event} event the onmessage event
- */
-conn.onmessage = function (event) {
-  let pkg = JSON.parse(event.data)
-
-  if (pkg.type === 'message') {
-    dialog_output(pkg)
-  } else if (pkg.type === 'userlist') {
-    users_output(pkg.users)
-  }
 }

@@ -20,6 +20,13 @@ _dom.prototype.hide = function () {
 }
 
 /**
+ * Put display style block on the current element.
+ */
+_dom.prototype.show = function () {
+  this.elm.style.display = 'block'
+}
+
+/**
  * Ad a EventListener for the dom element
  *
  * @param {Event} event The x event
@@ -47,11 +54,11 @@ _dom.prototype.get = function () {
  * @param {string}[value] Value to set (optional)
  * @returns {string | null}
  */
-_dom.prototype.prop = function (attribute, value) {
+_dom.prototype.prop = function (attribute, value = '') {
   if (typeof value !== 'undefined' && value.length > -1) {
     this.elm.setAttribute(attribute, value)
-  } else
-    return this.elm.getAttribute(attribute)
+  }
+  return this.elm.getAttribute(attribute)
 }
 
 /**
@@ -70,11 +77,24 @@ _dom.prototype.append = function (html) {
  * @param {string} [value] value
  * @returns {string | number}
  */
-_dom.prototype.val = function (value = '') {
-  if (typeof  value !== 'undefined' && value.length <= 0) {
+_dom.prototype.val = function (value = null) {
+  if (value !== null) {
     this.elm.value = value
-  } else
-    return this.elm.value
+  }
+  return this.elm.value
+}
+
+/**
+ * Set the text value of the element.
+ *
+ * @param {string} [value] value
+ * @returns {string | number}
+ */
+_dom.prototype.text = function (value = '') {
+  if (typeof  value !== 'undefined' && value.length > 0) {
+    this.elm.innerText = value
+  }
+  return this.elm.innerText
 }
 
 /**

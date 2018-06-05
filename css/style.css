@@ -47,6 +47,10 @@ body {
     width: 90% !important;
 }
 
+.connection_alert .error_type::after {
+    content: ':';
+}
+
 .input-group-btn {
     float: left;
 }

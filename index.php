@@ -89,7 +89,10 @@ $user['id'] = md5($user['username']);
         <div class="alert alert-danger connection_alert" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            Currenty there is no connection to the server.
+            Currenty there is no connection to the server. <br />
+            <span class="error_type"></span>
+            <span class="error_reconnect_msg">reconnecting in</span>
+            <span class="error_reconnect_countdown">10</span>
         </div>
 
         <div class="input-group client">
