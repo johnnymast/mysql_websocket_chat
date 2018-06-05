@@ -9,7 +9,7 @@ let ws = {
 
 WebSocket.prototype.reconnect = function (callback) {
 
-  if (this.readyState !== WebSocket.CLOSING || this.readyState !== WebSocket.CLOSED) {
+  if (this.readyState === WebSocket.OPEN || this.readyState !== WebSocket.CONNECTING) {
     this.close()
   }
 
@@ -29,11 +29,12 @@ WebSocket.prototype.reconnect = function (callback) {
 let connect = function () {
 
   if (ws.conn) {
-    if (ws.conn.readyState === WebSocket.OPEN) {
+    if (ws.conn.readyState === WebSocket.OPEN || ws.conn.readyState == WebSocket.CONNECTING) {
       ws.conn.close()
     }
     delete ws.conn
   }
+
   ws.conn = new WebSocket('ws://' + socket_host + ':' + socket_port)
 
   /**
@@ -105,10 +106,6 @@ let connect = function () {
    */
   ws.conn.onerror = function (event) {
     console.log('We have received an error!')
-
-    if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
-      event.target.reconnect(connect)
-    }
   }
 }
 
