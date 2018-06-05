@@ -102,7 +102,6 @@ let connect = function () {
   ws.conn.onerror = function (event) {
     console.log('We have received an error!')
 
-    // TODO: Reconnecting
     if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
       event.target.reconnect(connect)
     }
@@ -267,8 +266,6 @@ function send_message () {
     }, 500)
     return
   }
-
-  // TODO: ALLEEN ALS CONNECTED
 
   /**
    * When to_user is empty the
