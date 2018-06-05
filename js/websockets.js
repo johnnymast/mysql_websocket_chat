@@ -1,5 +1,9 @@
 const RECONNECT_IN_SEC = 10
 let ws = {
+  /**
+   * Start the connection
+   * @type {WebSocket}
+   */
   conn: null,
 }
 
@@ -108,10 +112,6 @@ let connect = function () {
   }
 }
 
-/**
- * Start the connection
- * @type {WebSocket}
- */
 let user_list = dom('.user_list').get()
 
 document.addEventListener('DOMContentLoaded', connect)
