@@ -12,6 +12,6 @@ define ('ENABLE_DATABASE', false);
  * on this machine. The port is just the port
  * plain and simple.
  */
-define('CHAT_SERVER_HOST',   'localhost');
+define('CHAT_SERVER_HOST',   '127.0.0.1');
 define('CHAT_SERVER_PORT', '8080');
 
