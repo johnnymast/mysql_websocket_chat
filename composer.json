@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "fzaninotto/faker": "v1.6.0",
-    "cboden/ratchet": "v0.3.5"
+    "cboden/ratchet": "v0.3.5",
+    "fzaninotto/faker": "^1.7"
   }
 }
