@@ -6,7 +6,6 @@ to create a new project from this one quickly.
  - Fixed a bug where dom(selector).prop(..) would not set a value 
  - Updated the comments in dom.js for later documentation. Fixing #31
  - Added dom(selector).removeAttr(). Fixing #25
- 
  - Removed external dependentie bootstrap-theme.min.css from the project.
  - Scripts and Stylesheets are now relative to the directory your hosting it in. So that the project can be hosted in sub directories for example chat/index.php. Fixing #29 and #28.
  - Cleaned up the HTML code. fixing #30
