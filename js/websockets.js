@@ -40,7 +40,7 @@ let connect = function () {
   /**
    * Connection has been established
    *
-   * @param {Event} event The onopen event
+   * @param {Event} event - The onopen event.
    */
   ws.conn.onopen = function (event) {
 
@@ -68,7 +68,7 @@ let connect = function () {
   /**
    * A new message (read package) has been received.
    *
-   * @param {Event} event the onmessage event
+   * @param {Event} event - The onmessage event.
    */
   ws.conn.onmessage = function (event) {
     let pkg = JSON.parse(event.data)
@@ -84,7 +84,7 @@ let connect = function () {
    * Notify the user that the connection is closed
    * and disable the chat bar.
    *
-   * @param {Event} event The onclose event
+   * @param {Event} event - The onclose event.
    */
   ws.conn.onclose = function (event) {
     console.log('Connection closed!')
@@ -102,7 +102,7 @@ let connect = function () {
    * Display a message in the terminal if
    * we run into an error.
    *
-   * @param {Event} event The error event
+   * @param {Event} event - The error event.
    */
   ws.conn.onerror = function (event) {
     console.log('We have received an error!')
@@ -112,7 +112,7 @@ let connect = function () {
 let user_list = dom('.user_list').get()
 
 document.addEventListener('DOMContentLoaded', connect)
-
+ 
 /**
  * Remove all users from the users on the
  * side of the screen.
@@ -131,7 +131,7 @@ function clear_userlist () {
  * Put a package (message) on the screen
  * for you or others to read.
  *
- * @param {object} pkg - The package object to display
+ * @param {object} pkg - The package object to display.
  */
 function dialog_output (pkg) {
   if (pkg.to_user.length > 0) {
@@ -144,7 +144,7 @@ function dialog_output (pkg) {
 /**
  * Update the user list in the UI
  *
- * @param {array} users Array of uses to display in the chatroom.
+ * @param {array} users - Array of uses to display in the chatroom.
  */
 function users_output (users) {
 
