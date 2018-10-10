@@ -46,7 +46,7 @@ let connect = function () {
 
     console.log('Connection established!')
 
-    dom('.client_chat').prop('disabled', false)
+    dom('.client_chat').removeAttr('disabled')
     dom('.connection_alert').hide()
 
     /**

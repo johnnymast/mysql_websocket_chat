@@ -5,7 +5,7 @@
 /**
  * Construct with a selector that's all to it.
  *
- * @param {string} selector
+ * @param {string} selector - The selector for the element to query.
  * @private
  */
 let _dom = function (selector) {
@@ -29,7 +29,7 @@ _dom.prototype.show = function () {
 /**
  * Ad a EventListener for the dom element
  *
- * @param {Event} event The x event
+ * @param {Event} event - The event name.
  * @param callback
  */
 _dom.prototype.on = function (event, callback) {
@@ -50,21 +50,31 @@ _dom.prototype.get = function () {
  * the value parameter if you want to get the value.
  * If you want to set the value pass the value.
  *
- * @param {string} attribute The attribute name
- * @param {string}[value] Value to set (optional)
+ * @param {string} attribute - The attribute name
+ * @param {string}[value = null] - Value to set (optional)
  * @returns {string | null}
  */
-_dom.prototype.prop = function (attribute, value = '') {
-  if (typeof value !== 'undefined' && value.length > -1) {
+_dom.prototype.prop = function (attribute, value = null) {
+  if (value !== null) {
     this.elm.setAttribute(attribute, value)
-  }
+  } 
   return this.elm.getAttribute(attribute)
+}
+
+
+/**
+ * Remove an attribute from on a dom element. 
+ * 
+ * @param {string} attribute - The attribute to remove.
+ */
+_dom.prototype.removeAttr = function(attribute) {
+  this.elm.removeAttribute(attribute)
 }
 
 /**
  * Append a html string to the end if the element.
  *
- * @param {string} html html string to append to the element
+ * @param {string} html - Html string to append to the element
  */
 _dom.prototype.append = function (html) {
   this.elm.insertAdjacentHTML('beforeend', html)
@@ -74,7 +84,7 @@ _dom.prototype.append = function (html) {
  * Get the value of element. If value is passed the value will be set
  * to this value instead.
  *
- * @param {string} [value] value
+ * @param {string} [value=null] value - If set this value will be set on the element. (optional)
  * @returns {string | number}
  */
 _dom.prototype.val = function (value = null) {
@@ -87,7 +97,7 @@ _dom.prototype.val = function (value = null) {
 /**
  * Set the text value of the element.
  *
- * @param {string} [value] value
+ * @param {string} [value] value - The text to set as innerText for the element.
  * @returns {string | number}
  */
 _dom.prototype.text = function (value = '') {
@@ -100,7 +110,7 @@ _dom.prototype.text = function (value = '') {
 /**
  * Add a class to the given element
  *
- * @param {string} className class to add
+ * @param {string} className - Classname to add.
  */
 _dom.prototype.addClass = function (className) {
   this.elm.className += ' ' + className
@@ -109,7 +119,7 @@ _dom.prototype.addClass = function (className) {
 /**
  * Remove a class from the given element
  *
- * @param {string} className class to remove
+ * @param {string} className - Classname to remove.
  */
 _dom.prototype.removeClass = function (className) {
   var elClass = ' ' + this.elm.className + ' '
@@ -122,7 +132,7 @@ _dom.prototype.removeClass = function (className) {
 /**
  * Return a new instance of _dom (the jquery clone) so the code could
  *
- * @param selector
+ * @param {string} selector - The selector for the dom element.
  * @returns {_dom}
  */
 let dom = function (selector) {

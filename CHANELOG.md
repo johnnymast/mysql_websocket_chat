@@ -1,3 +1,13 @@
+## 1.4 Helping developers to build from the project
+
+This release will be more about helping developers with usefull boiler plate functions. This will assist them
+to create a new project from this one quickly.
+
+ - Fixed a bug where dom(selector).prop(..) would not set a value
+ - Updated the comments in dom.js for later documentation.
+ - Added dom(selector).removeAttr()
+ 
+
 ## 1.3 Small new features
 
 This update will fix some small things to make the package more easy to use overall.
