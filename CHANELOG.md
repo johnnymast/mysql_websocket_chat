@@ -10,6 +10,7 @@ to create a new project from this one quickly.
  - Scripts and Stylesheets are now relative to the directory your hosting it in. So that the project can be hosted in sub directories for example chat/index.php. Fixing #29 and #28.
  - Cleaned up the HTML code. fixing #30
 
+
 ## 1.3 Small new features
 
 This update will fix some small things to make the package more easy to use overall.

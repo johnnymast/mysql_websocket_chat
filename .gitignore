@@ -1,4 +1,6 @@
 includes/config.php
+node_modules
+_book
 .idea/
 composer.lock
 vendor/

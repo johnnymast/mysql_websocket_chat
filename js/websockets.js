@@ -18,9 +18,8 @@ WebSocket.prototype.reconnect = function (callback) {
   let countHandle = setInterval(() => {
     if (--seconds <= 0) {
       clearInterval(countHandle)
-      delete container
-
       callback()
+      return
     }
     container.text(seconds.toString())
   }, 1000)
