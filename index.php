@@ -18,22 +18,22 @@ $user['id'] = md5($user['username']);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Websocket chat example using jquery + php + mysql">
     <meta name="author" content="Johnny Mast">
 
     <title>Websocket Chat</title>
 
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    -->
+    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
     <script type="text/javascript">
         /**
          * You might want to configure this to your
@@ -101,22 +101,15 @@ $user['id'] = md5($user['username']);
             <span class="input-group-btn">
                 <button class="btn btn-default btn-send chat_btn" type="button">Go!</button>
             </span>
-        </div><!-- /input-group -->
-
-
+        </div><!--/input-group -->
     </div>
-
+    
 </div><!-- /.container -->
 
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-
 <!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="/js/dom.js"></script>
-<script type="text/javascript" src="/js/websockets.js"></script>
-<script type="text/javascript" src="/js/interface.js"></script>
-
+<script type="text/javascript" src="js/dom.js"></script>
+<script type="text/javascript" src="js/websockets.js"></script>
+<script type="text/javascript" src="js/interface.js"></script>
 </body>
 </html>
 
