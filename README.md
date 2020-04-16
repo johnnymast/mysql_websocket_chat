@@ -2,37 +2,58 @@
 
 # MYSQL WEBSOCKET CHAT
 
-Welcome to this hackaton project i created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
-that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 5.6 this is not because it wanted this but its because of the dependencies this project has.
+Welcome to this Hackaton project i created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a websocket chat application
+that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 7.0- this is not because it wanted this but its because of the dependencies this project has.
 
 
 # Step 1: install composer
 
 First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but its really not.
 
-# Step 2: Install the project
+# Step 2: Install the project 
 
-If you download this package in a zip file from [phpclasses.org](http://www.phpclasses.org/package/9947-PHP-Websocket-starter-project.html) you will have to extract the zip package to a location of your liking. Then 
-CD into that directory and execute the following command on your prompt.
+## Using composer
 
-In this example i am using a mac so my prompt will display different then you if you are on windows. Don't worry about that to much and execute the following command.
-
-
-```bash
-$ cd chat
-$ composer install
-```
-
-On the other hand with composer installed you could use a more confidant method by installing the project via the composer create-project option.
-This will automatically download and install the project into the chat directory.
+Installing the project using composer is hands down the most easy way to get started. This method will download the project from github
+and automatically install its dependencies for you. Presuming you installed composer (step 1) execute the following commands on the commandline.
 
 ```bash
 $ composer create-project johnnymast/mysql_websocket_chat chat
+$ cd chat
 ```
 
-This will now download the whole project (and its dependencies) for you so you can run it.
+<em>In the above example i am using a mac so my prompt will display different then you if you are on windows.</em>
+
+## Downloaded from phpclasses.org
+
+If you download this package in a zip file from [phpclasses.org](http://www.phpclasses.org/package/9947-PHP-Websocket-starter-project.html) you will have to extract the zip package to a location of your liking. Then 
+change directory into that directory and execute the following command on your prompt.
+
+```bash
+$ composer install
+```
+
+<em>In the above example i am using a mac so my prompt will display different then you if you are on windows.</em>
+
 
 # Step 3: Configure the server
+
+## Websocket configuration
+
+This project exists of two different components. The websocket server is the <code>server.php</code> in the root directory. The second part
+is the frontend part located in <code>public/index.php</code>. For the websocket server there are two configuration options that you can configure in <code>includes/config.php</code>.
+
+### WEBSOCKET_SERVER_IP
+
+In here you can configure the websocket server's IP-adres. By default the value <code>127.0.0.1</code> has been set.
+
+### WEBSOCKET_SERVER_PORT  
+
+This will configure what port the websocket server will listen on. The default value has been set to <code>8080</code>. You can change this
+value if it clashes with other services running on your machine.
+
+
+## Database configuration
 
 This server can run with or without a database. By default i have disabled the use of a database server but you can enable it by switching the ENABLE_DATABASE to true
 in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. ***Please note*** if you enable the database make sure you
@@ -41,9 +62,9 @@ update the credentials as well (see other defines).
 Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
 
-# Step 4: Fire up the server
+# Step 4: Fire up the websocket server
 
-CD in to the chat directory and fire up the server.
+Change direction into the chat directory and fire up the server.
 
 ```bash
 $ cd chat
@@ -53,10 +74,18 @@ $ php ./server.php
 When you see no output and the command seems to hang that's when you know its running.
 
 
-# Step 5: Point a webserver to the chat directory
+# Step 5: Point a webservice to the public directory
 
 In the chat directory you will find index.php. This file will be the client for your chat application. Make sure you set any
-webserver its document root to this location.
+webservice its document root to this location. Alternatively if you don't have access to an webserver you can also try using php's
+build in webserver.
+
+```bash
+$ cd public
+$ php -S 127.0.0.1:8000
+```
+
+<emn>This will start an webserver on port 8000</em>  
 
 # Step 6: Chat away!
 

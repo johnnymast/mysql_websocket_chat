@@ -40,11 +40,11 @@ $server = IoServer::factory(
             new Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
         )
     ),
-    CHAT_SERVER_PORT,
-    CHAT_SERVER_HOST
+    WEBSOCKET_SERVER_IP,
+    WEBSOCKET_SERVER_PORT
 );
 
-echo "Server running at ".CHAT_SERVER_HOST.":".CHAT_SERVER_PORT."\n";
+echo "Server running at ".WEBSOCKET_SERVER_IP.":".WEBSOCKET_SERVER_PORT."\n";
 
 /**
  * Run the server
