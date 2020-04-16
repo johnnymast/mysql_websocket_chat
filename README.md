@@ -43,15 +43,14 @@ $ composer install
 This project exists of two different components. The websocket server is the <code>server.php</code> in the root directory. The second part
 is the frontend part located in <code>public/index.php</code>. For the websocket server there are two configuration options that you can configure in <code>includes/config.php</code>.
 
-### <code>WEBSOCKET_SERVER_IP</code>
+#### WEBSOCKET_SERVER_IP
 
 In here you can configure the websocket server's IP-adres. By default the value <code>127.0.0.1</code> has been set.
 
-### <code>WEBSOCKET_SERVER_PORT</code>
+#### WEBSOCKET_SERVER_PORT  
 
 This will configure what port the websocket server will listen on. The default value has been set to <code>8080</code>. You can change this
 value if it clashes with other services running on your machine.
-
 
 ## Database configuration
 
