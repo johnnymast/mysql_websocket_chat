@@ -1,8 +1,12 @@
 ## 1.4 Helping developers to build from the project
 
-This release will be more about helping developers with usefull boiler plate functions. This will assist them
+This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
 
+ - Added more instructions to README.md.
+ - Renamed CHAT_SERVER_HOST to WEBSOCKET_SERVER_IP for clarity.
+ - Renamed CHAT_SERVER_PORT to WEBSOCKET_SERVER_PORT for clarity.
+ - Moved the index.php and js files and css files to its own public folder.
  - Fixed a bug where dom(selector).prop(..) would not set a value 
  - Updated the comments in dom.js for later documentation. Fixing #31
  - Added dom(selector).removeAttr(). Fixing #25
