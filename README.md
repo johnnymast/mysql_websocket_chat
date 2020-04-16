@@ -83,7 +83,7 @@ When you see no output and the command seems to hang that's when you know its ru
 
 # Step 5: Point a web service to the public directory
 
-In the chat directory, you will find index.php. This file will be the client for your chat application. Make sure you set any web service its document root to the <code>public/</clode> folder. Alternatively, if you don't have access to a webserver you can also try using PHP's
+In the chat directory, you will find index.php. This file will be the client for your chat application. Make sure you set any web service its document root to the <code>public/</code> folder. Alternatively, if you don't have access to a webserver you can also try using PHP's
 build-in webserver.
 
 ```bash
