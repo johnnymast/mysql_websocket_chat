@@ -1,6 +1,6 @@
 <?php
-require 'vendor/autoload.php';
-require 'includes/config.php';
+require '../vendor/autoload.php';
+require '../includes/config.php';
 
 /**
  * Create a fake identity
