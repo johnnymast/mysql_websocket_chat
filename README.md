@@ -54,11 +54,8 @@ value if it clashes with other services running on your machine.
 
 ## Database configuration
 
-This server can run with or without a database. By default i have disabled the use of a database server but you can enable it by switching the ENABLE_DATABASE to true
-in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. ***Please note*** if you enable the database make sure you
-update the credentials as well (see other defines).
-
-Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
+This server can run either with or without a database. By default i have disabled the use of a database server (<code>ENABLE_DATABASE</code>) but you can enable it by switching the <code>ENABLE_DATABASE</code> to <code>true</code>
+in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. 
 
 | Flag | Description |
 | --- | --- |
@@ -67,6 +64,9 @@ Also if you enable the database make sure you have imported [database.sql](https
 | DATABASE_PASSWORD | Enter the password to access the database there. By default this has been set to <code>root</code>.|
 | DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
 | ENABLE_DATABASE | This flag will turn using the database on or off by setting its value to <code>true</code> or <code>false</code>.|
+
+
+***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
 
 # Step 4: Fire up the websocket server
