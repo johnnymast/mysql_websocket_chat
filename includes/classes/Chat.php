@@ -133,6 +133,30 @@ class Chat implements MessageComponentInterface
                         $new_package = json_encode($new_package);
                         $client->send($new_package);
                         break;
+
+                    case 'typing':
+                        if ($from != $client) {
+
+                            if (empty($package->user) == false) {
+                                /**
+                                 * Find the client to send the message to
+                                 */
+                                foreach ($this->users as $resourceId => $user) {
+                                    if ($resourceId == $from->resourceId)
+                                        continue;
+
+                                    $new_package = [
+                                        'user' => $package->user,
+                                        'type' => 'typing',
+                                        'value' => $package->value,
+                                    ];
+
+                                    $targetClient = $user['client'];
+                                    $targetClient->send($msg);
+                                }
+                            }
+                        }
+                        break;
                 }
             }
         }

@@ -80,21 +80,28 @@ $user['id'] = md5($user['username']);
         <h1>Websockets chat example</h1>
         <p class="lead">Open this url in a second browser and chat away! Depending on includes/config.php it will report
             to the database or not. All interactions are controlled by includes/classes/Chat.php</p>
-        <div class="chat_dialog"></div>
+        <div class="chat_dialog">
+
+            <ul class="typing_indicator"></ul>
+        </div>
         <select class="user_list" multiple></select>
         <div class="clear">&nbsp;</div>
 
         <div class="alert alert-danger connection_alert" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            Currenty there is no connection to the server. <br />
+            Currently there is no connection to the server. <br />
             <span class="error_type"></span>
             <span class="error_reconnect_msg">reconnecting in</span>
             <span class="error_reconnect_countdown">10</span>
         </div>
 
         <div class="input-group client">
-            <span class="input-group-addon name_bit" id="basic-addon3">You: <?php print $user['username']; ?></span>
+            <span class="input-group-addon name_bit" id="basic-addon3">
+                <span class="client_user_you"><?php print $user['username']; ?></span>
+                &nbsp;&gt;&gt;&nbsp;<span class="name_bit chat_target"></span>
+            </span>
+
             <input type="text" class="form-control client_chat" placeholder="Type your message...">
             <span class="input-group-btn">
                 <button class="btn btn-default btn-send chat_btn" type="button">Go!</button>

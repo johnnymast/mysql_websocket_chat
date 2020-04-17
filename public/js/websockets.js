@@ -7,7 +7,13 @@ let ws = {
   conn: null,
 }
 
-WebSocket.prototype.reconnect = function (callback) {
+/**
+ * Handle automatically reconnecting to a websocket server
+ * if the connection was interrupted.
+ *
+ * @param {function} callback -
+ */
+WebSocket.prototype['reconnect'] = (callback) => {
 
   if (this.readyState === WebSocket.OPEN || this.readyState !== WebSocket.CONNECTING) {
     this.close()
@@ -25,10 +31,10 @@ WebSocket.prototype.reconnect = function (callback) {
   }, 1000)
 }
 
-let connect = function () {
+let connect = () => {
 
   if (ws.conn) {
-    if (ws.conn.readyState === WebSocket.OPEN || ws.conn.readyState == WebSocket.CONNECTING) {
+    if (ws.conn.readyState === WebSocket.OPEN || ws.conn.readyState === WebSocket.CONNECTING) {
       ws.conn.close()
     }
     delete ws.conn
@@ -41,9 +47,7 @@ let connect = function () {
    *
    * @param {Event} event - The onopen event.
    */
-  ws.conn.onopen = function (event) {
-
-    console.log('Connection established!')
+  ws.conn.onopen = (event) => {
 
     dom('.client_chat').removeAttr('disabled')
     dom('.connection_alert').hide()
@@ -69,13 +73,15 @@ let connect = function () {
    *
    * @param {Event} event - The onmessage event.
    */
-  ws.conn.onmessage = function (event) {
+  ws.conn.onmessage = (event) => {
     let pkg = JSON.parse(event.data)
 
     if (pkg.type === 'message') {
       dialog_output(pkg)
     } else if (pkg.type === 'userlist') {
       users_output(pkg.users)
+    } else if (pkg.type === 'typing') {
+      typing_output(pkg)
     }
   }
 
@@ -85,7 +91,7 @@ let connect = function () {
    *
    * @param {Event} event - The onclose event.
    */
-  ws.conn.onclose = function (event) {
+  ws.conn.onclose = (event) => {
     console.log('Connection closed!')
 
     dom('.client_chat').prop('disabled', true)
@@ -103,20 +109,20 @@ let connect = function () {
    *
    * @param {Event} event - The error event.
    */
-  ws.conn.onerror = function (event) {
-    console.log('We have received an error!')
+  ws.conn.onerror = (event) => {
+    console.log('We have received an error!', event)
   }
 }
 
 let user_list = dom('.user_list').get()
 
 document.addEventListener('DOMContentLoaded', connect)
- 
+
 /**
  * Remove all users from the users on the
  * side of the screen.
  */
-function clear_userlist () {
+clear_userlist = () => {
 
   /**
    * First of all clear the current userlist
@@ -132,9 +138,13 @@ function clear_userlist () {
  *
  * @param {object} pkg - The package object to display.
  */
-function dialog_output (pkg) {
-  if (pkg.to_user.length > 0) {
-    dom('.chat_dialog').append('<b class="priv_msg">Private message: ' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
+dialog_output = (pkg) => {
+  if (pkg.to_user) {
+    if (pkg.to_user.id === chat_user.id) {
+      dom('.chat_dialog').append('<b class="priv_msg">(Private from &lt;&lt; ' + pkg.user.username + '</b>)  ' + pkg.message + '<br/>')
+    } else {
+      dom('.chat_dialog').append('<b class="priv_msg">(Private to &gt;&gt; ' + pkg.to_user.username + '</b>): ' + pkg.message + '<br/>')
+    }
   } else {
     dom('.chat_dialog').append('<b>' + pkg.user.username + '</b>: ' + pkg.message + '<br/>')
   }
@@ -145,7 +155,7 @@ function dialog_output (pkg) {
  *
  * @param {array} users - Array of uses to display in the chatroom.
  */
-function users_output (users) {
+users_output = (users) => {
 
   /**
    * First get the current select value
@@ -162,16 +172,17 @@ function users_output (users) {
    */
   clear_userlist()
 
-  for (let connid in users) {
+  for (let connection_id in users) {
 
-    if (users.hasOwnProperty(connid)) {
-      let user = users[connid]
+    if (users.hasOwnProperty(connection_id)) {
+      let user = users[connection_id]
       let elm = document.createElement('OPTION')
 
       elm.value = user.id
       elm.appendChild(document.createTextNode(user.username))
 
       if (elm.value === chat_user.id) {
+        elm.classList = ['client_user_you']
         elm.disabled = 'disabled'
       }
 
@@ -184,12 +195,36 @@ function users_output (users) {
   }
 }
 
+typing_output = (pkg) => {
+
+  if (typeof pkg == 'object') {
+    let user = pkg.user
+    let isTyping = pkg.value
+
+    let indicator = dom('.typing_indicator').get()
+    let typingMessage = dom(`.typing_indicator li[data-userid="${user.id}"]`).get()
+
+    if (typingMessage) {
+      typingMessage.parentNode.removeChild(typingMessage)
+    }
+
+    if (isTyping) {
+      let msg = `${user.username} is typing a message`
+      let li = document.createElement('LI')
+      li.dataset.userid = user.id
+      li.innerText = msg
+
+      indicator.appendChild(li)
+    }
+  }
+}
+
 /**
  * We need to register this browser window (client)
  * to the server. We do this so we can sent private
  * messages to other users.
  */
-function register_client () {
+register_client = () => {
 
   /**
    * Create a registration package to send to the
@@ -215,8 +250,8 @@ function register_client () {
  * chat users. We do this every x seconds
  * so we can update the ui.
  */
-function request_userlist () {
-  setInterval(function () {
+request_userlist = () => {
+  setInterval(() => {
     if (ws.conn.readyState !== WebSocket.CLOSING && ws.conn.readyState !== WebSocket.CLOSED) {
 
       /**
@@ -234,7 +269,7 @@ function request_userlist () {
        * into a string so we can send it over the
        * socket to the server.
        *
-       * @type {{user, message: any}}
+       * @type {Object}
        */
       pkg = JSON.stringify(pkg)
       if (ws.conn && ws.conn.readyState === WebSocket.OPEN) {
@@ -244,13 +279,36 @@ function request_userlist () {
   }, 2000)
 }
 
+register_typing = (currently) => {
+
+  /**
+   * Create a package to send to the
+   * server.
+   */
+  let pkg = {
+    'user': chat_user, /* Defined in index.php */
+    'type': 'typing',
+    'value': currently || false
+  }
+
+  pkg = JSON.stringify(pkg)
+
+  /**
+   * Send the package to the server
+   */
+  if (ws.conn && ws.conn.readyState === WebSocket.OPEN) {
+    ws.conn.send(pkg)
+  }
+}
+
 /**
  * Send a chat message to the server
  */
-function send_message () {
+send_message = () => {
 
   /**
    * Catch the chat text
+   *
    * @type {string}
    */
   let chat_message = dom('.client_chat').val()
@@ -260,16 +318,18 @@ function send_message () {
     setTimeout(() => {
       dom('.client_chat ').removeClass('error')
     }, 500)
-    return
   }
+
+  register_typing(false)
 
   /**
    * When to_user is empty the
    * message will be sent to all users
    * in the chat room.
-   * @type {string}
+   *
+   * @type {Object}
    */
-  let to_user = ''
+  let to_user = null
 
   /**
    *  If a user is selected in the
@@ -277,7 +337,10 @@ function send_message () {
    *  to that user.
    */
   if (user_list.value) {
-    to_user = user_list.value
+    to_user = {
+      id: user_list.value,
+      username: user_list.options[user_list.selectedIndex].text
+    }
   }
 
   /**
@@ -298,7 +361,7 @@ function send_message () {
    * into a string so we can send it over the
    * socket to the server.
    *
-   * @type {{user, message: any}}
+   * @type {Object}
    */
   let pkg_object = pkg
   pkg = JSON.stringify(pkg)

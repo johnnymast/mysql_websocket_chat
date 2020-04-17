@@ -3,6 +3,12 @@
 This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
 
+ - Fixed a few typo's
+ - Updated the layout of the private messages.
+ - Added an indicator of who the user is typing to. The channel or a user.
+ - Made the text of the active user bold red in client list and chat area.
+ - Improved comments for JSDOC3
+ - Added JSDOC development dependence.
  - Added more instructions to README.md.
  - Renamed CHAT_SERVER_HOST to WEBSOCKET_SERVER_IP for clarity.
  - Renamed CHAT_SERVER_PORT to WEBSOCKET_SERVER_PORT for clarity.
@@ -10,7 +16,7 @@ to create a new project from this one quickly.
  - Fixed a bug where dom(selector).prop(..) would not set a value 
  - Updated the comments in dom.js for later documentation. Fixing #31
  - Added dom(selector).removeAttr(). Fixing #25
- - Removed external dependentie bootstrap-theme.min.css from the project.
+ - Removed external dependence bootstrap-theme.min.css from the project.
  - Scripts and Stylesheets are now relative to the directory your hosting it in. So that the project can be hosted in sub directories for example chat/index.php. Fixing #29 and #28.
  - Cleaned up the HTML code. fixing #30
 
@@ -24,7 +30,7 @@ It will also make the whole footprint of the package smaller.
  - Updated Faker to version 1.7 and Ratchet to 0.4.1. Fixing #5
  - Added auto reconnect (if server restarts or if the internet goes down). Fixing #6
  - Empty text should not be sent, now there will be a css animation for the input box. Fixing #22
- - Updated the comments for JSDOCS3, fixing #14
+ - Updated the comments for JSDOC3, fixing #14
  - Removed the dependency on jQuery because its slowly dieing. Fixing #9
  - Updated LICENSE.md to reflect the copyright of 2018, fixing #11
  - Updated the javascript code to ES2015, fixing #13
