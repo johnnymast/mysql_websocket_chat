@@ -1,6 +1,7 @@
 [![Code Triagers Badge](https://www.codetriage.com/johnnymast/mysql_websocket_chat/badges/users.svg)](https://www.codetriage.com/johnnymast/mysql_websocket_chat)
 ![ESLint](https://github.com/johnnymast/mysql_websocket_chat/workflows/ESLint/badge.svg)
 ![StyleLint](https://github.com/johnnymast/mysql_websocket_chat/workflows/StyleLint/badge.svg)
+![Phpcs](https://github.com/johnnymast/mysql_websocket_chat/workflows/Phpcs/badge.svg)
 
 # MYSQL WEBSOCKET CHAT
 
