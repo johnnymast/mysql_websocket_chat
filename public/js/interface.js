@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 document.addEventListener('DOMContentLoaded', () => {
-
-  let setChatTarget = (target) => {
+  const setChatTarget = (target) => {
     if (!target) {
       target = 'Channel'
     }
@@ -23,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dom('.client_chat').on('keyup', (evt) => {
     if (evt.target.value.length > 0) {
-      register_typing(true)
+      registerTyping(true)
     } else {
-      register_typing(false)
+      registerTyping(false)
     }
   })
 
@@ -35,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   dom('.client_chat').on('keypress', (evt) => {
     if (evt.key === 'Enter') {
-      send_message()
+      sendMessage()
     }
   })
 
   dom('.user_list').on('change', (evt) => {
-    let list = evt.target
+    const list = evt.target
     let to = null
 
     if (list.selectedIndex >= 0) {
@@ -55,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * to server.
    */
   dom('.btn-send.chat_btn').on('click', () => {
-    send_message()
-    register_typing(false)
+    sendMessage()
+    registerTyping(false)
   })
 
   setChatTarget()

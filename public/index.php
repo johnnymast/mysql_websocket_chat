@@ -39,8 +39,8 @@ $user['id'] = md5($user['username']);
          *
          * @type {string}
          */
-        let socket_host = '<?php print WEBSOCKET_SERVER_IP ?>';
-        let socket_port = '<?php print WEBSOCKET_SERVER_PORT ?>';
+        let socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
+        let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
 
         /**
          * Also when your script is live make shure this user object

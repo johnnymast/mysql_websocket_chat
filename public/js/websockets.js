@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 const RECONNECT_IN_SEC = 10
-let ws = {
+const ws = {
   /**
    * Start the connection
    * @type {WebSocket}
    */
-  conn: null,
+  conn: null
 }
 
 /**
@@ -14,15 +14,14 @@ let ws = {
  *
  * @param {function} callback -
  */
-WebSocket.prototype['reconnect'] = (callback) => {
-
+WebSocket.prototype.reconnect = (callback) => {
   if (this.readyState === WebSocket.OPEN || this.readyState !== WebSocket.CONNECTING) {
     this.close()
   }
 
   let seconds = RECONNECT_IN_SEC
-  let container = dom('.connection_alert .error_reconnect_countdown')
-  let countHandle = setInterval(() => {
+  const container = dom('.connection_alert .error_reconnect_countdown')
+  const countHandle = setInterval(() => {
     if (--seconds <= 0) {
       clearInterval(countHandle)
       callback()
@@ -32,8 +31,7 @@ WebSocket.prototype['reconnect'] = (callback) => {
   }, 1000)
 }
 
-let connect = () => {
-
+const connect = () => {
   if (ws.conn) {
     if (ws.conn.readyState === WebSocket.OPEN || ws.conn.readyState === WebSocket.CONNECTING) {
       ws.conn.close()
@@ -41,7 +39,7 @@ let connect = () => {
     delete ws.conn
   }
 
-  ws.conn = new WebSocket('ws://' + socket_host + ':' + socket_port)
+  ws.conn = new WebSocket('ws://' + socketHost + ':' + socketPort)
 
   /**
    * Connection has been established
@@ -49,7 +47,6 @@ let connect = () => {
    * @param {Event} event - The onopen event.
    */
   ws.conn.onopen = (event) => {
-
     dom('.client_chat').removeAttr('disabled')
     dom('.connection_alert').hide()
 
@@ -59,14 +56,14 @@ let connect = () => {
      * to return a list of chat clients
      * to list on the side.
      */
-    register_client()
+    registerClient()
 
     /**
      * Request the user list from
      * the server. If the server replies the user list
      * will be populated.
      */
-    request_userlist()
+    requestUserlist()
   }
 
   /**
@@ -75,14 +72,14 @@ let connect = () => {
    * @param {Event} event - The onmessage event.
    */
   ws.conn.onmessage = (event) => {
-    let pkg = JSON.parse(event.data)
+    const pkg = JSON.parse(event.data)
 
     if (pkg.type === 'message') {
-      dialog_output(pkg)
+      dialogOutput(pkg)
     } else if (pkg.type === 'userlist') {
-      users_output(pkg.users)
+      usersOutput(pkg.users)
     } else if (pkg.type === 'typing') {
-      typing_output(pkg)
+      typingOutput(pkg)
     }
   }
 
@@ -97,7 +94,7 @@ let connect = () => {
 
     dom('.client_chat').prop('disabled', true)
     dom('.connection_alert').show()
-    clear_userlist()
+    clearUserlist()
 
     if (event.target.readyState === WebSocket.CLOSING || event.target.readyState === WebSocket.CLOSED) {
       event.target.reconnect(connect)
@@ -115,7 +112,7 @@ let connect = () => {
   }
 }
 
-let user_list = dom('.user_list').get()
+const userList = dom('.user_list').get()
 
 document.addEventListener('DOMContentLoaded', connect)
 
@@ -123,13 +120,12 @@ document.addEventListener('DOMContentLoaded', connect)
  * Remove all users from the users on the
  * side of the screen.
  */
-clear_userlist = () => {
-
+clearUserlist = () => {
   /**
    * First of all clear the current userlist
    */
-  while (user_list.firstChild) {
-    user_list.removeChild(user_list.firstChild)
+  while (userList.firstChild) {
+    userList.removeChild(userList.firstChild)
   }
 }
 
@@ -139,7 +135,7 @@ clear_userlist = () => {
  *
  * @param {object} pkg - The package object to display.
  */
-dialog_output = (pkg) => {
+dialogOutput = (pkg) => {
   if (pkg.to_user) {
     if (pkg.to_user.id === chat_user.id) {
       dom('.chat_dialog').append('<b class="priv_msg">(Private from &lt;&lt; ' + pkg.user.username + '</b>)  ' + pkg.message + '<br/>')
@@ -156,28 +152,26 @@ dialog_output = (pkg) => {
  *
  * @param {array} users - Array of uses to display in the chatroom.
  */
-users_output = (users) => {
-
+usersOutput = (users) => {
   /**
    * First get the current select value
    * on the list. This is so we can restore
    * the selected list item after requesting
    * fow new users.
    */
-  let selected_user = user_list.value
+  const selectedUser = userList.value
 
   /**
    * Before we start adding users
    * to the userlist make sure we erase
    * all the old users of the screen.
    */
-  clear_userlist()
+  clearUserlist()
 
-  for (let connection_id in users) {
-
-    if (users.hasOwnProperty(connection_id)) {
-      let user = users[connection_id]
-      let elm = document.createElement('OPTION')
+  for (const index in users) {
+    if (typeof users[index] !== 'undefined') {
+      const user = users[index]
+      const elm = document.createElement('OPTION')
 
       elm.value = user.id
       elm.appendChild(document.createTextNode(user.username))
@@ -187,31 +181,30 @@ users_output = (users) => {
         elm.disabled = 'disabled'
       }
 
-      if (selected_user.length > 0 && elm.value === selected_user) {
+      if (selectedUser.length > 0 && elm.value === selectedUser) {
         elm.selected = 'selected'
       }
 
-      user_list.appendChild(elm)
+      userList.appendChild(elm)
     }
   }
 }
 
-typing_output = (pkg) => {
+typingOutput = (pkg) => {
+  if (typeof pkg === 'object') {
+    const user = pkg.user
+    const isTyping = pkg.value
 
-  if (typeof pkg == 'object') {
-    let user = pkg.user
-    let isTyping = pkg.value
-
-    let indicator = dom('.typing_indicator').get()
-    let typingMessage = dom(`.typing_indicator li[data-userid="${user.id}"]`).get()
+    const indicator = dom('.typing_indicator').get()
+    const typingMessage = dom(`.typing_indicator li[data-userid="${user.id}"]`).get()
 
     if (typingMessage) {
       typingMessage.parentNode.removeChild(typingMessage)
     }
 
     if (isTyping) {
-      let msg = `${user.username} is typing a message`
-      let li = document.createElement('LI')
+      const msg = `${user.username} is typing a message`
+      const li = document.createElement('LI')
       li.dataset.userid = user.id
       li.innerText = msg
 
@@ -225,15 +218,14 @@ typing_output = (pkg) => {
  * to the server. We do this so we can sent private
  * messages to other users.
  */
-register_client = () => {
-
+registerClient = () => {
   /**
    * Create a registration package to send to the
    * server.
    */
   let pkg = {
-    'user': chat_user, /* Defined in index.php */
-    'type': 'registration',
+    user: chat_user, /* Defined in index.php */
+    type: 'registration'
   }
 
   pkg = JSON.stringify(pkg)
@@ -251,16 +243,15 @@ register_client = () => {
  * chat users. We do this every x seconds
  * so we can update the ui.
  */
-request_userlist = () => {
+requestUserlist = () => {
   setInterval(() => {
     if (ws.conn.readyState !== WebSocket.CLOSING && ws.conn.readyState !== WebSocket.CLOSED) {
-
       /**
        * Create a package to request the list of users
        */
       let pkg = {
-        'user': chat_user, /* Defined in index.php */
-        'type': 'userlist',
+        user: chat_user, /* Defined in index.php */
+        type: 'userlist'
       }
 
       /**
@@ -280,16 +271,15 @@ request_userlist = () => {
   }, 2000)
 }
 
-register_typing = (currently) => {
-
+registerTyping = (currently) => {
   /**
    * Create a package to send to the
    * server.
    */
   let pkg = {
-    'user': chat_user, /* Defined in index.php */
-    'type': 'typing',
-    'value': currently || false
+    user: chat_user, /* Defined in index.php */
+    type: 'typing',
+    value: currently || false
   }
 
   pkg = JSON.stringify(pkg)
@@ -305,23 +295,22 @@ register_typing = (currently) => {
 /**
  * Send a chat message to the server
  */
-send_message = () => {
-
+sendMessage = () => {
   /**
    * Catch the chat text
    *
    * @type {string}
    */
-  let chat_message = dom('.client_chat').val()
+  const chatMessage = dom('.client_chat').val()
 
-  if (typeof chat_message === 'undefined' || chat_message.length === 0) {
+  if (typeof chatMessage === 'undefined' || chatMessage.length === 0) {
     dom('.client_chat ').addClass('error')
     setTimeout(() => {
       dom('.client_chat ').removeClass('error')
     }, 500)
   }
 
-  register_typing(false)
+  registerTyping(false)
 
   /**
    * When to_user is empty the
@@ -330,17 +319,17 @@ send_message = () => {
    *
    * @type {Object}
    */
-  let to_user = null
+  let toUser = null
 
   /**
    *  If a user is selected in the
    *  userlist this will mean send messages
    *  to that user.
    */
-  if (user_list.value) {
-    to_user = {
-      id: user_list.value,
-      username: user_list.options[user_list.selectedIndex].text
+  if (userList.value) {
+    toUser = {
+      id: userList.value,
+      username: userList.options[userList.selectedIndex].text
     }
   }
 
@@ -349,10 +338,10 @@ send_message = () => {
    * server.
    */
   let pkg = {
-    'user': chat_user, /* Defined in index.php */
-    'message': chat_message,
-    'to_user': to_user,
-    'type': 'message',
+    user: chat_user, /* Defined in index.php */
+    message: chatMessage,
+    to_user: toUser,
+    type: 'message'
   }
 
   /**
@@ -364,7 +353,7 @@ send_message = () => {
    *
    * @type {Object}
    */
-  let pkg_object = pkg
+  const pkgObject = pkg
   pkg = JSON.stringify(pkg)
 
   /**
@@ -378,7 +367,7 @@ send_message = () => {
    * Display the message we just wrote
    * to the screen.
    */
-  dialog_output(pkg_object)
+  dialogOutput(pkgObject)
 
   /**
    * Empty the chat input bar
