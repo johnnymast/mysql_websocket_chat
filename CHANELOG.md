@@ -3,6 +3,9 @@
 This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
 
+ - Added GitHub Actions
+ - Added checks for css via stylelint
+ - Added javascript checks via eslint
  - Fixed a few typo's
  - Updated the layout of the private messages.
  - Added an indicator of who the user is typing to. The channel or a user.
