@@ -6,7 +6,7 @@ Welcome to this hackaton project i created for user hrushi on [phpclasses.org](h
 that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required php version is 5.6 this is not because it wanted this but its because of the dependencies this project has.
 
 
-# Step 1: install composer
+# Step 1: install composer2
 
 First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but its really not.
 
