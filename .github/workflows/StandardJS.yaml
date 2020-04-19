@@ -13,9 +13,9 @@ jobs:
       - run: npm run build --if-present
         env:
           CI: true
-#      - name: Running standardJS
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v1
-#        run: npm run standardJS
-#        env:
-#          CI: true
+      - uses: actions/checkout@v2
+      - name: Running standardJS
+        uses: actions/setup-node@v1
+        run: npm run standardJS
+        env:
+          CI: true
