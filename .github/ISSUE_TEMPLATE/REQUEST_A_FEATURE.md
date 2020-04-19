@@ -1,6 +1,6 @@
 ---
-name: "\U0001F37A Request a new feature"
-about: "let me know what feature you want to add"
+name: "\U0001f9d0 Request a new feature"
+about: "Let me know what feature you want to add"
 ---
 
 <!-- Please answer the following. What feature are you missing? -->
