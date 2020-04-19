@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const RECONNECT_IN_SEC = 10
 let ws = {
   /**
@@ -385,3 +386,4 @@ send_message = () => {
    */
   dom('.client_chat').val('')
 }
+/* eslint-enable no-undef */

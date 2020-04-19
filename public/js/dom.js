@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 /**
  * This file provides a replacement for jquery.
  */
@@ -139,3 +141,4 @@ class Dom {
 let dom = (selector) => {
   return new Dom(selector)
 }
+/* eslint-enable no-undef */

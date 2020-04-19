@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 document.addEventListener('DOMContentLoaded', () => {
 
   let setChatTarget = (target) => {
@@ -60,3 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setChatTarget()
 })
+/* eslint-enable no-undef */
