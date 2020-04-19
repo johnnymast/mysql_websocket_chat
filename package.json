@@ -18,11 +18,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:prepare": "gitbook install",
-    "docs:api": "jsdoc2md --files public/js/*.js  > docs/js/api.md",
-    "docs:build": "npm run docs:prepare && npm run docs:api && gitbook build",
-    "docs:serve": "npm run docs:prepare && npm run docs:api && gitbook serve",
-    "docs:clean": "rimraf _book",
     "eslint": "eslint -c eslintrc.json --format=pretty ./public/js"
   },
   "repository": {
