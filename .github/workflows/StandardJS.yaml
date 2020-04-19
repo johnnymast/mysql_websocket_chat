@@ -1,9 +1,9 @@
-name: Run JS Standard check
+name: Run ESLint with Standard code style
 on: [push]
 
 jobs:
   standardjs_job:
-    name: On push run StandardJS from nodeJS
+    name: On push run eslin with standard codestyle from nodeJS
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,12 +11,6 @@ jobs:
         uses: actions/setup-node@v1
       - run: npm install
       - run: npm run build --if-present
-        env:
-          CI: true
-      - uses: actions/checkout@v2
-      - name: Running standardJS
-        uses: actions/setup-node@v1
-      - run: npm install
-      - run: npm run standardJS
+      - run: npm run lint
         env:
           CI: true
