@@ -12,28 +12,28 @@
 <dt><a href="#dom">dom(selector)</a> ⇒ <code><a href="#Dom">Dom</a></code></dt>
 <dd><p>Return a new instance of _dom (the jquery clone) so the code could</p>
 </dd>
-<dt><a href="#clear_userlist">clear_userlist()</a></dt>
+<dt><a href="#clearUserlist">clearUserlist()</a></dt>
 <dd><p>Remove all users from the users on the
 side of the screen.</p>
 </dd>
-<dt><a href="#dialog_output">dialog_output(pkg)</a></dt>
+<dt><a href="#dialogOutput">dialogOutput(pkg)</a></dt>
 <dd><p>Put a package (message) on the screen
 for you or others to read.</p>
 </dd>
-<dt><a href="#users_output">users_output(users)</a></dt>
+<dt><a href="#usersOutput">usersOutput(users)</a></dt>
 <dd><p>Update the user list in the UI</p>
 </dd>
-<dt><a href="#register_client">register_client()</a></dt>
+<dt><a href="#registerClient">registerClient()</a></dt>
 <dd><p>We need to register this browser window (client)
 to the server. We do this so we can sent private
 messages to other users.</p>
 </dd>
-<dt><a href="#request_userlist">request_userlist()</a></dt>
+<dt><a href="#requestUserlist">requestUserlist()</a></dt>
 <dd><p>Request a list of current active
 chat users. We do this every x seconds
 so we can update the ui.</p>
 </dd>
-<dt><a href="#send_message">send_message()</a></dt>
+<dt><a href="#sendMessage">sendMessage()</a></dt>
 <dd><p>Send a chat message to the server</p>
 </dd>
 </dl>
@@ -47,7 +47,6 @@ This file provides a replacement for jquery.
 
 * [Dom](#Dom)
     * [new Dom(selector)](#new_Dom_new)
-    * [.on](#Dom+on)
     * [.hide()](#Dom+hide)
     * [.show()](#Dom+show)
     * [.get()](#Dom+get) ⇒ <code>HTMLElement</code> \| <code>HTMLSelectElement</code> \| <code>HTMLLegendElement</code> \| <code>HTMLTableCaptionElement</code> \| <code>HTMLTextAreaElement</code> \| <code>HTMLModElement</code> \| <code>HTMLHRElement</code> \| <code>HTMLOutputElement</code> \| <code>HTMLPreElement</code> \| <code>HTMLEmbedElement</code> \| <code>HTMLCanvasElement</code> \| <code>HTMLFrameSetElement</code> \| <code>HTMLMarqueeElement</code> \| <code>HTMLScriptElement</code> \| <code>HTMLInputElement</code> \| <code>HTMLUnknownElement</code> \| <code>HTMLMetaElement</code> \| <code>HTMLStyleElement</code> \| <code>HTMLObjectElement</code> \| <code>HTMLTemplateElement</code> \| <code>HTMLBRElement</code> \| <code>HTMLAudioElement</code> \| <code>HTMLIFrameElement</code> \| <code>HTMLMapElement</code> \| <code>HTMLTableElement</code> \| <code>HTMLAnchorElement</code> \| <code>HTMLMenuElement</code> \| <code>HTMLPictureElement</code> \| <code>HTMLParagraphElement</code> \| <code>HTMLTableDataCellElement</code> \| <code>HTMLTableSectionElement</code> \| <code>HTMLQuoteElement</code> \| <code>HTMLTableHeaderCellElement</code> \| <code>HTMLProgressElement</code> \| <code>HTMLLIElement</code> \| <code>HTMLTableRowElement</code> \| <code>HTMLFontElement</code> \| <code>HTMLSpanElement</code> \| <code>HTMLTableColElement</code> \| <code>HTMLOptGroupElement</code> \| <code>HTMLDataElement</code> \| <code>HTMLDListElement</code> \| <code>HTMLFieldSetElement</code> \| <code>HTMLSourceElement</code> \| <code>HTMLBodyElement</code> \| <code>HTMLDirectoryElement</code> \| <code>HTMLDivElement</code> \| <code>HTMLUListElement</code> \| <code>HTMLHtmlElement</code> \| <code>HTMLAreaElement</code> \| <code>HTMLMeterElement</code> \| <code>HTMLAppletElement</code> \| <code>HTMLFrameElement</code> \| <code>HTMLOptionElement</code> \| <code>HTMLImageElement</code> \| <code>HTMLLinkElement</code> \| <code>HTMLHeadingElement</code> \| <code>HTMLSlotElement</code> \| <code>HTMLVideoElement</code> \| <code>HTMLBaseFontElement</code> \| <code>HTMLTitleElement</code> \| <code>HTMLButtonElement</code> \| <code>HTMLHeadElement</code> \| <code>HTMLParamElement</code> \| <code>HTMLTrackElement</code> \| <code>HTMLOListElement</code> \| <code>HTMLDataListElement</code> \| <code>HTMLLabelElement</code> \| <code>HTMLFormElement</code> \| <code>HTMLTimeElement</code> \| <code>HTMLBaseElement</code> \| <code>null</code> \| <code>\*</code>
@@ -58,6 +57,7 @@ This file provides a replacement for jquery.
     * [.text([value])](#Dom+text) ⇒ <code>string</code> \| <code>number</code>
     * [.addClass(className)](#Dom+addClass)
     * [.removeClass(className)](#Dom+removeClass)
+    * [.on(event, callback)](#Dom+on)
 
 <a name="new_Dom_new"></a>
 
@@ -68,18 +68,6 @@ Construct with a selector that's all to it.
 | Param | Type | Description |
 | --- | --- | --- |
 | selector | <code>string</code> | The selector for the element to query. |
-
-<a name="Dom+on"></a>
-
-### dom.on
-Ad a EventListener for the dom element
-
-**Kind**: instance property of [<code>Dom</code>](#Dom)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>Event</code> | The event name. |
-| callback |  |  |
 
 <a name="Dom+hide"></a>
 
@@ -109,7 +97,7 @@ Get or set a property on a dom element. Don't passthe value parameter if you wa
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | attribute | <code>string</code> |  | The attribute name |
-| [value] | <code>string</code> | <code>null</code> | Value to set (optional) |
+| [value] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Value to set (optional) |
 
 <a name="Dom+removeAttr"></a>
 
@@ -177,6 +165,18 @@ Remove a class from the given element
 | --- | --- | --- |
 | className | <code>string</code> | Classname to remove. |
 
+<a name="Dom+on"></a>
+
+### dom.on(event, callback)
+Ad a EventListener for the dom element
+
+**Kind**: instance method of [<code>Dom</code>](#Dom)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> | The event name. |
+| callback |  |  |
+
 <a name="dom"></a>
 
 ## dom(selector) ⇒ [<code>Dom</code>](#Dom)
@@ -188,15 +188,15 @@ Return a new instance of _dom (the jquery clone) so the code could
 | --- | --- | --- |
 | selector | <code>string</code> | The selector for the dom element. |
 
-<a name="clear_userlist"></a>
+<a name="clearUserlist"></a>
 
-## clear_userlist()
+## clearUserlist()
 Remove all users from the users on theside of the screen.
 
 **Kind**: global function  
-<a name="dialog_output"></a>
+<a name="dialogOutput"></a>
 
-## dialog_output(pkg)
+## dialogOutput(pkg)
 Put a package (message) on the screenfor you or others to read.
 
 **Kind**: global function  
@@ -205,9 +205,9 @@ Put a package (message) on the screenfor you or others to read.
 | --- | --- | --- |
 | pkg | <code>object</code> | The package object to display. |
 
-<a name="users_output"></a>
+<a name="usersOutput"></a>
 
-## users_output(users)
+## usersOutput(users)
 Update the user list in the UI
 
 **Kind**: global function  
@@ -216,64 +216,64 @@ Update the user list in the UI
 | --- | --- | --- |
 | users | <code>array</code> | Array of uses to display in the chatroom. |
 
-<a name="users_output..selected_user"></a>
+<a name="usersOutput..selectedUser"></a>
 
-### users_output~selected_user
+### usersOutput~selectedUser
 First get the current select valueon the list. This is so we can restorethe selected list item after requestingfow new users.
 
-**Kind**: inner property of [<code>users_output</code>](#users_output)  
-<a name="register_client"></a>
+**Kind**: inner constant of [<code>usersOutput</code>](#usersOutput)  
+<a name="registerClient"></a>
 
-## register_client()
+## registerClient()
 We need to register this browser window (client)to the server. We do this so we can sent privatemessages to other users.
 
 **Kind**: global function  
-<a name="register_client..pkg"></a>
+<a name="registerClient..pkg"></a>
 
-### register_client~pkg
+### registerClient~pkg
 Create a registration package to send to theserver.
 
-**Kind**: inner property of [<code>register_client</code>](#register_client)  
-<a name="request_userlist"></a>
+**Kind**: inner property of [<code>registerClient</code>](#registerClient)  
+<a name="requestUserlist"></a>
 
-## request_userlist()
+## requestUserlist()
 Request a list of current activechat users. We do this every x secondsso we can update the ui.
 
 **Kind**: global function  
-<a name="send_message"></a>
+<a name="sendMessage"></a>
 
-## send_message()
+## sendMessage()
 Send a chat message to the server
 
 **Kind**: global function  
 
-* [send_message()](#send_message)
-    * [~chat_message](#send_message..chat_message) : <code>string</code>
-    * [~to_user](#send_message..to_user) : <code>string</code>
-    * [~pkg](#send_message..pkg)
-    * [~pkg_object](#send_message..pkg_object) : <code>Object</code>
+* [sendMessage()](#sendMessage)
+    * [~toUser](#sendMessage..toUser) : <code>Object</code>
+    * [~pkg](#sendMessage..pkg)
+    * [~chatMessage](#sendMessage..chatMessage) : <code>string</code>
+    * [~pkgObject](#sendMessage..pkgObject) : <code>Object</code>
 
-<a name="send_message..chat_message"></a>
+<a name="sendMessage..toUser"></a>
 
-### send_message~chat_message : <code>string</code>
-Catch the chat text
-
-**Kind**: inner property of [<code>send_message</code>](#send_message)  
-<a name="send_message..to_user"></a>
-
-### send_message~to_user : <code>string</code>
+### sendMessage~toUser : <code>Object</code>
 When to_user is empty themessage will be sent to all usersin the chat room.
 
-**Kind**: inner property of [<code>send_message</code>](#send_message)  
-<a name="send_message..pkg"></a>
+**Kind**: inner property of [<code>sendMessage</code>](#sendMessage)  
+<a name="sendMessage..pkg"></a>
 
-### send_message~pkg
+### sendMessage~pkg
 Create a package to send to theserver.
 
-**Kind**: inner property of [<code>send_message</code>](#send_message)  
-<a name="send_message..pkg_object"></a>
+**Kind**: inner property of [<code>sendMessage</code>](#sendMessage)  
+<a name="sendMessage..chatMessage"></a>
 
-### send_message~pkg_object : <code>Object</code>
+### sendMessage~chatMessage : <code>string</code>
+Catch the chat text
+
+**Kind**: inner constant of [<code>sendMessage</code>](#sendMessage)  
+<a name="sendMessage..pkgObject"></a>
+
+### sendMessage~pkgObject : <code>Object</code>
 We need a object copy of packageto send to dialog_output() but wealso want to turn the original packageinto a string so we can send it over thesocket to the server.
 
-**Kind**: inner property of [<code>send_message</code>](#send_message)  
+**Kind**: inner constant of [<code>sendMessage</code>](#sendMessage)  

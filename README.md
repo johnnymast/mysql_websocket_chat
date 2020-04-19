@@ -55,6 +55,8 @@ This flag allows you to configure the WebSocket server's IP-address. By default 
 This will configure what port the WebSocket server will listen on. The default value has been set to <code>8080</code>. You can change this
 value if it clashes with other services running on your machine.
 
+
+
 ## Database configuration
 
 This server can run either with or without a database. By default i have disabled the use of a database server (<code>ENABLE_DATABASE</code>) but you can enable it by switching the <code>ENABLE_DATABASE</code> to <code>true</code>
