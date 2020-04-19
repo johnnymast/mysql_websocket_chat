@@ -2,9 +2,9 @@ name: Run JS Standard check
 on: [push]
 
 jobs:
-  hello_world_job:
+  standardjs_job:
+    name: On push run StandardJS from nodeJS
     runs-on: ubuntu-latest
-    name: A job to say hello
     steps:
       - name: Installing dependenties
       - uses: actions/checkout@v2
@@ -13,10 +13,9 @@ jobs:
       - run: npm run build --if-present
         env:
           CI: true
-      # Use the output from the `hello` step
-      - name: Running standardJS
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        run: npm run standardJS
-        env:
-          CI: true
+#      - name: Running standardJS
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-node@v1
+#        run: npm run standardJS
+#        env:
+#          CI: true
