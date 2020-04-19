@@ -4,12 +4,10 @@
  * This file provides a replacement for jquery.
  */
 class Dom {
-
   /**
    * Construct with a selector that's all to it.
    *
    * @param {string} selector - The selector for the element to query.
-   * @private
    */
   constructor (selector) {
     this.elm = document.querySelector(selector)
@@ -138,7 +136,8 @@ class Dom {
  * @param {string} selector - The selector for the dom element.
  * @returns {Dom}
  */
-let dom = (selector) => {
+// eslint-disable-next-line no-unused-vars
+const dom = (selector) => {
   return new Dom(selector)
 }
 /* eslint-enable no-undef */

@@ -1,5 +1,5 @@
 [![Code Triagers Badge](https://www.codetriage.com/johnnymast/mysql_websocket_chat/badges/users.svg)](https://www.codetriage.com/johnnymast/mysql_websocket_chat)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+![Run ESLint with Standard code style](https://github.com/johnnymast/mysql_websocket_chat/workflows/Run%20ESLint%20with%20Standard%20code%20style/badge.svg)
 
 # MYSQL WEBSOCKET CHAT
 
