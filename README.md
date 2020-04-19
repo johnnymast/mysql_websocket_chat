@@ -1,6 +1,6 @@
 [![Code Triagers Badge](https://www.codetriage.com/johnnymast/mysql_websocket_chat/badges/users.svg)](https://www.codetriage.com/johnnymast/mysql_websocket_chat)
-![RESLint](https://github.com/johnnymast/mysql_websocket_chat/workflows/Run%20ESLint%20with%20Standard%20code%20style/badge.svg)
-![Style Lint](https://github.com/johnnymast/mysql_websocket_chat/workflows/Style%20Lint%20Code%20Style/badge.svg)
+![ESLint](https://github.com/johnnymast/mysql_websocket_chat/workflows/ESLint/badge.svg)
+![StyleLint](https://github.com/johnnymast/mysql_websocket_chat/workflows/StyleLint/badge.svg)
 
 # MYSQL WEBSOCKET CHAT
 
