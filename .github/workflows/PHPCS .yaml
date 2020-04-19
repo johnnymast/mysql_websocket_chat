@@ -1,17 +1,17 @@
 name: PHPCS
-
-on: pull_request
-
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  phpcs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: PHP Code Style (phpcs)
+        uses: chindit/actions-phpcs@master
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: docker://rtcamp/action-phpcs-code-review:v2.0.0
-        env:
-          GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-        with:
-          #https://github.com/rtCamp/action-phpcs-code-review
-          args: "PSR1, PSR2"
+          # Folder to check code style
+          dir: includes/

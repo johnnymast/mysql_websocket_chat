@@ -3,6 +3,7 @@
 This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
 
+ - Cleaned up the code acording to PSR1 and PSR2
  - Added GitHub Actions
  - Added checks for css via stylelint
  - Added javascript checks via eslint
