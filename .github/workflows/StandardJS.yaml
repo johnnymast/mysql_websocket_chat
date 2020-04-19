@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Running standardJS
         uses: actions/setup-node@v1
-        run: npm run standardJS
+      - run: npm run standardJS
         env:
           CI: true
