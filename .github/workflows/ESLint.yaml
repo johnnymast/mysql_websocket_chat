@@ -1,4 +1,4 @@
-name: Javascript Standard Code Style
+name: ESLint
 on: [push]
 
 jobs:

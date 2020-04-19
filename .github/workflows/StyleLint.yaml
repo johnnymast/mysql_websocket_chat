@@ -1,4 +1,4 @@
-name: Style Lint Code Style
+name: Style Lint
 on: [push]
 
 jobs:
