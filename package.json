@@ -13,7 +13,8 @@
     "gitbook-cli": "^2.3.2",
     "jsdoc": "^3.6.4",
     "jsdoc-to-markdown": "^4.0.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "standard": "^14.3.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
