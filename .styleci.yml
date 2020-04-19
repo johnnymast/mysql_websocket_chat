@@ -49,5 +49,4 @@ css:
       - "*.scss"
       - "*.less"
 ts: false
-css: false
 py: true
