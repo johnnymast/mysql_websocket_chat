@@ -11,6 +11,9 @@
   ],
   "require": {
     "cboden/ratchet": "v0.4.1",
-    "fzaninotto/faker": "^1.7"
+    "fzaninotto/faker": "^1.7",
+    "ext-pdo": "*",
+    "squizlabs/php_codesniffer": "*",
+    "ext-json": "*"
   }
 }

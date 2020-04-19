@@ -1,53 +1,98 @@
 <?php
+/**
+ * Chat.php
+ *
+ * The main Chat controller for mysql_websocket_chat
+ *
+ * PHP version 7.2
+ *
+ * @category Configuration
+ * @package  Mysql_Websocket_Chat
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/mysql_websocket_chat
+ * @since    GIT:1.0
+ */
 
-use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
 
+/**
+ * Class Chat
+ *
+ * The main Chat controller for mysql_websocket_chat
+ *
+ * PHP version 7.2
+ *
+ * @category Configuration
+ * @package  Mysql_Websocket_Chat
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/mysql_websocket_chat
+ * @since    GIT:1.0
+ */
 class Chat implements MessageComponentInterface
 {
-
     /**
+     * This member keeps track of all
+     * connected clients.
+     *
      * @var SplObjectStorage
      */
     protected $clients = null;
 
     /**
+     * This member keeps track of all
+     * connected users.
+     *
      * @var array
      */
     protected $users = [];
 
     /**
+     * Instance of the database class.
+     *
      * @var Database
      */
     protected $db = null;
 
-
+    /**
+     * Chat constructor.
+     *
+     * @param Database $db Instance of Database
+     */
     public function __construct($db)
     {
-        $this->clients = new \SplObjectStorage;
+        $this->clients = new SplObjectStorage;
         $this->db = $db;
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * If a new connection has been opened this function will be called.
+     *
+     * @param ConnectionInterface $conn The unique connection identifier.
+     *
+     * @return void
      */
-    public function onOpen(ConnectionInterface $conn)
+    public function onOpen(ConnectionInterface $conn): void
     {
         $this->clients->attach($conn);
     }
 
     /**
-     * @param ConnectionInterface $from
-     * @param string $msg
+     * If any clients sends a message it will be passed trough here.
+     *
+     * @param ConnectionInterface $from Reference to the unique client
+     * @param string              $msg  The message being sent
+     *
+     * @return void
      */
-    public function onMessage(ConnectionInterface $from, $msg)
+    public function onMessage(ConnectionInterface $from, $msg): void
     {
         foreach ($this->clients as $client) {
             $package = json_decode($msg);
 
             if (is_object($package) == true) {
-
-
                 /**
                  * We need to switch the message type because in the future
                  * this could be a message or maybe a request for all chatters
@@ -55,127 +100,139 @@ class Chat implements MessageComponentInterface
                  * build on that later.
                  */
                 switch ($package->type) {
-                    case 'message':
-
-                        if ($from != $client) {
-
-                            if (empty($package->to_user) == false) {
-
-
-                                /**
-                                 * Find the client to send the message to
-                                 */
-                                foreach ($this->users as $resourceId => $user) {
-                                    if ($resourceId == $from->resourceId)
-                                        continue;
-
-
-                                    /**
-                                     * Non target users will not see this message
-                                     * on their screens.
-                                     */
-                                    if ($user['user']->id == $package->to_user) {
-
-
-                                        /**
-                                         * Defined in includes/config.php
-                                         */
-                                        if (ENABLE_DATABASE == true) {
-                                            if (isset($package->user) and is_object($package->user) == true) {
-                                                $this->db->insert(
-                                                    $package->to_user,
-                                                    $package->user->id,
-                                                    $package->message,
-                                                    $client->remoteAddress
-                                                );
-                                            }
-                                        }
-
-                                        $targetClient = $user['client'];
-                                        $targetClient->send($msg);
-                                        return;
-                                    }
-                                }
-                            }
+                case 'message':
+                    if ($from != $client) {
+                        if (empty($package->to_user) == false) {
 
 
                             /**
-                             * Defined in includes/config.php
+                             * Find the client to send the message to
                              */
-                            if (ENABLE_DATABASE == true) {
-                                if (isset($package->user) and is_object($package->user) == true) {
-                                    $this->db->insert(
-                                        $package->to_user,
-                                        $package->user->id,
-                                        $package->message,
-                                        $client->remoteAddress
-                                    );
+                            foreach ($this->users as $resourceId => $user) {
+                                if ($resourceId == $from->resourceId) {
+                                    continue;
                                 }
-                            }
-                            $client->send($msg);
-                        }
-                        break;
-                    case 'registration':
-                        $this->users[$from->resourceId] = [
-                            'user' => $package->user,
-                            'client' => $from
-                        ];
-                        break;
-                    case 'userlist':
-                        $list = [];
-                        foreach ($this->users as $resourceId => $value) {
-                            $list[$resourceId] = $value['user'];
-                        }
-                        $new_package = [
-                            'users' => $list,
-                            'type' => 'userlist'
-                        ];
-                        $new_package = json_encode($new_package);
-                        $client->send($new_package);
-                        break;
 
-                    case 'typing':
-                        if ($from != $client) {
 
-                            if (empty($package->user) == false) {
                                 /**
-                                 * Find the client to send the message to
+                                 * Non target users will not see this message
+                                 * on their screens.
                                  */
-                                foreach ($this->users as $resourceId => $user) {
-                                    if ($resourceId == $from->resourceId)
-                                        continue;
+                                if ($user['user']->id == $package->to_user) {
 
-                                    $new_package = [
-                                        'user' => $package->user,
-                                        'type' => 'typing',
-                                        'value' => $package->value,
-                                    ];
+
+                                    /**
+                                     * Defined in includes/config.php
+                                     */
+                                    if (ENABLE_DATABASE == true) {
+                                        if (isset($package->user)
+                                            and is_object($package->user) == true
+                                        ) {
+                                            $this->db->insert(
+                                                $package->to_user,
+                                                $package->user->id,
+                                                $package->message,
+                                                $client->remoteAddress
+                                            );
+                                        }
+                                    }
 
                                     $targetClient = $user['client'];
                                     $targetClient->send($msg);
+                                    return;
                                 }
                             }
                         }
-                        break;
+
+
+                        /**
+                         * Defined in includes/config.php
+                         */
+                        if (ENABLE_DATABASE == true) {
+                            if (isset($package->user)
+                                and is_object($package->user) == true
+                            ) {
+                                $this->db->insert(
+                                    $package->to_user,
+                                    $package->user->id,
+                                    $package->message,
+                                    $client->remoteAddress
+                                );
+                            }
+                        }
+                        $client->send($msg);
+                    }
+                    break;
+                case 'registration':
+                    $this->users[$from->resourceId] = [
+                      'user' => $package->user,
+                      'client' => $from
+                    ];
+                    break;
+                case 'userlist':
+                    $list = [];
+                    foreach ($this->users as $resourceId => $value) {
+                        $list[$resourceId] = $value['user'];
+                    }
+                    $new_package = [
+                      'users' => $list,
+                      'type' => 'userlist'
+                    ];
+                    $new_package = json_encode($new_package);
+                    $client->send($new_package);
+                    break;
+
+                case 'typing':
+                    if ($from != $client) {
+
+                        if (empty($package->user) == false) {
+                            /**
+                             * Find the client to send the message to
+                             */
+                            foreach ($this->users as $resourceId => $user) {
+                                if ($resourceId == $from->resourceId) {
+                                    continue;
+                                }
+
+                                $new_package = [
+                                  'user' => $package->user,
+                                  'type' => 'typing',
+                                  'value' => $package->value,
+                                ];
+
+                                $targetClient = $user['client'];
+                                $targetClient->send($msg);
+                            }
+                        }
+                    }
+                    break;
                 }
             }
         }
     }
 
     /**
-     * @param ConnectionInterface $conn
+     * The onclose callback.
+     *
+     * @param ConnectionInterface $conn The unique connection identifier.
+     *
+     * @return void
      */
-    public function onClose(ConnectionInterface $conn)
+    public function onClose(ConnectionInterface $conn): void
     {
         unset($this->users[$conn->resourceId]);
         $this->clients->detach($conn);
     }
 
     /**
-     * @param ConnectionInterface $conn
-     * @param Exception $e
+     * The onError callback. Will be called on you guessed it, an error :)
+     *
+     * @param ConnectionInterface $conn The unique connection identifier.
+     * @param Exception           $e    The raised exception
+     *
+     * @return void
      */
-    public function onError(ConnectionInterface $conn, \Exception $e)
+    public function onError(ConnectionInterface $conn, \Exception $e): void
     {
         unset($this->users[$conn->resourceId]);
         $conn->close();
