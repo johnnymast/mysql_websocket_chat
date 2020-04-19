@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions-hub/stylelint@master
         env:
-          CI: true
+          PATTERN: "public/css/*.css"
