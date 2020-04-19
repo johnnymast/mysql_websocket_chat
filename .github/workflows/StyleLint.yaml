@@ -1,0 +1,12 @@
+name: Style Lint Code Style
+on: [push]
+
+jobs:
+  standardjs_job:
+    name: On push run stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions-hub/stylelint@master
+        env:
+          CI: true

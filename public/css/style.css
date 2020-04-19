@@ -1,88 +1,86 @@
 body {
-    padding-top: 50px;
+  padding-top: 50px;
 }
 
 .starter-template {
-    padding: 40px 15px;
-    text-align: center;
+  padding: 40px 15px;
+  text-align: center;
 }
 
 .chat_dialog {
-    width: 70%;
-    height: 500px;
-    border: 1px solid black;
-    text-align: left;
-    padding: 5px;
-    float: left;
-    position: relative;
+  width: 70%;
+  height: 500px;
+  border: 1px solid black;
+  text-align: left;
+  padding: 5px;
+  float: left;
+  position: relative;
 }
 
 .chat_dialog .priv_msg {
-    color: blue;
-    font-style: italic;
+  color: blue;
+  font-style: italic;
 }
 
 .user_list {
-    width: 20%;
-    height: 500px !important;
-    border: 1px solid black;
-    text-align: left;
-    padding: 5px;
-    float: left;
+  width: 20%;
+  height: 500px !important;
+  border: 1px solid black;
+  text-align: left;
+  padding: 5px;
+  float: left;
 }
 
 .clear {
-    clear: both;
+  clear: both;
 }
 
 .client_chat {
-    width: 94% !important;
+  width: 94% !important;
 }
 
 .input-group.client {
-    width: 91% !important;;
+  width: 91% !important;
 }
 
 .connection_alert {
-    margin-top: 15px;
-    width: 90% !important;
+  margin-top: 15px;
+  width: 90% !important;
 }
 
 .connection_alert .error_type::after {
-    content: ':';
+  content: ':';
 }
 
 .input-group-btn {
-    float: left;
+  float: left;
 }
 
 .input-group-addon.name_bit {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .client_chat.error {
-    background-color: #fce4e4;
-    border: 1px solid #cc0033;
-    outline: none;
+  background-color: #fce4e4;
+  border: 1px solid #c03;
+  outline: none;
 }
 
 .client_user_you {
-    font-weight: bold;
-    color: red;
+  font-weight: bold;
+  color: red;
 }
 
 ul.typing_indicator {
-    padding-left: 5px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
+  padding-left: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 ul.typing_indicator li {
-    padding: 0px;
-    font-style: italic;
-    list-style-position: inside;
-    list-style: none;
-    color: #b8acab;
+  padding: 0;
+  font-style: italic;
+  list-style-position: inside;
+  color: #b8acab;
 }
-

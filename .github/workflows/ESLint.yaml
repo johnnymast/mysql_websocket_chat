@@ -1,9 +1,9 @@
-name: Run ESLint with Standard code style
+name: Javascript Standard Code Style
 on: [push]
 
 jobs:
   standardjs_job:
-    name: On push run eslin with standard codestyle from nodeJS
+    name: On push run eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,6 +11,6 @@ jobs:
         uses: actions/setup-node@v1
       - run: npm install
       - run: npm run build --if-present
-      - run: npm run lint
+      - run: npm run eslint
         env:
           CI: true
