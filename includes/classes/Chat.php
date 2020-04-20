@@ -172,7 +172,7 @@ class Chat implements MessageComponentInterface
                 case 'userlist':
                     $list = [];
                     foreach ($this->users as $resourceId => $value) {
-                        $list[$resourceId] = $value['user'];
+                        $list[] = $value['user'];
                     }
                     $new_package = [
                       'users' => $list,
