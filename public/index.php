@@ -19,6 +19,7 @@ $user['id'] = md5($user['username']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Websocket chat example using jquery + php + mysql">
     <meta name="author" content="Johnny Mast">
@@ -43,7 +44,7 @@ $user['id'] = md5($user['username']);
         let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
 
         /**
-         * Also when your script is live make shure this user object
+         * Also when your script is live make sure this user object
          * doest not show to much information. Like for example passwords
          * should be excluded. Add only the information you need on the server
          * for this user.

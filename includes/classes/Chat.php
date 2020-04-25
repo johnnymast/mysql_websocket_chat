@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpUndefinedFieldInspection */
+
 /**
  * Chat.php
  *
