@@ -49,7 +49,9 @@ const connect = () => {
     delete ws.conn
   }
 
-  ws.conn = new WebSocket('ws://' + socketHost + ':' + socketPort)
+  let con = 'ws';
+  con = 'wss';
+  ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort)
 
   /**
    * Connection has been established

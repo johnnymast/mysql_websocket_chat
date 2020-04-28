@@ -235,6 +235,7 @@ class Chat implements MessageComponentInterface
      */
     public function onError(ConnectionInterface $conn, \Exception $e): void
     {
+        print_r($e);
         unset($this->users[$conn->resourceId]);
         $conn->close();
     }

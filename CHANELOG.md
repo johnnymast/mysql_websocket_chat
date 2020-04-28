@@ -1,7 +1,13 @@
+## 1.5 Add more security to the chats
+
+
+
 ## 1.4 Helping developers to build from the project
 
 This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
+
+For more information about the project, you can visit our new wiki right here on GitHub.
 
  - Fixed some grammar issues
  - Cleaned up the code according to PSR1 and PSR2
