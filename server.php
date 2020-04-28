@@ -86,7 +86,8 @@ try {
           new Chat($db)
         )
       ),
-      $server
+      $server,
+      $loop
     );
 
 //    $webServer->enableKeepAlive($loop,30);
