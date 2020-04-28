@@ -24,7 +24,7 @@ $user['id'] = md5($user['username']);
     <meta name="description" content="Websocket chat example using jquery + php + mysql">
     <meta name="author" content="Johnny Mast">
 
-    <title>@@Websocket Chat</title>
+    <title>Websocket Chat</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
