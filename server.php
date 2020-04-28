@@ -51,19 +51,14 @@ try {
 //    openssl genrsa 2048 > host.key
 //chmod 400 host.key
 //openssl req -new -x509 -nodes -sha256 -days 365 -key host.key -out host.cert
-    $server = new React\Socket\Server('tls://'.WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
-      $loop, [
-        //'tls' => [
-          'local_cert' => __DIR__.'/ssl/server.pem',
-//          'local_pk' => __DIR__.'/ssl/key.key',
-  //        'passphrase' => '1234',
-//          'crypto_method' => STREAM_CRYPTO_METHOD_SSLv3_SERVER,
-          'verify_peer'       => false,
-          'verify_peer_name'  => false,
-          'allow_self_signed' => true,
-        //]
-      ]);
-    $server = new React\Socket\SecureServer($server, $loop, array());
+    $server = new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
+      $loop);
+    $server = new React\Socket\SecureServer($server, $loop, array(
+      'local_cert' => __DIR__.'/ssl/server.pem',
+      'verify_peer'       => false,
+      'verify_peer_name'  => false,
+      'allow_self_signed' => true,
+    ));
 
 
     /**
