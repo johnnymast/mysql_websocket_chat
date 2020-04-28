@@ -19,7 +19,7 @@ $pem_dn = array(
   "localityName" => "St. Albans",        //Ser your city name
   "organizationName" => "Your Company",  //Set your company name
   "organizationalUnitName" => "Your Department", //Set your department name
-  "commonName" => "johnnymast.io",  //Set your full hostname.
+  "commonName" => "149.210.160.51",  //Set your full hostname.
   "emailAddress" => "email@example.com"  //Set your email address
 );
 
