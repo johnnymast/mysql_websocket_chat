@@ -53,7 +53,7 @@ try {
 //openssl req -new -x509 -nodes -sha256 -days 365 -key host.key -out host.cert
     $server = new React\Socket\Server('tls://'.WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
       $loop, [
-        'tls' => [
+        //'tls' => [
           'local_cert' => __DIR__.'/ssl/server.pem',
 //          'local_pk' => __DIR__.'/ssl/key.key',
           'passphrase' => '1234',
@@ -61,19 +61,9 @@ try {
           'verify_peer'       => false,
           'verify_peer_name'  => false,
           'allow_self_signed' => true,
-        ]
+        //]
       ]);
-    $server = new React\Socket\SecureServer($server, $loop, array(
-      'tls' => [
-//        'local_cert' => __DIR__.'/ssl/server.pem',
-//        'passphrase' => '1234',
-//        'crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_2_SERVER,
-////      'cafile' => 'C:/laragon/etc/ssl/cacert.pem',
-////      'local_pk' => __DIR__.'/ssl/mysql_websocket_chat.test.key',
-//        'verify_peer' => false,
-//        'allow_self_signed' => true
-      ]
-    ));
+    $server = new React\Socket\SecureServer($server, $loop, array());
 
 
     /**
