@@ -56,7 +56,7 @@ try {
         //'tls' => [
           'local_cert' => __DIR__.'/ssl/server.pem',
 //          'local_pk' => __DIR__.'/ssl/key.key',
-          'passphrase' => '1234',
+  //        'passphrase' => '1234',
 //          'crypto_method' => STREAM_CRYPTO_METHOD_SSLv3_SERVER,
           'verify_peer'       => false,
           'verify_peer_name'  => false,
