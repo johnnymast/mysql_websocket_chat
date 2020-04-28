@@ -54,8 +54,8 @@ try {
     $server = new React\Socket\Server('tls://'.WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
       $loop, [
         'tls' => [
-          'local_cert' => __DIR__.'/ssl/cert.crt',
-          'local_pk' => __DIR__.'/ssl/key.key',
+          'local_cert' => __DIR__.'/ssl/server.pem',
+//          'local_pk' => __DIR__.'/ssl/key.key',
           'passphrase' => '1234',
 //          'crypto_method' => STREAM_CRYPTO_METHOD_SSLv3_SERVER,
           'verify_peer'       => false,
