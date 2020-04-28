@@ -7,7 +7,7 @@
  *  Website : http://blog.leenix.co.uk/2011/05/howto-php-tcp-serverclient-with-ssl.html
  */
 
-$ip = "127.0.0.1";               //Set the TCP IP Address to listen on
+$ip = "149.210.160.51";               //Set the TCP IP Address to listen on
 $port = "8080";                  //Set the TCP Port to listen on
 $pem_passphrase = "1234";   //Set a password here
 $pem_file = "server.pem";    //Set a path/filename for the PEM SSL Certificate which will be created.
@@ -19,7 +19,7 @@ $pem_dn = array(
   "localityName" => "St. Albans",        //Ser your city name
   "organizationName" => "Your Company",  //Set your company name
   "organizationalUnitName" => "Your Department", //Set your department name
-  "commonName" => "127.0.0.1",  //Set your full hostname.
+  "commonName" => "johnnymast.io",  //Set your full hostname.
   "emailAddress" => "email@example.com"  //Set your email address
 );
 
