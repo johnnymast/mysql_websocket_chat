@@ -51,10 +51,10 @@ try {
 //    openssl genrsa 2048 > host.key
 //chmod 400 host.key
 //openssl req -new -x509 -nodes -sha256 -days 365 -key host.key -out host.cert
-    $server = new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
-      $loop);
+//    $server = new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,
+//      $loop);
     $server = new React\Socket\SecureServer(
-      new Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT, $loop), $loop,
+      new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT, $loop), $loop,
       array(
         'local_cert'        => dirname(__FILE__).'/ssl/private.pem', // path to your cert
         'local_pk'          => dirname(__FILE__).'/ssl/public.pem', // path to your server private key
