@@ -40,7 +40,7 @@ $user['id'] = md5($user['username']);
          *
          * @type {string}
          */
-        let socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
+        let socketHost = 'johnnymast.io'; //<?php print WEBSOCKET_SERVER_IP ?>';
         let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
 
         /**
