@@ -60,7 +60,8 @@ try {
         'local_pk'          => dirname(__FILE__).'/ssl/public.pem', // path to your server private key
         'allow_self_signed' => TRUE, // Allow self signed certs (should be false in production)
         'verify_peer' => FALSE
-    ));
+    )
+    );
 
 
     /**
@@ -97,7 +98,7 @@ try {
     /**
      * Run the server
      */
-    $loop->run();
+    $webServer->run();
 
 
 } catch (\Exception $e) {
