@@ -51,7 +51,7 @@ const connect = () => {
 
   let con = 'ws';
   con = 'wss';
-  // socketHost = 'johnnymast.io'
+  socketHost = 'johnnymast.io'
   ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort)
 
   /**
