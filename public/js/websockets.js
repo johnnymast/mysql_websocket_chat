@@ -52,8 +52,7 @@ const connect = () => {
   let con = 'ws';
   con = 'wss';
   socketHost = 'johnnymast.io'
-  socketPort = 443
-  ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort + '/wss')
+  ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort)
 
   /**
    * Connection has been established
