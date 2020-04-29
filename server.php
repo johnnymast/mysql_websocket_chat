@@ -58,7 +58,7 @@ try {
       array(
         'local_cert'        => dirname(__FILE__).'/ssl/serrver.pem', // path to your cert
 //        'local_pk'          => dirname(__FILE__).'/ssl/public.pem', // path to your server private key
-        'passphrase' => '1234',
+        'passphrase' => 'abracadabra',
         'allow_self_signed' => TRUE, // Allow self signed certs (should be false in production)
         'verify_peer' => FALSE
     )

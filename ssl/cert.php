@@ -9,41 +9,30 @@
 
 $ip = "149.210.160.51";               //Set the TCP IP Address to listen on
 $port = "8080";                  //Set the TCP Port to listen on
-$pem_passphrase = "1234";   //Set a password here
+$pem_passphrase = "abracadabra";   //Set a password here
 $pem_file = "server.pem";    //Set a path/filename for the PEM SSL Certificate which will be created.
+$domain = "johnnymast.io";
 
-//The following array of data is needed to generate the SSL Cert
-$pem_dn = array(
-  "countryName" => "NL",                 //Set your country name
-  "stateOrProvinceName" => "Herts",      //Set your state or province name
-  "localityName" => "St. Albans",        //Ser your city name
-  "organizationName" => "Your Company",  //Set your company name
-  "organizationalUnitName" => "Your Department", //Set your department name
-  "commonName" => "149.210.160.51",  //Set your full hostname.
-  "emailAddress" => "email@example.com"  //Set your email address
+$certificateData = array(
+  "countryName" => "US",
+  "stateOrProvinceName" => "Texas",
+  "localityName" => "Houston",
+  "organizationName" => "DevDungeon.com",
+  "organizationalUnitName" => "Development",
+  "commonName" => $domain,
+  "emailAddress" => "nanodano@devdungeon.com"
 );
 
-function createSSLCert($pem_file, $pem_passphrase, $pem_dn) {
-//create ssl cert for this scripts life.
+// Generate certificate
+$privateKey = openssl_pkey_new();
+$certificate = openssl_csr_new($certificateData, $privateKey);
+$certificate = openssl_csr_sign($certificate, null, $privateKey, 365);
 
-    //Create private key
-    $privkey = openssl_pkey_new();
+$pem = array();
+openssl_x509_export($certificate, $pem[0]);
+openssl_pkey_export($privateKey, $pem[1], $pem_passphrase);
+$pem = implode($pem);
 
-    //Create and sign CSR
-    $cert    = openssl_csr_new($pem_dn, $privkey);
-    $cert    = openssl_csr_sign($cert, null, $privkey, 365);
-
-    //Generate PEM file
-    $pem = array();
-    openssl_x509_export($cert, $pem[0]);
-    openssl_pkey_export($privkey, $pem[1], $pem_passphrase);
-    $pem = implode($pem);
-
-    //Save PEM file
-    file_put_contents($pem_file, $pem);
-    chmod($pem_file, 0600);
-}
-
-//create ssl cert for this scripts life.
-echo "Creating SSL Cert\n";
-createSSLCert($pem_file, $pem_passphrase, $pem_dn);
+// Save PEM file
+$pemfile = './server.pem';
+file_put_contents($pemfile, $pem);
