@@ -19,7 +19,7 @@ $certificateData = array(
   "localityName" => "Houston",
   "organizationName" => "DevDungeon.com",
   "organizationalUnitName" => "Development",
-  "commonName" => $domain,
+  "commonName" => $ip,
   "emailAddress" => "nanodano@devdungeon.com"
 );
 
