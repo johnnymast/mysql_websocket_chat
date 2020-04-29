@@ -56,8 +56,8 @@ try {
     $server = new React\Socket\SecureServer(
       new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT, $loop), $loop,
       array(
-        'local_cert'        => dirname(__FILE__).'/ssl/private.pem', // path to your cert
-        'local_pk'          => dirname(__FILE__).'/ssl/public.pem', // path to your server private key
+        'local_cert'        => dirname(__FILE__).'/ssl/serrver.pem', // path to your cert
+//        'local_pk'          => dirname(__FILE__).'/ssl/public.pem', // path to your server private key
         'allow_self_signed' => TRUE, // Allow self signed certs (should be false in production)
         'verify_peer' => FALSE
     )
