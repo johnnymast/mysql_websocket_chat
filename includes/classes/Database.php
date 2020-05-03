@@ -14,6 +14,8 @@
  * @since    GIT:1.0
  */
 
+namespace JM\WebsocketChat;
+
 /**
  * Class Database
  *

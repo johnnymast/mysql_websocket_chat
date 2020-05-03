@@ -1,6 +1,8 @@
 ## 1.5 Add more security to the chats
 
-
+ - Fixed some grammar issues.
+ - Added dependence in composer for php 7.2
+ - Added ext-openssl dependence to composer.json
 
 ## 1.4 Helping developers to build from the project
 

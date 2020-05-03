@@ -42,6 +42,7 @@ $user['id'] = md5($user['username']);
          */
         let socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
         let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
+        let enableSSL = <?php echo(ENABLE_SSL == true); ?>
 
         /**
          * Also when your script is live make sure this user object
@@ -78,7 +79,7 @@ $user['id'] = md5($user['username']);
 <div class="container">
 
     <div class="starter-template">
-        <h1>Websockets chat example</h1>
+        <h1>WebSockets chat example</h1>
         <p class="lead">Open this url in a second browser and chat away! Depending on includes/config.php it will report
             to the database or not. All interactions are controlled by includes/classes/Chat.php</p>
         <div class="chat_dialog">

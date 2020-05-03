@@ -9,11 +9,22 @@
       "email": "mastjohnny@gmail.com"
     }
   ],
+  "autoload": {
+    "files": [
+      "ssl/includes/FileIO.php"
+    ],
+    "psr-4": {
+      "JM\\WebsocketChat\\SSL\\": "ssl/includes/classes/",
+      "JM\\WebsocketChat\\": "includes/classes/"
+    }
+  },
   "require": {
     "cboden/ratchet": "v0.4.1",
     "fzaninotto/faker": "^1.7",
     "squizlabs/php_codesniffer": "*",
+    "ext-openssl": "*",
     "ext-pdo": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "php": "^7.2"
   }
 }

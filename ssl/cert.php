@@ -1,38 +1,57 @@
 <?php
-
-/*
- *  Example of HOWTO: PHP TCP Server/Client with SSL Encryption using Streams
- *  Server side Script
+/**
+ * Cert.php
  *
- *  Website : http://blog.leenix.co.uk/2011/05/howto-php-tcp-serverclient-with-ssl.html
+ * The main configuration file for mysql_websocket_chat
+ *
+ * PHP version 7
+ *
+ * @category Configuration
+ * @package  Mysql_Websocket_Chat
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/mysql_websocket_chat
+ * @since    GIT:1.0
  */
+include('../vendor/autoload.php');
 
-$ip = "149.210.160.51";               //Set the TCP IP Address to listen on
-$port = "8080";                  //Set the TCP Port to listen on
-$pem_passphrase = "abracadabra";   //Set a password here
-$pem_file = "server.pem";    //Set a path/filename for the PEM SSL Certificate which will be created.
-$domain = "johnnymast.io";
+use JM\WebsocketChat\SSL\OpenSSL;
 
-$certificateData = array(
-  "countryName" => "US",
-  "stateOrProvinceName" => "Texas",
-  "localityName" => "Houston",
-  "organizationName" => "DevDungeon.com",
-  "organizationalUnitName" => "Development",
-  "commonName" => $domain,
-  "emailAddress" => "nanodano@devdungeon.com"
-);
+define('CA_CERT', 'file://CA.pem');
+define('CA_KEY', 'file://CA.key');
+define('CA_PASSPHRASE', '1234');
+define('OPENSSL_CONFIG', __DIR__.'\openssl.conf');
+define('OPENSSL_CONFIG_TEMPLATE', __DIR__.'/openssl.tpl');
+define('PEM_FILE', __DIR__.'/server.pem');
+define("DEBUG", false);
 
-// Generate certificate
-$privateKey = openssl_pkey_new();
-$certificate = openssl_csr_new($certificateData, $privateKey);
-$certificate = openssl_csr_sign($certificate, null, $privateKey, 365);
+try {
+    $domains = ['johnny.io', 'websocket.johnny.io'];
 
-$pem = array();
-openssl_x509_export($certificate, $pem[0]);
-openssl_pkey_export($privateKey, $pem[1], $pem_passphrase);
-$pem = implode($pem);
+    $certInfo = [
+      "countryName" => "NL",
+      "stateOrProvinceName" => "North Holland",
+      "localityName" => "Amsterdam",
+      "organizationName" => "Johnny Mast",
+      "organizationalUnitName" => "Mysql Websocket Chat - Dev team",
+      "emailAddress" => "mastjohnny@gmail.com",
+    ];
 
-// Save PEM file
-$pemfile = './server.pem';
-file_put_contents($pemfile, $pem);
+    $openSSL = new OpenSSL($domains, $certInfo, [
+      'OPENSSL_CONFIG_TEMPLATE' => OPENSSL_CONFIG_TEMPLATE,
+      'OPENSSL_CONFIG' => OPENSSL_CONFIG,
+      'CA_PASSPHRASE' => CA_PASSPHRASE,
+      'PEM_FILE' => PEM_FILE,
+      'CA_CERT' => CA_CERT,
+      'CA_KEY' => CA_KEY,
+    ]);
+
+    $openSSL
+      ->createConfig()
+      ->createBundle(DEBUG)
+      ->cleanUp();
+
+    echo basename(PEM_FILE)." created.".PHP_EOL;
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}

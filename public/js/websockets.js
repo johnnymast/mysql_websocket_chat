@@ -49,9 +49,9 @@ const connect = () => {
     delete ws.conn
   }
 
-  let con = 'ws';
-  con = 'wss';
-  socketHost = 'johnnymast.io'
+  let con = enableSSL ? 'wss' : 'ws';
+  // con = 'wss';
+  socketHost = 'websocket.johnny.io'
   ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort)
 
   /**
