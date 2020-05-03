@@ -20,7 +20,6 @@ use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use SplObjectStorage;
 
-/** @noinspection PhpUndefinedFieldInspection */
 /**
  * Class Chat
  *
@@ -231,13 +230,12 @@ class Chat implements MessageComponentInterface
      * The onError callback. Will be called on you guessed it, an error :)
      *
      * @param ConnectionInterface $conn The unique connection identifier.
-     * @param Exception           $e    The raised exception
+     * @param \Exception          $e    The raised exception
      *
      * @return void
      */
     public function onError(ConnectionInterface $conn, \Exception $e): void
     {
-        print_r($e);
         unset($this->users[$conn->resourceId]);
         $conn->close();
     }
