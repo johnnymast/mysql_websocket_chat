@@ -40,7 +40,7 @@ $user['id'] = md5($user['username']);
          *
          * @type {string}
          */
-        let socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
+        var socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
         let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
         let enableSSL = <?php echo(ENABLE_SSL == true); ?>
 

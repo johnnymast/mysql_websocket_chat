@@ -26,6 +26,15 @@ define('PEM_FILE', __DIR__.'/server.pem');
 define("DEBUG", false);
 
 try {
+    //
+    //    # Creat pem
+    //
+    //    openssl genrsa -des3 -out CA.key 2048
+    //
+    //# Creat root cert
+    //
+    //openssl req -x509 -new -nodes -key CA.key -sha256 -days 1825 -out CA.pem
+
     $domains = ['johnny.io', 'websocket.johnny.io'];
 
     $certInfo = [

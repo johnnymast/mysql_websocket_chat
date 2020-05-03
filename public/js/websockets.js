@@ -52,7 +52,7 @@ const connect = () => {
   let con = enableSSL ? 'wss' : 'ws';
   // con = 'wss';
   socketHost = 'websocket.johnny.io'
-  ws.conn = new WebSocket(con+'://' + socketHost + ':' + socketPort)
+  ws.conn = new WebSocket(con + '://' + socketHost + ':' + socketPort)
 
   /**
    * Connection has been established

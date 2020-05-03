@@ -19,6 +19,7 @@ namespace JM\WebsocketChat;
 
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
+use SplObjectStorage;
 
 /**
  * Class Chat
@@ -40,7 +41,7 @@ class Chat implements MessageComponentInterface
      * This member keeps track of all
      * connected clients.
      *
-     * @var \SplObjectStorage
+     * @var SplObjectStorage
      */
     protected $clients = null;
 
@@ -66,7 +67,7 @@ class Chat implements MessageComponentInterface
      */
     public function __construct($db)
     {
-        $this->clients = new \SplObjectStorage;
+        $this->clients = new SplObjectStorage;
         $this->db = $db;
     }
 
