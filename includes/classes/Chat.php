@@ -1,6 +1,4 @@
 <?php
-/** @noinspection PhpUndefinedFieldInspection */
-
 /**
  * Chat.php
  *
@@ -22,6 +20,7 @@ use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use SplObjectStorage;
 
+/** @noinspection PhpUndefinedFieldInspection */
 /**
  * Class Chat
  *
