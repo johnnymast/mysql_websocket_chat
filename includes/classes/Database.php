@@ -16,6 +16,8 @@
 
 namespace JM\WebsocketChat;
 
+use PDO;
+
 /**
  * Class Database
  *

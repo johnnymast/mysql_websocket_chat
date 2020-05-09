@@ -40,10 +40,10 @@ class Chat implements MessageComponentInterface
      * This member keeps track of all
      * connected clients.
      *
-     * @var SplObjectStorage
+     * @var \SplObjectStorage
      */
     protected $clients = null;
-
+    
     /**
      * This member keeps track of all
      * connected users.
@@ -51,14 +51,14 @@ class Chat implements MessageComponentInterface
      * @var array
      */
     protected $users = [];
-
+    
     /**
      * Instance of the database class.
      *
      * @var Database
      */
     protected $db = null;
-
+    
     /**
      * Chat constructor.
      *
@@ -69,7 +69,7 @@ class Chat implements MessageComponentInterface
         $this->clients = new SplObjectStorage;
         $this->db = $db;
     }
-
+    
     /**
      * If a new connection has been opened this function will be called.
      *
@@ -81,7 +81,7 @@ class Chat implements MessageComponentInterface
     {
         $this->clients->attach($conn);
     }
-
+    
     /**
      * If any clients sends a message it will be passed trough here.
      *
@@ -94,8 +94,9 @@ class Chat implements MessageComponentInterface
     {
         foreach ($this->clients as $client) {
             $package = json_decode($msg);
-
-            if (is_object($package) == true) {
+            
+            if (is_object($package) === true) {
+                
                 /**
                  * We need to switch the message type because in the future
                  * this could be a message or maybe a request for all chatters
@@ -106,8 +107,8 @@ class Chat implements MessageComponentInterface
                     case 'message':
                         if ($from != $client) {
                             if (empty($package->to_user) == false) {
-
-
+                                
+                                
                                 /**
                                  * Find the client to send the message to
                                  */
@@ -115,21 +116,21 @@ class Chat implements MessageComponentInterface
                                     if ($resourceId == $from->resourceId) {
                                         continue;
                                     }
-
-
+                                    
+                                    
                                     /**
                                      * Non target users will not see this message
                                      * on their screens.
                                      */
                                     if ($user['user']->id == $package->to_user) {
-
-
+                                        
+                                        
                                         /**
                                          * Defined in includes/config.php
                                          */
                                         if (ENABLE_DATABASE == true) {
-                                            if (isset($package->user)
-                                              and is_object($package->user) == true
+                                            if (isset($package->user) &&
+                                              is_object($package->user) == true
                                             ) {
                                                 $this->db->insert(
                                                     $package->to_user,
@@ -139,15 +140,15 @@ class Chat implements MessageComponentInterface
                                                 );
                                             }
                                         }
-
+                                        
                                         $targetClient = $user['client'];
                                         $targetClient->send($msg);
                                         return;
                                     }
                                 }
                             }
-
-
+                            
+                            
                             /**
                              * Defined in includes/config.php
                              */
@@ -184,7 +185,7 @@ class Chat implements MessageComponentInterface
                         $new_package = json_encode($new_package);
                         $client->send($new_package);
                         break;
-
+                    
                     case 'typing':
                         if ($from != $client) {
                             if (empty($package->user) == false) {
@@ -195,24 +196,27 @@ class Chat implements MessageComponentInterface
                                     if ($resourceId == $from->resourceId) {
                                         continue;
                                     }
-
+                                    
                                     $new_package = [
                                       'user' => $package->user,
                                       'type' => 'typing',
                                       'value' => $package->value,
                                     ];
-
+                                    
                                     $targetClient = $user['client'];
                                     $targetClient->send($msg);
                                 }
                             }
                         }
                         break;
+                    default:
+                        throw new \Exception('Unexpected value');
+                        break;
                 }
             }
         }
     }
-
+    
     /**
      * The onclose callback.
      *
@@ -225,7 +229,7 @@ class Chat implements MessageComponentInterface
         unset($this->users[$conn->resourceId]);
         $this->clients->detach($conn);
     }
-
+    
     /**
      * The onError callback. Will be called on you guessed it, an error :)
      *
