@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  wsc-docker:
+    image: wsc-docker
+    depends_on:
+      - websocket_server
+    volumes:
+      - .:/app
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - "8080:80"
+
+  websocket_server:
+    image: wsc-docker
+    command: ["/app/.docker/start_websockets.sh"]
+    volumes:
+      - .:/app
+    ports:
+      - "8090:8090"

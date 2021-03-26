@@ -29,5 +29,5 @@ define('ENABLE_SSL', true);
  * on this machine. The port is just the port
  * plain and simple.
  */
-define('WEBSOCKET_SERVER_IP', '127.0.0.1');
-define('WEBSOCKET_SERVER_PORT', '8080');
+define('WEBSOCKET_SERVER_IP', '0.0.0.0');
+define('WEBSOCKET_SERVER_PORT', '8090');

@@ -52,7 +52,7 @@ This flag allows you to configure the WebSocket server's IP-address. By default 
 
 #### WEBSOCKET_SERVER_PORT  
 
-This will configure what port the WebSocket server will listen on. The default value has been set to <code>8080</code>. You can change this
+This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
 value if it clashes with other services running on your machine.
 
 
@@ -81,6 +81,7 @@ Change direction into the chat directory and fire up the server.
 ```bash
 $ cd chat
 $ php ./server.php
+Server running at 0.0.0.0:8090
 ```
 
 When you see no output and the command seems to hang that's when you know its running.
@@ -93,10 +94,10 @@ build-in webserver.
 
 ```bash
 $ cd public
-$ php -S 127.0.0.1:8000
+$ php -S 127.0.0.1:8080
 ```
 
-<emn>This will start an webserver on port 8000</em>  
+<emn>This will start an webserver on port 8080</em>  
 
 # Step 6: Chat away!
 

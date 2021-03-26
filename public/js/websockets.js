@@ -50,7 +50,7 @@ const connect = () => {
   }
 
   const con = enableSSL ? 'wss' : 'ws'
-  socketHost = 'websocket.johnny.io'
+ // socketHost = 'websocket.johnny.io'
   ws.conn = new WebSocket(con + '://' + socketHost + ':' + socketPort)
 
   /**

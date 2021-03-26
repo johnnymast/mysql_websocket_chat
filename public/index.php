@@ -42,7 +42,7 @@ $user['id'] = md5($user['username']);
          */
         var socketHost = '<?php print WEBSOCKET_SERVER_IP ?>';
         let socketPort = '<?php print WEBSOCKET_SERVER_PORT ?>';
-        let enableSSL = <?php echo(ENABLE_SSL == true); ?>
+        let enableSSL = <?php echo(ENABLE_SSL == true) ? 'true': 'false'; ?>
 
         /**
          * Also when your script is live make sure this user object

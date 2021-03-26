@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Quickly get a websocket chat up and running.",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
     "eslint": "^7.0.0",
     "eslint-config-standard": "^14.1.1",
