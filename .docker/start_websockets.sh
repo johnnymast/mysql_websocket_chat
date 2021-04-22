@@ -1,3 +1,3 @@
 #!/bin/sh
-
-php /app/server.php
+cd /app
+php ./server.php

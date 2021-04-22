@@ -26,7 +26,7 @@ use SplObjectStorage;
  * The main Chat controller for mysql_websocket_chat
  *
  * PHP version 7.2
- *
+ *Chat
  * @category Configuration
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>

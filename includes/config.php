@@ -22,7 +22,7 @@ define('DATABASE_PASSWORD', 'root');
 define('DATABASE_DB', 'socket_chat');
 define('ENABLE_DATABASE', false);
 define('SSL_CERT_BUNDLE', 'ssl/server.pem');
-define('ENABLE_SSL', true);
+define('ENABLE_SSL', false);
 
 /**
  * The host can either be an IP or a hostname

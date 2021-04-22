@@ -73,8 +73,20 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 ***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
+# Step 4: Skip step 5 and 6 with Docker!
 
-# Step 4: Fire up the WebSocket server
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+
+***Please note:*** If you are using docker for development on this project make super to configure the WEBSOCKET_SERVER_IP ```(includes/config.php)``` to be 
+0.0.0. This has to do with bridging a network connection from the virtual host to your own local machine.
+
+Congratulations you can now directly go to step 7, start chatting and have fun running your own chat service!
+
+
+# Step 5: Fire up the WebSocket server
 
 Change direction into the chat directory and fire up the server.
 
@@ -87,7 +99,7 @@ Server running at 0.0.0.0:8090
 When you see no output and the command seems to hang that's when you know its running.
 
 
-# Step 5: Point a web service to the public directory
+# Step 6: Point a web service to the public directory
 
 In the chat directory, you will find index.php. This file will be the client for your chat application. Make sure you set any web service its document root to the <code>public/</code> folder. Alternatively, if you don't have access to a webserver you can also try using PHP's
 build-in webserver.
@@ -99,7 +111,7 @@ $ php -S 127.0.0.1:8080
 
 <emn>This will start an webserver on port 8080</em>  
 
-# Step 6: Chat away!
+# Step 7: Chat away!
 
 Now open up 2 chat tabs and point them to localhost (or maybe a virtual host you configured) and chat away with your self.
 
@@ -130,7 +142,7 @@ Oh and if you've come down this far, you might as well [follow me](https://twitt
 
 MIT License
 
-Copyright (c) 2020 Johnny Mast
+Copyright (c) 2021 Johnny Mast
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

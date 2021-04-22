@@ -5,7 +5,6 @@ require 'includes/config.php';
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use JM\WebsocketChat\Chat;
 
 define('SSL_CERT', __DIR__ . '/ssl/server.pem');
 
@@ -50,7 +49,7 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     $webServer = new Ratchet\Server\IoServer(
         new Ratchet\Http\HttpServer(
             new Ratchet\WebSocket\WsServer(
-                new Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
+                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
             )
         ),
         $webSock
@@ -72,7 +71,7 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     $server = IoServer::factory(
         new HttpServer(
             new WsServer(
-                new Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
+                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
             )
         ),
         WEBSOCKET_SERVER_PORT,
