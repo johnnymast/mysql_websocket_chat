@@ -26,7 +26,8 @@ use SplObjectStorage;
  * The main Chat controller for mysql_websocket_chat
  *
  * PHP version 7.2
- *Chat
+ * Chat
+ *
  * @category Configuration
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
@@ -104,113 +105,113 @@ class Chat implements MessageComponentInterface
                  * build on that later.
                  */
                 switch ($package->type) {
-                    case 'message':
-                        if ($from != $client) {
-                            if (empty($package->to_user) == false) {
+                case 'message':
+                    if ($from != $client) {
+                        if (empty($package->to_user) == false) {
                                 
                                 
-                                /**
-                                 * Find the client to send the message to
-                                 */
-                                foreach ($this->users as $resourceId => $user) {
-                                    if ($resourceId == $from->resourceId) {
-                                        continue;
-                                    }
-                                    
-                                    
-                                    /**
-                                     * Non target users will not see this message
-                                     * on their screens.
-                                     */
-                                    if ($user['user']->id == $package->to_user) {
-                                        
-                                        
-                                        /**
-                                         * Defined in includes/config.php
-                                         */
-                                        if (ENABLE_DATABASE == true) {
-                                            if (isset($package->user) &&
-                                              is_object($package->user) == true
-                                            ) {
-                                                $this->db->insert(
-                                                    $package->to_user,
-                                                    $package->user->id,
-                                                    $package->message,
-                                                    $client->remoteAddress
-                                                );
-                                            }
-                                        }
-                                        
-                                        $targetClient = $user['client'];
-                                        $targetClient->send($msg);
-                                        return;
-                                    }
-                                }
-                            }
-                            
-                            
                             /**
-                             * Defined in includes/config.php
+                             * Find the client to send the message to
                              */
-                            if (ENABLE_DATABASE == true) {
-                                if (isset($package->user)
-                                  and is_object($package->user) == true
-                                ) {
-                                    $this->db->insert(
-                                        $package->to_user,
-                                        $package->user->id,
-                                        $package->message,
-                                        $client->remoteAddress
-                                    );
+                            foreach ($this->users as $resourceId => $user) {
+                                if ($resourceId == $from->resourceId) {
+                                    continue;
                                 }
-                            }
-                            $client->send($msg);
-                        }
-                        break;
-                    case 'registration':
-                        $this->users[$from->resourceId] = [
-                          'user' => $package->user,
-                          'client' => $from
-                        ];
-                        break;
-                    case 'userlist':
-                        $list = [];
-                        foreach ($this->users as $resourceId => $value) {
-                            $list[] = $value['user'];
-                        }
-                        $new_package = [
-                          'users' => $list,
-                          'type' => 'userlist'
-                        ];
-                        $new_package = json_encode($new_package);
-                        $client->send($new_package);
-                        break;
-                    
-                    case 'typing':
-                        if ($from != $client) {
-                            if (empty($package->user) == false) {
+                                    
+                                    
                                 /**
-                                 * Find the client to send the message to
+                                 * Non target users will not see this message
+                                 * on their screens.
                                  */
-                                foreach ($this->users as $resourceId => $user) {
-                                    if ($resourceId == $from->resourceId) {
-                                        continue;
+                                if ($user['user']->id == $package->to_user) {
+                                        
+                                        
+                                    /**
+                                     * Defined in includes/config.php
+                                     */
+                                    if (ENABLE_DATABASE == true) {
+                                        if (isset($package->user) 
+                                            && is_object($package->user) == true
+                                        ) {
+                                            $this->db->insert(
+                                                $package->to_user,
+                                                $package->user->id,
+                                                $package->message,
+                                                $client->remoteAddress
+                                            );
+                                        }
                                     }
-                                    
-                                    $new_package = [
-                                      'user' => $package->user,
-                                      'type' => 'typing',
-                                      'value' => $package->value,
-                                    ];
-                                    
+                                        
                                     $targetClient = $user['client'];
                                     $targetClient->send($msg);
+                                    return;
                                 }
                             }
                         }
-                        break;
-                    default:
-                        throw new \Exception('Unexpected value');
+                            
+                            
+                        /**
+                         * Defined in includes/config.php
+                         */
+                        if (ENABLE_DATABASE == true) {
+                            if (isset($package->user)
+                                and is_object($package->user) == true
+                            ) {
+                                $this->db->insert(
+                                    $package->to_user,
+                                    $package->user->id,
+                                    $package->message,
+                                    $client->remoteAddress
+                                );
+                            }
+                        }
+                        $client->send($msg);
+                    }
+                    break;
+                case 'registration':
+                    $this->users[$from->resourceId] = [
+                      'user' => $package->user,
+                      'client' => $from
+                    ];
+                    break;
+                case 'userlist':
+                    $list = [];
+                    foreach ($this->users as $resourceId => $value) {
+                        $list[] = $value['user'];
+                    }
+                    $new_package = [
+                      'users' => $list,
+                      'type' => 'userlist'
+                    ];
+                    $new_package = json_encode($new_package);
+                    $client->send($new_package);
+                    break;
+                    
+                case 'typing':
+                    if ($from != $client) {
+                        if (empty($package->user) == false) {
+                            /**
+                             * Find the client to send the message to
+                             */
+                            foreach ($this->users as $resourceId => $user) {
+                                if ($resourceId == $from->resourceId) {
+                                    continue;
+                                }
+                                    
+                                $new_package = [
+                                  'user' => $package->user,
+                                  'type' => 'typing',
+                                  'value' => $package->value,
+                                ];
+                                    
+                                $targetClient = $user['client'];
+                                $targetClient->send($msg);
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    throw new \Exception('Unexpected value');
                         break;
                 }
             }

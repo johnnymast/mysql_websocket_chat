@@ -1,5 +1,7 @@
 ## 1.5 Add more security to the chats
-
+ 
+ - Updated README.md documentation.
+ - Added Docker support for the package.
  - Fixed some grammar issues.
  - Added dependence in composer for php 7.2
  - Added ext-openssl dependence to composer.json
