@@ -6,7 +6,7 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
-define('SSL_CERT', __DIR__ . '/ssl/server.pem');
+const SSL_CERT = __DIR__ . '/ssl/server.pem';
 
 /**
  * Create a new connection to
@@ -38,7 +38,7 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
         new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,$loop),
         $loop,
         [
-            'local_cert' => __DIR__ . '/ssl/server.pem',
+            'local_cert' => SSL_CERT,
             'allow_self_signed' => true,
             'verify_peer' => false
         ]
@@ -57,7 +57,6 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
 
     $loop->run();
 
-//    $x->listen();
 } else {
     /**
      * Instantiate the chat server

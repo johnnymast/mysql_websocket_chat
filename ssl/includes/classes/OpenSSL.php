@@ -4,14 +4,14 @@
  *
  * The main configuration file for mysql_websocket_chat
  *
- * PHP version 7
+ * PHP version 7.2 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    GIT:1.0
+ * @since    1.5
  */
 
 namespace JM\WebsocketChat\SSL;
@@ -19,16 +19,16 @@ namespace JM\WebsocketChat\SSL;
 /**
  * Class OpenSSL
  *
- * The main Chat controller for mysql_websocket_chat
+ * Certificate builder for mysql_websocket_chat
  *
- * PHP version 7.2
+ * PHP version 7.2 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    GIT:1.0
+ * @since    1.5
  */
 class OpenSSL
 {
@@ -74,7 +74,7 @@ class OpenSSL
      *
      * @return $this
      */
-    public function createConfig()
+    public function createConfig(): OpenSSL
     {
         $content = readFromFile($this->config['OPENSSL_CONFIG_TEMPLATE']);
 
@@ -94,7 +94,7 @@ class OpenSSL
      * @param bool $debug
      * @return $this
      */
-    public function createBundle($debug = false)
+    public function createBundle($debug = false): OpenSSL
     {
         $config = [
           'config' => OPENSSL_CONFIG,
@@ -150,7 +150,7 @@ class OpenSSL
      *
      * @return $this
      */
-    public function cleanUp()
+    public function cleanUp(): OpenSSL
     {
         unlink($this->config['OPENSSL_CONFIG']);
         return $this;

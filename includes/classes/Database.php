@@ -4,14 +4,14 @@
  *
  * The main configuration file for mysql_websocket_chat
  *
- * PHP version 7.2
+ * PHP version 7.2 and up.
  *
  * @category Configuration
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 namespace JM\WebsocketChat;
@@ -28,7 +28,7 @@ use PDO;
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    GIT:1.0
+ * @since    1.0
  */
 class Database extends PDO
 {

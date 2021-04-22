@@ -4,19 +4,21 @@
  *
  * The main configuration file for mysql_websocket_chat
  *
- * PHP version 7
+ * PHP version 7.2 and up.
  *
  * @category Configuration
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    GIT:1.0
+ * @since    1.5
  */
 
 /**
- * @param string $filename
- * @param string $content
+ * Write content to file.
+ *
+ * @param string $filename - The file to write to.
+ * @param string $content - The content to write.
  */
 function writeToFile($filename = '', $content = ''): void
 {
@@ -25,9 +27,10 @@ function writeToFile($filename = '', $content = ''): void
     fclose($fp);
 }
 
-
 /**
- * @param string $filename
+ * Read the contents of a file.
+ *
+ * @param string $filename - The file to read.
  * @return string
  */
 function readFromFile($filename = ''): string

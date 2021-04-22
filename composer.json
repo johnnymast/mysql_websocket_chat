@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "files": [
-      "ssl/includes/FileIO.php"
+      "ssl/includes/helpers/FileIO.php"
     ],
     "psr-4": {
       "JM\\WebsocketChat\\SSL\\": "ssl/includes/classes/",
@@ -25,6 +25,7 @@
     "ext-openssl": "*",
     "ext-pdo": "*",
     "ext-json": "*",
-    "php": "^7.2"
+    "php": "^7.2",
+    "redbox/cli": "^1.3"
   }
 }

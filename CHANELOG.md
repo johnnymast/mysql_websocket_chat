@@ -1,5 +1,6 @@
 ## 1.5 Add more security to the chats
  
+ - Replaced all defines for cont in includes/config
  - Updated README.md documentation.
  - Added Docker support for the package.
  - Fixed some grammar issues.
