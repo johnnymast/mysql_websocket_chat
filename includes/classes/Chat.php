@@ -127,7 +127,7 @@ class Chat implements MessageComponentInterface
 
 
                                         /**
-                                         * Defined in includes/config.php
+                                         * Defined in src/config.php
                                          */
                                         if (ENABLE_DATABASE == true) {
                                             if (isset($package->user)
@@ -151,7 +151,7 @@ class Chat implements MessageComponentInterface
 
 
                             /**
-                             * Defined in includes/config.php
+                             * Defined in src/config.php
                              */
                             if (ENABLE_DATABASE == true) {
                                 if (isset($package->user)

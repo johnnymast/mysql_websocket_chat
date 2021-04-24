@@ -12,14 +12,14 @@
  * @since    1.5
  */
 
-namespace JM\WebsocketChat\SSL;
+namespace JM\WebsocketChat\Cert;
 
 use Redbox\Cli\Cli as RedboxCli;
 
 /**
  * Class CLI
  *
- * Handle commandline arguments for the cert application.
+ * Handle commandline arguments for the ssl application.
  *
  * PHP version 7.2 and up.
  *
@@ -53,22 +53,12 @@ class CLI
                 'defaultValue' => 'localhost',
                 'required'     => true,
             ],
-            'password' => [
-                'prefix'      => 'p',
-                'longPrefix'  => 'password',
-                'description' => 'Password',
-                'required'    => true,
-            ],
-            'iterations' => [
+            'interactive' => [
                 'prefix'      => 'i',
-                'longPrefix'  => 'iterations',
-                'description' => 'Number of iterations',
-            ],
-            'verbose' => [
-                'prefix'      => 'v',
-                'longPrefix'  => 'verbose',
-                'description' => 'Verbose output',
+                'longPrefix'  => 'interactive',
+                'description' => 'Run interactive mode.',
                 'noValue'     => true,
+                'required'   => true,
             ],
             'help' => [
                 'longPrefix'  => 'help',
@@ -88,9 +78,12 @@ class CLI
              * We need to tell the parser to start.
              */
             $this->cli->arguments->parse();
-
+           
+            
         } catch(\Exception $e) {
             $this->cli->arguments->usage();
         }
+    
+//        return new Settings();
     }
 }

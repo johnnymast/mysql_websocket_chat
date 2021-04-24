@@ -6,7 +6,7 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
-const SSL_CERT = __DIR__ . '/ssl/server.pem';
+const SSL_CERT = __DIR__.'/ssl/server.pem';
 
 /**
  * Create a new connection to
@@ -28,7 +28,7 @@ if (ENABLE_DATABASE == true) {
 
 if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     echo "SSL is enabled but " . SSL_CERT_BUNDLE .
-        " has not been found. please run ssl/cert.php from the command line.\n";
+        " has not been found. please run ssl/ssl.php from the command line.\n";
     exit;
 } else {
 
@@ -49,7 +49,7 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     $webServer = new Ratchet\Server\IoServer(
         new Ratchet\Http\HttpServer(
             new Ratchet\WebSocket\WsServer(
-                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
+                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in src/classes/Chat.php */
             )
         ),
         $webSock
@@ -61,16 +61,16 @@ if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     /**
      * Instantiate the chat server
      * on the configured port in
-     * includes/config.php.
+     * src/config.php.
      *
-     * The includes/classes/Chat.php class will
+     * The src/classes/Chat.php class will
      * handle all the events and database interactions.
      */
 
     $server = IoServer::factory(
         new HttpServer(
             new WsServer(
-                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in includes/classes/Chat.php */
+                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in src/classes/Chat.php */
             )
         ),
         WEBSOCKET_SERVER_PORT,

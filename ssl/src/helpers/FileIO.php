@@ -14,6 +14,8 @@
  * @since    1.5
  */
 
+namespace JM\WebsocketChat\Cert;
+
 /**
  * Write content to file.
  *

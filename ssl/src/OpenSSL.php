@@ -14,7 +14,7 @@
  * @since    1.5
  */
 
-namespace JM\WebsocketChat\SSL;
+namespace JM\WebsocketChat\Cert;
 
 /**
  * Class OpenSSL
@@ -57,7 +57,7 @@ class OpenSSL
     /**
      * OpenSSL constructor.
      *
-     * @param array $domains  An array of domains to create a cert for
+     * @param array $domains  An array of domains to create a ssl for
      * @param array $certinfo Information about the certificate
      * @param array $config   Configuration for the certificate.
      */

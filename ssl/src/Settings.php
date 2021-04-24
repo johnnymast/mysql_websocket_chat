@@ -12,7 +12,7 @@
  * @since    1.5
  */
 
-namespace JM\WebsocketChat\SSL;
+namespace JM\WebsocketChat\Cert;
 
 /**
  * Class Settings
