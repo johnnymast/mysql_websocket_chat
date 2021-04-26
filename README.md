@@ -75,6 +75,11 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 # Step 4: Skip step 5 and 6 with Docker!
 
+Docker simplifies running the project by miles and still alows you to change the project files on the fly.  It goes without saying but 
+make sure you have docker installed ([get docker](https://www.docker.com/)). You only need to run two commands to get the container up and running.
+
+[more detailed info here](DOCKER.md)
+
 ```bash
 $ docker-compose build
 $ docker-compose up
