@@ -9,13 +9,13 @@ Welcome to this Hackaton project I created for user hrushi on [phpclasses.org](h
 that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required PHP version is 7.0- this is not because it wanted this but it is because of the dependencies this project has.
 
 
-# Step 1: install composer
+## Step 1: install composer
 
 First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but it is not.
 
-# Step 2: Install the project 
+## Step 2: Install the project 
 
-## Using composer
+### Using composer
 
 Installing the project using composer is hands down the easiest way to get started. This method will download the project from GitHub
 and automatically install its dependencies for you. Presuming you installed composer (step 1) execute the following commands on the command-line.
@@ -27,7 +27,7 @@ $ cd chat
 
 <em>In the above example I am using a mac so my prompt will display different then you if you are on windows.</em>
 
-## Downloaded from phpclasses.org
+### Downloaded from phpclasses.org
 
 If you download this package in a zip file from [phpclasses.org](http://www.phpclasses.org/package/9947-PHP-Websocket-starter-project.html) you will have to extract the zip package to a location of your liking. Then 
 change directory into that directory and execute the following command on your prompt.
@@ -39,25 +39,25 @@ $ composer install
 <em>In the above example I am using a mac so my prompt will display different then you if you are on windows.</em>
 
 
-# Step 3: Configure the server
+## Step 3: Configure the server
 
-## Websocket configuration
+### Websocket configuration
 
 This project can be split into two different components. The WebSocket server is the <code>server.php</code> in the root directory. The second part
 is the frontend part located in <code>public/index.php</code>. For the WebSocket server, there are two configuration options that you can configure in <code>includes/config.php</code>.
 
-#### WEBSOCKET_SERVER_IP
+##### WEBSOCKET_SERVER_IP
 
 This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set.
 
-#### WEBSOCKET_SERVER_PORT  
+##### WEBSOCKET_SERVER_PORT  
 
 This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
 value if it clashes with other services running on your machine.
 
 
 
-## Database configuration
+### Database configuration
 
 This server can run either with or without a database. By default i have disabled the use of a database server (<code>ENABLE_DATABASE</code>) but you can enable it by switching the <code>ENABLE_DATABASE</code> to <code>true</code>
 in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. 
@@ -73,7 +73,7 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 ***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
-# Step 4: Skip step 5 and 6 with Docker!
+## Step 4: Skip step 5 and 6 with Docker!
 
 Docker simplifies running the project by miles and still alows you to change the project files on the fly.  It goes without saying but 
 make sure you have docker installed ([get docker](https://www.docker.com/)). You only need to run two commands to get the container up and running.
@@ -91,7 +91,7 @@ $ docker-compose up
 Congratulations you can now directly go to step 7, start chatting and have fun running your own chat service!
 
 
-# Step 5: Fire up the WebSocket server
+## Step 5: Fire up the WebSocket server
 
 Change direction into the chat directory and fire up the server.
 
@@ -104,7 +104,7 @@ Server running at 0.0.0.0:8090
 When you see no output and the command seems to hang that's when you know its running.
 
 
-# Step 6: Point a web service to the public directory
+## Step 6: Point a web service to the public directory
 
 In the chat directory, you will find index.php. This file will be the client for your chat application. Make sure you set any web service its document root to the <code>public/</code> folder. Alternatively, if you don't have access to a webserver you can also try using PHP's
 build-in webserver.
@@ -116,7 +116,7 @@ $ php -S 127.0.0.1:8080
 
 <emn>This will start an webserver on port 8080</em>  
 
-# Step 7: Chat away!
+## Step 7: Chat away!
 
 Now open up 2 chat tabs and point them to localhost (or maybe a virtual host you configured) and chat away with your self.
 
