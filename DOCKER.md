@@ -25,5 +25,5 @@ $ docker-compose up
 | Service        | Version |Port inside virtual machine | Port available via host     |
 | :---           | :--- |   :----:   | ---: |
 | Apache Server  | 2.4 | 80       | 8080 |
-| Mysql Server   | 5.7 | 3306     | 8083 |
+| Maria Database Server   | 10.3 | 3306     | 8083 |
 | Ratchet Websocket Server   | 0.4.1 | 8090     | 8090 |

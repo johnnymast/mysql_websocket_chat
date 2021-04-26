@@ -10,9 +10,6 @@
     }
   ],
   "autoload": {
-    "files": [
-      "ssl/src/helpers/FileIO.php"
-    ],
     "psr-4": {
       "JM\\WebsocketChat\\Cert\\": "ssl/src/",
       "JM\\WebsocketChat\\": "includes/classes/"

@@ -19,12 +19,12 @@ if (ENABLE_DATABASE == true) {
         DATABASE_USERNAME,
         DATABASE_PASSWORD,
         DATABASE_HOST,
+        DATABASE_PORT,
         DATABASE_DB
     );
 } else {
     $db = null;
 }
-
 
 if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     echo "SSL is enabled but " . SSL_CERT_BUNDLE .

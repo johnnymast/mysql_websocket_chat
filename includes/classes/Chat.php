@@ -134,7 +134,7 @@ class Chat implements MessageComponentInterface
                                                 && is_object($package->user) == true
                                             ) {
                                                 $this->db->insert(
-                                                    $package->to_user,
+                                                    $package->to_user->id,
                                                     $package->user->id,
                                                     $package->message,
                                                     $client->remoteAddress
@@ -158,7 +158,7 @@ class Chat implements MessageComponentInterface
                                     and is_object($package->user) == true
                                 ) {
                                     $this->db->insert(
-                                        $package->to_user,
+                                        $package->to_user->id,
                                         $package->user->id,
                                         $package->message,
                                         $client->remoteAddress

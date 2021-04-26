@@ -2,9 +2,10 @@ version: "3.9"
 services:
   wsc-docker:
     image: wsc-docker
+    tty: true
     depends_on:
+      - db
       - websocket_server
-#      - db
     volumes:
       - .:/app
     build:
@@ -12,20 +13,35 @@ services:
       dockerfile: .docker/Dockerfile
     ports:
       - "8080:80"
-#  db:
-#    image: mysql:5.7
-#    ports:
-#      - "8083:3306"
-#    volumes:
-#      - db_data:/app/database/data
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: socket_chat
   websocket_server:
     image: wsc-docker
-    command: ["/app/.docker/start_websockets.sh"]
+    command: [ "/app/.docker/start_websockets.sh" ]
     volumes:
       - .:/app
     ports:
       - "8090:8090"
+    environment:
+      - DOCKER_DB_HOST=db
+      - DOCKER_DB_PORT=8083
+  db:
+    image: mariadb:10.3
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./database/database.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./.docker/conf.d:/etc/mysql/conf.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: socket_chat
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8085:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_USER=root
+      - PMA_HOST=db

@@ -16,6 +16,9 @@
 
 namespace JM\WebsocketChat\Cert;
 
+use function writeToFile;
+use function readFromFile;
+
 /**
  * Class OpenSSL
  *
@@ -57,9 +60,9 @@ class OpenSSL
     /**
      * OpenSSL constructor.
      *
-     * @param array $domains  An array of domains to create a ssl for
+     * @param array $domains An array of domains to create a ssl for
      * @param array $certinfo Information about the certificate
-     * @param array $config   Configuration for the certificate.
+     * @param array $config Configuration for the certificate.
      */
     public function __construct($domains = [], $certinfo = [], $config = [])
     {
@@ -80,7 +83,7 @@ class OpenSSL
 
         foreach ($this->domains as $index => $domain) {
             $num = ($index + 1);
-            $content .= "DNS.{$num}={$this->domains[$index]}".PHP_EOL;
+            $content .= "DNS.{$num}={$this->domains[$index]}" . PHP_EOL;
         }
 
         writeToFile($this->config['OPENSSL_CONFIG'], $content);
@@ -97,8 +100,8 @@ class OpenSSL
     public function createBundle($debug = false): OpenSSL
     {
         $config = [
-          'config' => OPENSSL_CONFIG,
-          'digest_alg' => 'sha256',
+            'config' => OPENSSL_CONFIG,
+            'digest_alg' => 'sha256',
         ];
 
 
@@ -109,12 +112,12 @@ class OpenSSL
         $privateKey = openssl_pkey_new();
 
         $dn = [
-          "countryName" => "NL",
-          "stateOrProvinceName" => "North Holland",
-          "localityName" => "Amsterdam",
-          "organizationName" => "Johnny Mast",
-          "organizationalUnitName" => "Mysql Websocket Chat - Dev team",
-          "emailAddress" => "mastjohnny@gmail.com",
+            "countryName" => "NL",
+            "stateOrProvinceName" => "North Holland",
+            "localityName" => "Amsterdam",
+            "organizationName" => "Johnny Mast",
+            "organizationalUnitName" => "Mysql Websocket Chat - Dev team",
+            "emailAddress" => "mastjohnny@gmail.com",
         ];
 
         $csr = openssl_csr_new($dn, $privateKey, $csrConfig);
@@ -136,7 +139,7 @@ class OpenSSL
 
         if ($debug) {
             while (($e = openssl_error_string()) !== false) {
-                echo $e."\n";
+                echo $e . "\n";
             }
         }
 

@@ -16,11 +16,16 @@
 
 date_default_timezone_set('EUROPE/AMSTERDAM');
 
-const DATABASE_HOST = 'localhost';
-const DATABASE_USERNAME = 'root';
-const DATABASE_PASSWORD = 'root';
-const DATABASE_DB = 'socket_chat';
-const ENABLE_DATABASE = false;
+
+
+define("DATABASE_HOST", $_ENV['DOCKER_DB_HOST'] ?? 'localhost');
+
+const DATABASE_PORT = 3306;
+const DATABASE_USERNAME = "root";
+const DATABASE_PASSWORD = "";
+const DATABASE_DB = "socket_chat";
+
+const ENABLE_DATABASE = true;
 const SSL_CERT_BUNDLE = 'ssl/server.pem';
 const ENABLE_SSL = false;
 

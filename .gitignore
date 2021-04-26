@@ -4,3 +4,4 @@ _book
 .idea/
 composer.lock
 vendor/
+database/data
