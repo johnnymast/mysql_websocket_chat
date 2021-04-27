@@ -60,12 +60,12 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 | Flag | Description |
 | --- | --- |
-| DATABASE_HOST | The database hostname/ip goes in here. By default this has been set to <code>root</code>. |
-| DATABASE_PORT | The database port. By default this has been set to <code>3306</code>. |
 | DATABASE_USERNAME | The database username goes in here. By default this has been set to <code>root</code>.|
 | DATABASE_PASSWORD | Enter the password to access the database there. By default this has been set to <code>root</code>.|
-| DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
 | ENABLE_DATABASE | This flag will turn using the database on or off by setting its value to <code>true</code> or <code>false</code>.|
+| DATABASE_HOST | The database hostname/ip goes in here. By default this has been set to <code>root</code>. |
+| DATABASE_PORT | The database port. By default this has been set to <code>3306</code>. |
+| DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
 
 
 ***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
