@@ -6,12 +6,12 @@
 # MYSQL WEBSOCKET CHAT
 
 Welcome to this Hackaton project I created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a web socket chat application
-that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required PHP version is 7.4 this is not because it wanted this but it is because of the dependencies this project has.
+that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required PHP version is 7.4 this is because the dependencies this project has.
 
 
 ## Step 1: install composer
 
-First thing you is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating but it is not.
+First thing you have to do is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating, but it is really not.
 
 ## Step 2: Install the project 
 
