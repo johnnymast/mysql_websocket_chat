@@ -106,9 +106,8 @@ class Chat implements MessageComponentInterface
                  */
                 switch ($package->type) {
                     case 'message':
-                        if ($from != $client) {
+                        if ($from !== $client) {
                             if (empty($package->to_user) == false) {
-
 
                                 /**
                                  * Find the client to send the message to
@@ -117,7 +116,6 @@ class Chat implements MessageComponentInterface
                                     if ($resourceId == $from->resourceId) {
                                         continue;
                                     }
-
 
                                     /**
                                      * Non target users will not see this message
@@ -133,6 +131,9 @@ class Chat implements MessageComponentInterface
                                             if (isset($package->user)
                                                 && is_object($package->user) == true
                                             ) {
+                                                /**
+                                                 * Insert channel chat
+                                                 */
                                                 $this->db->insert(
                                                     $package->to_user->id,
                                                     $package->user->id,
@@ -157,6 +158,9 @@ class Chat implements MessageComponentInterface
                                 if (isset($package->user)
                                     and is_object($package->user) == true
                                 ) {
+                                    /**
+                                     * Insert private chat
+                                     */
                                     $this->db->insert(
                                         $package->to_user->id,
                                         $package->user->id,

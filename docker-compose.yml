@@ -22,7 +22,7 @@ services:
       - "8090:8090"
     environment:
       - DOCKER_DB_HOST=db
-      - DOCKER_DB_PORT=8083
+      - DOCKER_DB_PORT=3306
   db:
     image: mariadb:10.3
     ports:
