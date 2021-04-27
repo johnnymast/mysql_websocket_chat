@@ -140,7 +140,7 @@ If you wish to know what has changed in this version of Mysql WebSocket Chat you
 This package is created and maintained by [Johnny Mast](mailto:mastjohnny@gmail.com). For feature requests or suggestions you could consider sending me an e-mail. If you like the package you can also choose to sponsor
 me on GitHub and buy me a beer.
 
-[:heart: Sponsor](https://github.com/sponsors/johnnymast)
+[:heart:&nbsp;Sponsor](https://github.com/sponsors/johnnymast)
 
 ## Enjoy
 
