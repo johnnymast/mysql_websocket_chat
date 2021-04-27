@@ -77,8 +77,7 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 | Flag | Description |
 | --- | --- |
 | WEBSOCKET_SERVER_IP | This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set. |
-| WEBSOCKET_SERVER_PORT | This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
-value if it clashes with other services running on your machine. |
+| WEBSOCKET_SERVER_PORT | This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this value if it clashes with other services running on your machine. |
 
 
 
