@@ -30,10 +30,21 @@ namespace JM\WebsocketChat\Cert;
  */
 class Application
 {
+    /**
+     * The command line handler.
+     *
+     * @var Cli
+     */
     protected $cli;
+
+    /**
+     * Settings storage container
+     * for the Application.
+     *
+     * @var Settings
+     */
     protected Settings $settings;
-    
-    
+
     /**
      * Application constructor.
      */
@@ -41,8 +52,7 @@ class Application
     {
         $this->cli = new Cli();
     }
-    
-    
+
     /**
      * Handle the usage for the SSL Cert application.
      *
@@ -50,13 +60,17 @@ class Application
      */
     public function usage(): Application
     {
-//        $this->settings =
-          $this->cli->handle();
+        $this->cli->handle();
         return $this;
     }
-    
-    public function run()
+
+    /**
+     * Run the Application
+     *
+     * @return void
+     */
+    public function run(): void
     {
-    
+        // Not implemented
     }
 }

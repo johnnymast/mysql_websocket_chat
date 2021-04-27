@@ -19,8 +19,10 @@ namespace JM\WebsocketChat\Cert;
 /**
  * Write content to file.
  *
- * @param string $filename - The file to write to.
- * @param string $content - The content to write.
+ * @param string $filename The file to write to.
+ * @param string $content  The content to write.
+ *
+ * @return void
  */
 function writeToFile($filename = '', $content = ''): void
 {
@@ -32,7 +34,8 @@ function writeToFile($filename = '', $content = ''): void
 /**
  * Read the contents of a file.
  *
- * @param string $filename - The file to read.
+ * @param string $filename The file to read.
+ *
  * @return string
  */
 function readFromFile($filename = ''): string

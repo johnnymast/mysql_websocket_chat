@@ -55,14 +55,14 @@ class OpenSSL
      *
      * @var array
      */
-    private $certInfo;
+    protected $certInfo;
 
     /**
      * OpenSSL constructor.
      *
-     * @param array $domains An array of domains to create a ssl for
+     * @param array $domains  An array of domains to create a ssl for
      * @param array $certinfo Information about the certificate
-     * @param array $config Configuration for the certificate.
+     * @param array $config   Configuration for the certificate.
      */
     public function __construct($domains = [], $certinfo = [], $config = [])
     {
@@ -94,8 +94,9 @@ class OpenSSL
     /**
      * Create the bundle file.
      *
-     * @param bool $debug
-     * @return $this
+     * @param bool $debug Enable debugging for this function.
+     *
+     * @return OpenSSL
      */
     public function createBundle($debug = false): OpenSSL
     {

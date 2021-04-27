@@ -32,6 +32,11 @@ use Redbox\Cli\Cli as RedboxCli;
  */
 class CLI
 {
+    /**
+     * Command line parser.
+     *
+     * @var RedboxCli|null
+     */
     protected $cli = null;
 
     /**
@@ -43,47 +48,61 @@ class CLI
         $this->setup();
     }
 
+    /**
+     * Configure the command line arguments.
+     *
+     * @return void
+     * @throws \Exception
+     */
     protected function setup(): void
     {
-        $this->cli->arguments->add([
-            'domain' => [
-                'prefix'       => 'd',
-                'longPrefix'   => 'domain',
-                'description'  => 'Domain(s) to create a certificate for. If you wish to have multiple domains seperate them by comma\'s',
-                'defaultValue' => 'localhost',
-                'required'     => true,
-            ],
-            'interactive' => [
-                'prefix'      => 'i',
-                'longPrefix'  => 'interactive',
-                'description' => 'Run interactive mode.',
-                'noValue'     => true,
-                'required'   => true,
-            ],
-            'help' => [
-                'longPrefix'  => 'help',
-                'description' => 'Prints a usage statement',
-                'noValue'     => true,
-            ],
-            'path' => [/* NOT YET SUPPORTED */
-                'description' => 'The path to push',
-            ],
-        ]);
+        $this->cli->arguments->add(
+            [
+                'domain' => [
+                    'prefix' => 'd',
+                    'longPrefix' => 'domain',
+                    'description' => "Domain(s) to create a certificate for.".
+                    "If you wish to have multiple domains separate them by comma's",
+                    'defaultValue' => 'localhost',
+                    'required' => true,
+                ],
+                'interactive' => [
+                    'prefix' => 'i',
+                    'longPrefix' => 'interactive',
+                    'description' => 'Run interactive mode.',
+                    'noValue' => true,
+                    'required' => true,
+                ],
+                'help' => [
+                    'longPrefix' => 'help',
+                    'description' => 'Prints a usage statement',
+                    'noValue' => true,
+                ],
+                'path' => [/* NOT YET SUPPORTED */
+                    'description' => 'The path to push',
+                ],
+            ]
+        );
     }
 
-    public function handle() {
+    /**
+     * Handle the comment line arguments.
+     *
+     * @return Settings
+     */
+    public function handle()
+    {
         try {
 
             /**
              * We need to tell the parser to start.
              */
             $this->cli->arguments->parse();
-           
-            
-        } catch(\Exception $e) {
+
+
+        } catch (\Exception $e) {
             $this->cli->arguments->usage();
         }
-    
-//        return new Settings();
+        return new Settings();
     }
 }

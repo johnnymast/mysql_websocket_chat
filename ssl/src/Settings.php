@@ -31,14 +31,17 @@ namespace JM\WebsocketChat\Cert;
 class Settings
 {
     /**
+     * Storage container for the (settings)
+     * fields.
+     *
      * @var array
      */
-    private $fields = [];
+    protected $fields = [];
 
     /**
      * CertInfo constructor.
      *
-     * @param array $fields
+     * @param array $fields (optional) initialize the settings class with fields.
      */
     public function __construct($fields = [])
     {
@@ -58,12 +61,14 @@ class Settings
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * Makes field keys be functions. This will
+     * return the value of a field if () is added like domains().
+     *
+     * @param $name The name of the field
      *
      * @return mixed
      */
-    function __call($name, $arguments)
+    function __call($name)
     {
         if (isset($this->fields[$name]) == true) {
             return $this->fields[$name];
@@ -73,7 +78,9 @@ class Settings
     }
 
     /**
-     * @param $name
+     * Return the value of a field.
+     *
+     * @param $name The name of the field.
      *
      * @return mixed
      */
@@ -87,6 +94,9 @@ class Settings
     }
 
     /**
+     * Return the fields when trying to var_dump
+     * the Settings class.
+     *
      * @return array
      */
     public function __debugInfo()

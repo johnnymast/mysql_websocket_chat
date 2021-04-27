@@ -14,7 +14,7 @@
  * @link     https://github.com/johnnymast/mysql_websocket_chat
  * @since    1.5
  */
-include('../vendor/autoload.php');
+require __DIR__.'/../vendor/autoload.php';
 
 use JM\WebsocketChat\Cert\OpenSSL;
 use JM\WebsocketChat\Cert\Application;
@@ -38,8 +38,8 @@ try {
     //openssl req -x509 -new -nodes -key CA.key -sha256 -days 1825 -out CA.pem
     
     $app = (new Application())
-      ->usage()
-      ->run();
+        ->usage()
+        ->run();
     
     exit;
     
@@ -54,19 +54,21 @@ try {
       "emailAddress" => "mastjohnny@gmail.com",
     ];
     
-    $openSSL = new OpenSSL($domains, $certInfo, [
-      'OPENSSL_CONFIG_TEMPLATE' => OPENSSL_CONFIG_TEMPLATE,
-      'OPENSSL_CONFIG' => OPENSSL_CONFIG,
-      'CA_PASSPHRASE' => CA_PASSPHRASE,
-      'PEM_FILE' => PEM_FILE,
-      'CA_CERT' => CA_CERT,
-      'CA_KEY' => CA_KEY,
-    ]);
+    $openSSL = new OpenSSL(
+        $domains, $certInfo, [
+        'OPENSSL_CONFIG_TEMPLATE' => OPENSSL_CONFIG_TEMPLATE,
+        'OPENSSL_CONFIG' => OPENSSL_CONFIG,
+        'CA_PASSPHRASE' => CA_PASSPHRASE,
+        'PEM_FILE' => PEM_FILE,
+        'CA_CERT' => CA_CERT,
+        'CA_KEY' => CA_KEY,
+        ]
+    );
     
     $openSSL
-      ->createConfig()
-      ->createBundle(DEBUG)
-      ->cleanUp();
+        ->createConfig()
+        ->createBundle(DEBUG)
+        ->cleanUp();
     
     echo basename(PEM_FILE)." created.".PHP_EOL;
 } catch (Exception $e) {

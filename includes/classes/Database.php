@@ -36,24 +36,28 @@ class Database extends PDO
     /**
      * Database constructor.
      *
-     * @param string $username The username for the database
-     * @param string $password The password for the database
-     * @param string $host The hostname for the database
-     * @param integer $port The port for the database
-     * @param string $db The database name
+     * @param string  $username The username for the database
+     * @param string  $password The password for the database
+     * @param string  $host     The hostname for the database
+     * @param integer $port     The port for the database
+     * @param string  $db       The database name
      */
-    public function __construct($username = '', $password = '', $host = '', $port = 3306, $db = '')
-    {
-        $dsn = 'mysql:dbname=' . $db . ';host=' . $host.':'.$port;
+    public function __construct($username = '',
+        $password = '',
+        $host = '',
+        $port = 3306,
+        $db = ''
+    ) {
+        $dsn = 'mysql:dbname=' . $db . ';host=' . $host . ':' . $port;
         parent::__construct($dsn, $username, $password);
     }
 
     /**
      * Insert a new record into the database.
      *
-     * @param int $to_id The user_id of who the message is targeted towards
-     * @param int $from_id The sending user_id
-     * @param string $message The message being sent.
+     * @param int    $to_id      The user_id of who the message is targeted towards
+     * @param int    $from_id    The sending user_id
+     * @param string $message    The message being sent.
      * @param string $ip_address The originating IP Address.
      *
      * @return void
@@ -63,8 +67,7 @@ class Database extends PDO
         $from_id = 0,
         $message = '',
         $ip_address = ''
-    ): void
-    {
+    ): void {
         $statement = $this->prepare(
             "INSERT INTO chat_interactions 
                           SET 
