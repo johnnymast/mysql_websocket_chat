@@ -65,7 +65,7 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 | Flag | Description |
 | --- | --- |
 | DATABASE_HOST | The database hostname/ip goes in here. By default this has been set to <code>root</code>. |
-| DATABASE_PORT | The database port |
+| DATABASE_PORT | The database port. By default this has been set to <code>3306</code>. |
 | DATABASE_USERNAME | The database username goes in here. By default this has been set to <code>root</code>.|
 | DATABASE_PASSWORD | Enter the password to access the database there. By default this has been set to <code>root</code>.|
 | DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
