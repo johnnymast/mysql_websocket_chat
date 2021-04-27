@@ -142,8 +142,6 @@ me on GitHub and buy me a beer.
 
 [:heart: &nbsp;Sponsor](https://github.com/sponsors/johnnymast)
 
-## Enjoy
-
 Oh and if you've come down this far, you might as well [follow me](https://twitter.com/mastjohnny) on twitter.
 
 
