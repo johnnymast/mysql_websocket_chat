@@ -55,11 +55,9 @@ This flag allows you to configure the WebSocket server's IP-address. By default 
 This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
 value if it clashes with other services running on your machine.
 
-
-
 ### Database configuration
 
-This server can run either with or without a database. By default i have disabled the use of a database server (<code>ENABLE_DATABASE</code>) but you can enable it by switching the <code>ENABLE_DATABASE</code> to <code>true</code>
+This server can run either with or without a database. By default, I have disabled the use of a database server (<code>ENABLE_DATABASE</code>) but you can enable it by switching the <code>ENABLE_DATABASE</code> to <code>true</code>
 in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/blob/master/includes/config.php) file. 
 
 | Flag | Description |
@@ -73,6 +71,17 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 
 ***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
+
+### Websocket Server configuration
+
+| Flag | Description |
+| --- | --- |
+| WEBSOCKET_SERVER_IP | This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set. |
+| WEBSOCKET_SERVER_PORT | This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
+value if it clashes with other services running on your machine. |
+
+
+
 
 ## Step 4: Skip step 5 and 6 with Docker!
 
