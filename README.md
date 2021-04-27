@@ -46,14 +46,12 @@ $ composer install
 This project can be split into two different components. The WebSocket server is the <code>server.php</code> in the root directory. The second part
 is the frontend part located in <code>public/index.php</code>. For the WebSocket server, there are two configuration options that you can configure in <code>includes/config.php</code>.
 
-##### WEBSOCKET_SERVER_IP
+### Websocket Server configuration
 
-This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set.
-
-##### WEBSOCKET_SERVER_PORT  
-
-This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this
-value if it clashes with other services running on your machine.
+| Flag | Description |
+| --- | --- |
+| WEBSOCKET_SERVER_IP | This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set. |
+| WEBSOCKET_SERVER_PORT | This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this value if it clashes with other services running on your machine. |
 
 ### Database configuration
 
@@ -71,14 +69,6 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 
 
 ***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
-
-### Websocket Server configuration
-
-| Flag | Description |
-| --- | --- |
-| WEBSOCKET_SERVER_IP | This flag allows you to configure the WebSocket server's IP-address. By default the value <code>127.0.0.1</code> has been set. |
-| WEBSOCKET_SERVER_PORT | This will configure what port the WebSocket server will listen on. The default value has been set to <code>8090</code>. You can change this value if it clashes with other services running on your machine. |
-
 
 
 
