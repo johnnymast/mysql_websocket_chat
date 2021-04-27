@@ -130,6 +130,10 @@ If you want to test private chats you can single click any user in the user list
 in the message bar, this will send a private message only to that user.
 
 
+### Changes
+
+If you wish to know what has changed in this version of Mysql WebSocket Chat you can always checkout the changelog [here](https://github.com/johnnymast/mysql_websocket_chat/blob/master/CHANELOG.md).
+
 
 ## Author
 
