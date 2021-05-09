@@ -2,7 +2,7 @@
 /**
  * Settings.php
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
@@ -19,7 +19,7 @@ namespace JM\WebsocketChat\Cert;
  *
  * Default settings for the Certificate builder for mysql_websocket_chat.
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
@@ -47,13 +47,13 @@ class Settings
     {
 
         $this->fields = [
-            "domains" => ["localhost"],
-            "countryName" => "NL",
-            "stateOrProvinceName" => "North Holland",
-            "localityName" => "Amsterdam",
-            "organizationName" => "Johnny Mast",
-            "organizationalUnitName" => "Mysql Websocket Chat - Dev team",
-            "emailAddress" => "mastjohnny@gmail.com",
+            "domains" => [],
+            "countryName" => "",
+            "stateOrProvinceName" => "",
+            "localityName" => "",
+            "organizationName" => "",
+            "organizationalUnitName" => "",
+            "emailAddress" => "",
         ];
         if (is_array($fields) == true) {
             $this->fields = array_merge($this->fields, $fields);
@@ -64,11 +64,29 @@ class Settings
      * Makes field keys be functions. This will
      * return the value of a field if () is added like domains().
      *
-     * @param $name The name of the field
+     * @param string $name      The name of the field
+     * @param string $arguments The arguments for the function
      *
      * @return mixed
      */
-    function __call($name)
+    function __call(string $name, string $arguments)
+    {
+        if (isset($this->fields[$name]) == true) {
+            return $this->fields[$name];
+        }
+
+        return null;
+    }
+
+
+    /**
+     * Return the value of a field.
+     *
+     * @param string $name The name of the field.
+     *
+     * @return mixed
+     */
+    public function __get(string $name)
     {
         if (isset($this->fields[$name]) == true) {
             return $this->fields[$name];
@@ -78,19 +96,20 @@ class Settings
     }
 
     /**
-     * Return the value of a field.
+     * Set a value.
      *
-     * @param $name The name of the field.
+     * @param string $name  The name of the field name.
+     * @param mixed $value The value for the field.
      *
      * @return mixed
      */
-    public function __get($name)
+    public function __set(string $name, $value)
     {
         if (isset($this->fields[$name]) == true) {
-            return $this->fields[$name];
+            $this->fields[$name] = $value;
         }
 
-        return null;
+        return $this->fields[$name];
     }
 
     /**
@@ -99,7 +118,7 @@ class Settings
      *
      * @return array
      */
-    public function __debugInfo()
+    public function __debugInfo(): array
     {
         return $this->fields;
     }

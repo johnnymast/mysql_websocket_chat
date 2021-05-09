@@ -23,6 +23,7 @@
     "ext-pdo": "*",
     "ext-json": "*",
     "php": "^7.4",
-    "redbox/cli": "^1.3"
+    "redbox/cli": "^1.3",
+    "vlucas/phpdotenv": "^5.3"
   }
 }

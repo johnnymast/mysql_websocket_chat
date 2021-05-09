@@ -2,7 +2,7 @@
 /**
  * CLI.php
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
@@ -21,7 +21,7 @@ use Redbox\Cli\Cli as RedboxCli;
  *
  * Handle commandline arguments for the ssl application.
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
@@ -37,10 +37,12 @@ class CLI
      *
      * @var RedboxCli|null
      */
-    protected $cli = null;
+    protected ?RedboxCli $cli = null;
 
     /**
      * CLI constructor.
+     *
+     * @throws \Exception
      */
     public function __construct()
     {
@@ -61,16 +63,9 @@ class CLI
                 'domain' => [
                     'prefix' => 'd',
                     'longPrefix' => 'domain',
-                    'description' => "Domain(s) to create a certificate for.".
-                    "If you wish to have multiple domains separate them by comma's",
+                    'description' => "Domain(s) to create a certificate for." .
+                        "If you wish to have multiple domains separate them by comma's",
                     'defaultValue' => 'localhost',
-                    'required' => true,
-                ],
-                'interactive' => [
-                    'prefix' => 'i',
-                    'longPrefix' => 'interactive',
-                    'description' => 'Run interactive mode.',
-                    'noValue' => true,
                     'required' => true,
                 ],
                 'help' => [
@@ -78,19 +73,47 @@ class CLI
                     'description' => 'Prints a usage statement',
                     'noValue' => true,
                 ],
-                'path' => [/* NOT YET SUPPORTED */
-                    'description' => 'The path to push',
+                'makeca' => [
+                    'description' => "Create an authority root certificate.",
+                    "defaultValue" => false,
                 ],
+                'makecert' => [
+                    'description' => "Create a server certificate.",
+                    "defaultValue" => false,
+                ]
             ]
         );
     }
 
     /**
+     * Show the usage to the user.
+     *
+     * @return $this
+     */
+    public function showUsage(): CLI
+    {
+        $this->cli->arguments->usage();
+        return $this;
+    }
+
+    /**
+     * Return the value of an argument.
+     *
+     * @param string $argument The name of the commandline argument.
+     *
+     * @return string|null
+     */
+    public function getArgument(string $argument): ?string
+    {
+        return $this->cli->arguments->get($argument);
+    }
+
+    /**
      * Handle the comment line arguments.
      *
-     * @return Settings
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         try {
 
@@ -101,8 +124,7 @@ class CLI
 
 
         } catch (\Exception $e) {
-            $this->cli->arguments->usage();
+            $this->showUsage();
         }
-        return new Settings();
     }
 }

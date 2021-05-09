@@ -4,7 +4,7 @@
  *
  * The main configuration file for mysql_websocket_chat
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
@@ -24,7 +24,7 @@ use function readFromFile;
  *
  * Certificate builder for mysql_websocket_chat
  *
- * PHP version 7.2 and up.
+ * PHP version 7.4 and up.
  *
  * @category Security
  * @package  Mysql_Websocket_Chat
