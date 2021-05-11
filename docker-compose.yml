@@ -15,9 +15,9 @@ services:
       - "8080:80"
   websocket_server:
     image: wsc-docker
-    command: [ "/app/.docker/start_websockets.sh" ]
     volumes:
       - .:/app
+    command: ["/bin/sh", "-c", "/app/.docker/start_websockets.sh"]
     ports:
       - "8090:8090"
     environment:

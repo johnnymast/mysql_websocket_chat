@@ -18,13 +18,13 @@ require __DIR__ . '/vendor/autoload.php';
 use JM\WebsocketChat\Cert\OpenSSL;
 use JM\WebsocketChat\Cert\Application;
 
-const CA_CERT = 'file://CA.pem';
-const CA_KEY = 'file://CA.key';
-const CA_PASSPHRASE = '1234';
-const OPENSSL_CONFIG = __DIR__ . '\openssl.conf';
-const OPENSSL_CONFIG_TEMPLATE = __DIR__ . '/openssl.tpl';
-const PEM_FILE = __DIR__ . '/server.pem';
-const DEBUG = false;
+//const CA_CERT = 'file://CA.pem';
+//const CA_KEY = 'file://CA.key';
+//const CA_PASSPHRASE = '1234';
+//const OPENSSL_CONFIG = __DIR__ . '\openssl.conf';
+//const OPENSSL_CONFIG_TEMPLATE = __DIR__ . '/openssl.tpl';
+//const PEM_FILE = __DIR__ . '/server.pem';
+//const DEBUG = false;
 
 try {
     //

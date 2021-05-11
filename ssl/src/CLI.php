@@ -14,7 +14,7 @@
 
 namespace JM\WebsocketChat\Cert;
 
-use Redbox\Cli\Cli as RedboxCli;
+use League\CLImate\CLImate;
 
 /**
  * Class CLI
@@ -37,8 +37,8 @@ class CLI
      *
      * @var RedboxCli|null
      */
-    protected ?RedboxCli $cli = null;
-
+    protected ?CLImate $cli = null;
+    
     /**
      * CLI constructor.
      *
@@ -46,10 +46,10 @@ class CLI
      */
     public function __construct()
     {
-        $this->cli = new RedboxCli();
+        $this->cli = new CLImate;
         $this->setup();
     }
-
+    
     /**
      * Configure the command line arguments.
      *
@@ -59,32 +59,34 @@ class CLI
     protected function setup(): void
     {
         $this->cli->arguments->add(
-            [
-                'domain' => [
-                    'prefix' => 'd',
-                    'longPrefix' => 'domain',
-                    'description' => "Domain(s) to create a certificate for." .
-                        "If you wish to have multiple domains separate them by comma's",
-                    'defaultValue' => 'localhost',
-                    'required' => true,
-                ],
-                'help' => [
-                    'longPrefix' => 'help',
-                    'description' => 'Prints a usage statement',
-                    'noValue' => true,
-                ],
-                'makeca' => [
-                    'description' => "Create an authority root certificate.",
-                    "defaultValue" => false,
-                ],
-                'makecert' => [
-                    'description' => "Create a server certificate.",
-                    "defaultValue" => false,
-                ]
+          [
+            'domain' => [
+              'prefix' => 'd',
+              'longPrefix' => 'domain',
+              'description' => "Domain(s) to create a certificate for. ".
+                "If you wish to have multiple domains separate them by comma's",
+              'defaultValue' => 'localhost',
+              'required' => true,
+            ],
+            'help' => [
+              'longPrefix' => 'help',
+              'description' => 'Prints a usage statement',
+              'noValue' => true,
+            ],
+            'makeca' => [
+              'longPrefix' => 'makeca',
+              'description' => "Create an authority root certificate.",
+              'noValue' => true
+            ],
+            'makecert' => [
+              'longPrefix' => 'makecert',
+              'description' => "Create a server certificate.",
+              'noValue' => true
             ]
+          ]
         );
     }
-
+    
     /**
      * Show the usage to the user.
      *
@@ -92,14 +94,14 @@ class CLI
      */
     public function showUsage(): CLI
     {
-        $this->cli->arguments->usage();
+        $this->cli->usage();
         return $this;
     }
-
+    
     /**
      * Return the value of an argument.
      *
-     * @param string $argument The name of the commandline argument.
+     * @param  string  $argument  The name of the commandline argument.
      *
      * @return string|null
      */
@@ -107,7 +109,29 @@ class CLI
     {
         return $this->cli->arguments->get($argument);
     }
-
+    
+    /**
+     * Check to see if a given argument was used.
+     *
+     * @param  string  $argument  The name of the commandline argument.
+     *
+     * @return boolean
+     */
+    public function hasArgument(string $argument): bool
+    {
+        return $this->cli->arguments->defined($argument);
+    }
+    
+    /**
+     * Return the Climate instance.
+     *
+     * @return CLImate
+     */
+    public function getClimate(): CLImate
+    {
+        return $this->cli;
+    }
+    
     /**
      * Handle the comment line arguments.
      *
@@ -116,13 +140,15 @@ class CLI
     public function handle(): void
     {
         try {
-
             /**
              * We need to tell the parser to start.
              */
             $this->cli->arguments->parse();
-
-
+            
+            if ($this->cli->arguments->get("makeca") == false && $this->cli->arguments->get("makecert") == false) {
+                throw new \Exception("Missing required argument.");
+            }
+            
         } catch (\Exception $e) {
             $this->showUsage();
         }

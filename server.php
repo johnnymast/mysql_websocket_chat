@@ -26,9 +26,10 @@ if (ENABLE_DATABASE == true) {
     $db = null;
 }
 
-if (ENABLE_SSL) if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
+if (ENABLE_SSL)
+    if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
     echo "SSL is enabled but " . SSL_CERT_BUNDLE .
-        " has not been found. please run ssl/ssl.php from the command line.\n";
+        " has not been found. please run cert.php from the command line.\n";
     exit;
 } else {
 

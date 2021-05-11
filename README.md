@@ -84,9 +84,6 @@ $ docker-compose build
 $ docker-compose up
 ```
 
-***Please note:*** If you are using docker for development on this project make super to configure the WEBSOCKET_SERVER_IP ```(includes/config.php)``` to be 
-0.0.0.0. This has to do with bridging a network connection from the virtual host to your own local machine.
-
 Congratulations you can now directly go to step 7, start chatting and have fun running your own chat service!
 
 
@@ -97,7 +94,7 @@ Change direction into the chat directory and fire up the server.
 ```bash
 $ cd chat
 $ php ./server.php
-Server running at 0.0.0.0:8090
+Server running at 127.0.0.1:8090
 ```
 
 When you see no output and the command seems to hang that's when you know its running.

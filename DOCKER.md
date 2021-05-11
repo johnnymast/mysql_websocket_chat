@@ -16,10 +16,6 @@ $ docker-compose build
 $ docker-compose up
 ```
 
-***Please note:*** If you are using docker for development on this project make super to configure the WEBSOCKET_SERVER_IP ```(includes/config.php)``` to be
-0.0.0.0. This has to do with bridging a network connection from the virtual host to your own local machine.
-
-
 ### Exposed ports
 
 | Service        | Version |Port inside virtual machine | Port available via host     |

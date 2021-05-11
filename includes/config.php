@@ -25,7 +25,7 @@ const DATABASE_USERNAME = "root";
 const DATABASE_PASSWORD = "";
 const DATABASE_DB = "socket_chat";
 
-const ENABLE_DATABASE = true;
+const ENABLE_DATABASE = false;
 const SSL_CERT_BUNDLE = 'ssl/server.pem';
 const ENABLE_SSL = false;
 
@@ -34,5 +34,5 @@ const ENABLE_SSL = false;
  * on this machine. The port is just the port
  * plain and simple.
  */
-const WEBSOCKET_SERVER_IP = '0.0.0.0';
+const WEBSOCKET_SERVER_IP = '127.0.0.1';
 const WEBSOCKET_SERVER_PORT = '8090';
