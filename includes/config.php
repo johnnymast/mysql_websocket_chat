@@ -27,7 +27,7 @@ const DATABASE_DB = "socket_chat";
 
 const ENABLE_DATABASE = false;
 const SSL_CERT_BUNDLE = 'ssl/server.pem';
-const ENABLE_SSL = false;
+const ENABLE_SSL = true;
 
 /**
  * The host can either be an IP or a hostname
