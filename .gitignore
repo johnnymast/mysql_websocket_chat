@@ -5,3 +5,5 @@ _book
 composer.lock
 vendor/
 database/data
+ssl/server.pem
+package-lock.json
