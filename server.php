@@ -32,7 +32,7 @@ if (ENABLE_SSL)
         " has not been found. please run cert.php from the command line.\n";
     exit;
 } else {
-
+    
     $loop = React\EventLoop\Factory::create();
 
         $webSock = new React\Socket\SecureServer(
