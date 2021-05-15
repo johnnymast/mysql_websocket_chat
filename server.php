@@ -36,7 +36,7 @@ if (ENABLE_SSL)
     $loop = React\EventLoop\Factory::create();
 
         $webSock = new React\Socket\SecureServer(
-        new React\Socket\Server(WEBSOCKET_SERVER_IP.':'.WEBSOCKET_SERVER_PORT,$loop),
+        new React\Socket\Server(WEBSOCKET_SERVER_BIND_IP.':'.WEBSOCKET_SERVER_PORT,$loop),
         $loop,
         [
             'local_cert' => SSL_CERT,
@@ -75,7 +75,7 @@ if (ENABLE_SSL)
             )
         ),
         WEBSOCKET_SERVER_PORT,
-        WEBSOCKET_SERVER_IP
+      WEBSOCKET_SERVER_BIND_IP
     );
 
     /**
@@ -85,6 +85,6 @@ if (ENABLE_SSL)
 }
 
 
-echo "Server running at " . WEBSOCKET_SERVER_IP . ":" . WEBSOCKET_SERVER_PORT . "\n";
+echo "Server running at " . WEBSOCKET_SERVER_BIND_IP . ":" . WEBSOCKET_SERVER_PORT . "\n";
 
 

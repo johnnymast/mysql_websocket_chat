@@ -128,7 +128,7 @@ class OpenSSL
         
         $csr = openssl_csr_new($dn, $privateKey, $csrConfig);
     
-        $certificate = openssl_csr_sign($csr, null, $privateKey, $days=365, $certConfig);
+        $certificate = openssl_csr_sign($csr, null, $privateKey, $days=1825, $certConfig);
         
 //        print_r($csr);
 //        $certificate = openssl_csr_sign(
@@ -144,7 +144,8 @@ class OpenSSL
         $pem = [];
         openssl_csr_export($csr, $pem[0]);
         openssl_x509_export($certificate, $pem[1]);
-        openssl_pkey_export($privateKey, $pem[2]);
+      ///$x = openssl_pkey_export($privateKey, $pem[2],  $this->config['CA_PASSPHRASE']);
+        //var_dump($x);
         $pem = implode($pem);
         
         if ($debug) {

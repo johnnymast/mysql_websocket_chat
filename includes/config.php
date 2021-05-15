@@ -34,5 +34,6 @@ const ENABLE_SSL = true;
  * on this machine. The port is just the port
  * plain and simple.
  */
-const WEBSOCKET_SERVER_IP = '127.0.0.1';
-const WEBSOCKET_SERVER_PORT = '8090';
+define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '127.0.0.1');
+define("WEBSOCKET_SERVER_IP", '192.168.178.21');
+define("WEBSOCKET_SERVER_PORT", '8090');
