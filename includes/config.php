@@ -26,7 +26,7 @@ const DATABASE_PASSWORD = "";
 const DATABASE_DB = "socket_chat";
 
 const ENABLE_DATABASE = false;
-const SSL_CERT_BUNDLE = 'ssl/server.pem';
+define("SSL_CERT_BUNDLE", realpath(__DIR__ . '/../ssl/server.pem'));
 const ENABLE_SSL = true;
 
 /**
@@ -34,6 +34,6 @@ const ENABLE_SSL = true;
  * on this machine. The port is just the port
  * plain and simple.
  */
-define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '127.0.0.1');
-define("WEBSOCKET_SERVER_IP", '192.168.178.21');
+define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '192.168.178.119');
+define("WEBSOCKET_SERVER_IP", '192.168.178.119');
 define("WEBSOCKET_SERVER_PORT", '8090');
