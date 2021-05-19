@@ -8,7 +8,6 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
-
 /**
  * Create a new connection to
  * the database that we can inject
@@ -20,6 +19,7 @@ if (ENABLE_DATABASE == true) {
         DATABASE_USERNAME,
         DATABASE_PASSWORD,
         DATABASE_HOST,
+        DATABASE_PORT,
         DATABASE_DB
     );
 } else {

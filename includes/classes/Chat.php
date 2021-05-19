@@ -128,8 +128,11 @@ class Chat implements MessageComponentInterface
                                         if (isset($package->user)
                                             and is_object($package->user) == true
                                         ) {
+                                            /**
+                                             * Insert channel chat
+                                             */
                                             $this->db->insert(
-                                                $package->to_user,
+                                                $package->to_user->id,
                                                 $package->user->id,
                                                 $package->message,
                                                 $client->remoteAddress
@@ -152,8 +155,11 @@ class Chat implements MessageComponentInterface
                             if (isset($package->user)
                                 and is_object($package->user) == true
                             ) {
+                                /**
+                                 * Insert private chat
+                                 */
                                 $this->db->insert(
-                                    $package->to_user,
+                                    $package->to_user->id,
                                     $package->user->id,
                                     $package->message,
                                     $client->remoteAddress

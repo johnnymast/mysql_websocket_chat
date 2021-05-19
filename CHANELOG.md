@@ -1,3 +1,10 @@
+## 1.4.1 Fixed the failing database layer 
+
+- Enabling database should now work fixing #54 thanks to @badguyp.
+- Fixed a bug in includes/classes/Database.php
+- Fixed a bug in includes/classes/Chat.php
+- Updated the database import 
+
 ## 1.4 Helping developers to build from the project
 
 This release will be more about helping developers with useful boiler plate functions. This will assist them
