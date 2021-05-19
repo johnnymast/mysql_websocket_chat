@@ -1,5 +1,6 @@
 ## 1.4.1 Fixed the failing database layer 
 
+- Manually reviewed the database changes.
 - Enabling database should now work fixing #54 thanks to @badguyp.
 - Fixed a bug in includes/classes/Database.php
 - Fixed a bug in includes/classes/Chat.php

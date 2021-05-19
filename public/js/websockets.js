@@ -1,4 +1,11 @@
 /* eslint-disable no-undef */
+/**
+ * For more information about the protocol you can read to protocol information
+ * document at our wiki.
+ *
+ * @see {@link https://github.com/johnnymast/mysql_websocket_chat/wiki/Protocol|GitHub}
+ */
+
 const RECONNECT_IN_SEC = 10
 const ws = {
   /**
@@ -12,7 +19,7 @@ const ws = {
  * Handle automatically reconnecting to a websocket server
  * if the connection was interrupted.
  *
- * @param {function} callback -
+ * @param {function} callback - The callback called upon reconnection
  */
 WebSocket.prototype.reconnect = (callback) => {
   if (this.readyState === WebSocket.OPEN || this.readyState !== WebSocket.CONNECTING) {
@@ -31,6 +38,9 @@ WebSocket.prototype.reconnect = (callback) => {
   }, 1000)
 }
 
+/**
+ * Connect to the websocket server.
+ */
 const connect = () => {
   if (ws.conn) {
     if (ws.conn.readyState === WebSocket.OPEN || ws.conn.readyState === WebSocket.CONNECTING) {
@@ -112,10 +122,6 @@ const connect = () => {
   }
 }
 
-const userList = dom('.user_list').get()
-
-document.addEventListener('DOMContentLoaded', connect)
-
 /**
  * Remove all users from the users on the
  * side of the screen.
@@ -190,6 +196,11 @@ usersOutput = (users) => {
   }
 }
 
+/**
+ * Display a message on the screen indicating some is typing a message.
+ *
+ * @param {object} pkg - The received package from the server
+ */
 typingOutput = (pkg) => {
   if (typeof pkg === 'object') {
     const user = pkg.user
@@ -271,6 +282,11 @@ requestUserlist = () => {
   }, 2000)
 }
 
+/**
+ * Register user is typing yes or no.
+ *
+ * @param {boolean} currently - Is this user currently typing?
+ */
 registerTyping = (currently) => {
   /**
    * Create a package to send to the
@@ -375,4 +391,8 @@ sendMessage = () => {
    */
   dom('.client_chat').val('')
 }
+
+const userList = dom('.user_list').get()
+
+document.addEventListener('DOMContentLoaded', connect)
 /* eslint-enable no-undef */
