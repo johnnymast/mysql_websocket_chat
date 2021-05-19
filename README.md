@@ -65,13 +65,14 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 | Flag | Description |
 | --- | --- |
 | DATABASE_HOST | The database username goes in here. By default this has been set to <code>root</code>. |
+| DATABASE_PORT | The database port goes in here. By default this has been set to <code>3306</code>. |
 | DATABASE_USERNAME | The database username goes in here. By default this has been set to <code>root</code>.|
 | DATABASE_PASSWORD | Enter the password to access the database there. By default this has been set to <code>root</code>.|
 | DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
 | ENABLE_DATABASE | This flag will turn using the database on or off by setting its value to <code>true</code> or <code>false</code>.|
 
 
-***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
+***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also, if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
 
 
 # Step 4: Fire up the WebSocket server
@@ -129,7 +130,7 @@ Oh and if you've come down this far, you might as well [follow me](https://twitt
 
 MIT License
 
-Copyright (c) 2020 Johnny Mast
+Copyright (c) 2021 Johnny Mast
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
