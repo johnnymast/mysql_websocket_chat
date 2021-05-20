@@ -24,7 +24,9 @@ const DATABASE_PASSWORD = "";
 const DATABASE_DB = "socket_chat";
 
 const ENABLE_DATABASE = false;
-define("SSL_CERT_BUNDLE", realpath(__DIR__ . '/../ssl/server.pem'));
+const SSL_CERT_FILE   = 'webchat.test.crt';
+
+define("SSL_CERT_BUNDLE", realpath(__DIR__ . '/../ssl/').'/'.SSL_CERT_FILE);
 const ENABLE_SSL = true;
 
 /**

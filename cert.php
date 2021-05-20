@@ -36,6 +36,14 @@ try {
     //
     //openssl req -x509 -new -nodes -key CA.key -sha256 -days 1825 -out CA.pem
 
+
+    // Whole process
+    // http://web.archive.org/web/20200731233936/https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
+
+    // Validate cert
+    // openssl s_client -connect 127.0.0.1:8090 < /dev/null 2>/dev/null | openssl x509 -fingerprint -noout -in /dev/stdin
+
+
     $app = (new Application(__DIR__."/ssl"))
         ->usage()
         ->run();
