@@ -6,8 +6,6 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
-const SSL_CERT = __DIR__.'/ssl/server.pem';
-
 /**
  * Create a new connection to
  * the database that we can inject
@@ -27,38 +25,58 @@ if (ENABLE_DATABASE == true) {
 }
 
 if (ENABLE_SSL)
-    if (file_exists(__DIR__ . '/' . SSL_CERT_BUNDLE) === false) {
-    echo "SSL is enabled but " . SSL_CERT_BUNDLE .
-        " has not been found. please run cert.php from the command line.\n";
-    exit;
-} else {
-    
-    $loop = React\EventLoop\Factory::create();
+    if (file_exists(SSL_CERT_BUNDLE) === false) {
+        echo "SSL is enabled but " . SSL_CERT_BUNDLE .
+            " has not been found. please run cert.php from the command line.\n";
+        exit;
+    } else {
 
-        $webSock = new React\Socket\SecureServer(
-        new React\Socket\Server(WEBSOCKET_SERVER_BIND_IP.':'.WEBSOCKET_SERVER_PORT,$loop),
-        $loop,
-        [
-            'local_cert' => SSL_CERT,
-            'allow_self_signed' => true,
-            'verify_peer' => false
-        ]
-    );
+//        $loop = React\EventLoop\Factory::create();
+//        $server = new React\Socket\Server(WEBSOCKET_SERVER_BIND_IP.':'.WEBSOCKET_SERVER_PORT, $loop);
+//        $server = new React\Socket\SecureServer(
+//            $server,
+//            $loop,
+//            [
+////                'local_cert' => SSL_CERT_BUNDLE,
+//                'local_cert'        => './ssl/server.crt', // path to your cert
+//                'local_pk'          => './ssl/server.key', // path to your server private key
+//                'allow_self_signed' => true,
+//                'verify_peer' => false
+//            ]
+//        );
+//
+//        // Ratchet magic
+//        $webServer = new Ratchet\Server\IoServer(
+//            new Ratchet\Http\HttpServer(
+//                new Ratchet\WebSocket\WsServer(
+//                    new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in src/classes/Chat.php */
+//                )
+//            ),
+//            $server
+//        );
+//
+//        $loop->run();
+//
 
-
-    // Ratchet magic
-    $webServer = new Ratchet\Server\IoServer(
-        new Ratchet\Http\HttpServer(
-            new Ratchet\WebSocket\WsServer(
-                new JM\WebsocketChat\Chat($db) /* This class will handle the chats. It is located in src/classes/Chat.php */
+        $loop = React\EventLoop\Factory::create();
+        $app = new \Ratchet\Http\HttpServer(
+            new \Ratchet\WebSocket\WsServer(
+                new JM\WebsocketChat\Chat($db)
             )
-        ),
-        $webSock
-    );
+        );
 
-    $loop->run();
+        $secure_websockets = new \React\Socket\Server('192.168.178.119:8090', $loop);
+        $secure_websockets = new \React\Socket\SecureServer($secure_websockets, $loop, [
+            'local_cert' => './ssl/server.crt',
+            'local_pk' => './ssl/server.key',
+            'verify_peer' => false
+        ]);
 
-} else {
+
+        $secure_websockets_server = new \Ratchet\Server\IoServer($app, $secure_websockets, $loop);
+        $secure_websockets_server->run();
+
+    } else {
     /**
      * Instantiate the chat server
      * on the configured port in
@@ -75,7 +93,7 @@ if (ENABLE_SSL)
             )
         ),
         WEBSOCKET_SERVER_PORT,
-      WEBSOCKET_SERVER_BIND_IP
+        WEBSOCKET_SERVER_BIND_IP
     );
 
     /**

@@ -144,8 +144,8 @@ class OpenSSL
         $pem = [];
         openssl_csr_export($csr, $pem[0]);
         openssl_x509_export($certificate, $pem[1]);
-      ///$x = openssl_pkey_export($privateKey, $pem[2],  $this->config['CA_PASSPHRASE']);
-        //var_dump($x);
+        $x = openssl_pkey_export($privateKey, $pem[2],  $this->config['CA_PASSPHRASE']);
+        var_dump($pem);
         $pem = implode($pem);
         
         if ($debug) {
