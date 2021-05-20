@@ -68,7 +68,7 @@ in the [includes/config.php](https://github.com/johnnymast/mysql_websocket_chat/
 | DATABASE_DB | Enter the name of the database here. By default this has been set to <code>socket_chat</code>.|
 
 
-***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database.sql) into your database.
+***Please note*** if you enable the database make sure you update the credentials as well (see table above). Also if you enable the database make sure you have imported [database/database.sql](https://github.com/johnnymast/mysql_websocket_chat/blob/master/database/database.sql) into your database.
 
 
 

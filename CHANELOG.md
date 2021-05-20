@@ -1,5 +1,7 @@
 ## 1.5 Add more security to the chats
  
+ - Patched in the database bug that was fixed in release v1.4.1 
+   fixing #54. (Thanks to @badguyp) 
  - Replaced all defines for cont in includes/config
  - Updated README.md documentation.
  - Added Docker support for the package.
@@ -7,15 +9,20 @@
  - Added dependence in composer for php 7.2
  - Added ext-openssl dependence to composer.json
 
+## 1.4.1 Fixed the failing database layer
+
+- Manually reviewed the database changes.
+- Enabling database should now work fixing #54 thanks to @badguyp.
+- Fixed a bug in includes/classes/Database.php
+- Fixed a bug in includes/classes/Chat.php
+- Updated the database import 
+
 ## 1.4 Helping developers to build from the project
 
 This release will be more about helping developers with useful boiler plate functions. This will assist them
 to create a new project from this one quickly.
 
-For more information about the project, you can visit our new wiki right here on GitHub.
-
- - Fixed some grammar issues
- - Cleaned up the code according to PSR1 and PSR2
+ - Cleaned up the code acording to PSR1 and PSR2
  - Added GitHub Actions
  - Added checks for css via stylelint
  - Added javascript checks via eslint

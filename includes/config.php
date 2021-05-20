@@ -16,24 +16,23 @@
 
 date_default_timezone_set('EUROPE/AMSTERDAM');
 
-
-
 define("DATABASE_HOST", $_ENV['DOCKER_DB_HOST'] ?? 'localhost');
 
 const DATABASE_PORT = 3306;
 const DATABASE_USERNAME = "root";
 const DATABASE_PASSWORD = "";
-const DATABASE_DB = "socket_chat";
+//const DATABASE_DB = "socket_chat";
+const DATABASE_DB = "webchat";
 
-const ENABLE_DATABASE = false;
+const ENABLE_DATABASE = true;
 const SSL_CERT_BUNDLE = 'ssl/server.pem';
-const ENABLE_SSL = true;
+const ENABLE_SSL = false;
 
 /**
  * The host can either be an IP or a hostname
  * on this machine. The port is just the port
  * plain and simple.
  */
-define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '127.0.0.1');
-define("WEBSOCKET_SERVER_IP", '192.168.178.21');
+define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '192.168.178.119');
+define("WEBSOCKET_SERVER_IP", '192.168.178.119');
 define("WEBSOCKET_SERVER_PORT", '8090');
