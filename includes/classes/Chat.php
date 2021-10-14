@@ -79,6 +79,7 @@ class Chat implements MessageComponentInterface
      */
     public function onOpen(ConnectionInterface $conn): void
     {
+        echo "onOpen\n";
         $this->clients->attach($conn);
     }
 
