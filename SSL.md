@@ -1,6 +1,6 @@
 https://support.oneidentity.com/virtual-directory-server/kb/96142/error-ssl-routines-ssl3_read_bytes-sslv3-alert-certificate-unknown-ssl-alert-number-46-3
 
-
+Make sure php_openssl is loaded!
 
 Resolution
 Resolution 1:

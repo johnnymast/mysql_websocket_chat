@@ -66,8 +66,9 @@ if (ENABLE_SSL)
 
             $stream_context = [
 //            [
-                'local_cert'  => __DIR__  . '/ssl/mysql_websocket_chat.crt',
-                'local_pk' => __DIR__  . '/ssl/mysql_websocket_chat.key',
+                'local_cert'  => __DIR__  . '/ssl/server.pem',
+//                'local_cert'  => __DIR__  . '/ssl/mysql_websocket_chat.crt',
+//                'local_pk' => __DIR__  . '/ssl/mysql_websocket_chat.key',
                 'verify_peer' => false,
                 'verify_peer_name' => false,
                 'allow_self_signed' => true,
