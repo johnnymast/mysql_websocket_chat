@@ -1,0 +1,17 @@
+name: Phpstan
+
+on: [push]
+
+jobs:
+  phpstan:
+    name: phpstan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+      - name: Run phpstan
+        uses: actions-x/phpstan@v1
+        with:
+          directories: includes
+          level: 6
+          phpstanVersion: ^0.12

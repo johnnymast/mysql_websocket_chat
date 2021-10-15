@@ -27,7 +27,7 @@ const ENABLE_DATABASE = false;
 const SSL_CERT_FILE   = 'server.pem';
 
 define("SSL_CERT_DIR", realpath(__DIR__ . '/../ssl/'));
-define("SSL_CERT_BUNDLE", SSL_CERT_DIR.DIRECTORY_SEPARATOR.SSL_CERT_FILE);
+const SSL_CERT_BUNDLE = SSL_CERT_DIR . DIRECTORY_SEPARATOR . SSL_CERT_FILE;
 const ENABLE_SSL = true;
 
 /**
@@ -36,6 +36,5 @@ const ENABLE_SSL = true;
  * plain and simple.
  */
 define('WEBSOCKET_SERVER_BIND_IP', $_ENV['DOCKER_WEBSOCKET_BIND_IP'] ?? '192.168.178.21');
-//define("WEBSOCKET_SERVER_IP", '192.168.178.21');
-define("WEBSOCKET_SERVER_IP", '192.168.178.21');
-define("WEBSOCKET_SERVER_PORT", '8090');
+const WEBSOCKET_SERVER_IP = '192.168.178.21';
+const WEBSOCKET_SERVER_PORT = '8090';

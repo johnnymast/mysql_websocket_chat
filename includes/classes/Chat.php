@@ -40,9 +40,9 @@ class Chat implements MessageComponentInterface
      * This member keeps track of all
      * connected clients.
      *
-     * @var \SplObjectStorage
+     * @var ?\SplObjectStorage
      */
-    protected $clients = null;
+    protected ?SplObjectStorage $clients = null;
 
     /**
      * This member keeps track of all
@@ -50,14 +50,14 @@ class Chat implements MessageComponentInterface
      *
      * @var array
      */
-    protected $users = [];
+    protected array $users = [];
 
     /**
      * Instance of the database class.
      *
-     * @var Database
+     * @var ?Database
      */
-    protected $db = null;
+    protected ?Database $db = null;
 
     /**
      * Chat constructor.
@@ -79,7 +79,6 @@ class Chat implements MessageComponentInterface
      */
     public function onOpen(ConnectionInterface $conn): void
     {
-        echo "onOpen\n";
         $this->clients->attach($conn);
     }
 

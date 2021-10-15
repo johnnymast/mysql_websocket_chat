@@ -25,5 +25,8 @@
     "php": "^7.4",
     "vlucas/phpdotenv": "^5.3",
     "league/climate": "^3.7"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12.99"
   }
 }
