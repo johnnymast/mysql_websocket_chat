@@ -1,4 +1,7 @@
 parameters:
 	level: 6
+	checkGenericClassInNonGenericObjectType: false
+	bootstrapFiles:
+	    - includes/config.php
 	paths:
 		- includes
