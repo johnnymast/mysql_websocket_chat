@@ -22,7 +22,7 @@
     "ext-openssl": "*",
     "ext-pdo": "*",
     "ext-json": "*",
-    "php": "^7.4",
+    "php": "^8.9",
     "vlucas/phpdotenv": "^5.3",
     "league/climate": "^3.7"
   },
