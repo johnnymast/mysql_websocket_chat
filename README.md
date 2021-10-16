@@ -2,7 +2,6 @@
 [![ESLint](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/ESLint.yaml/badge.svg)](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/ESLint.yaml)
 [![StyleLint](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/StyleLint.yaml/badge.svg)](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/StyleLint.yaml)
 [![Phpcs](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/Phpcs.yaml/badge.svg)](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/Phpcs.yaml)
-
 # MYSQL WEBSOCKET CHAT
 
 Welcome to this Hackaton project I created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a web socket chat application
