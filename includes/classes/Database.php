@@ -55,7 +55,7 @@ class Database extends PDO
     /**
      * Insert a new record into the database.
      *
-     * @param mixed    $to_id      The user_id of who the message is targeted towards
+     * @param mixed  $to_id      The user_id of who the message is targeted towards
      * @param int    $from_id    The sending user_id
      * @param string $message    The message being sent.
      * @param string $ip_address The originating IP Address.
