@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Chat.php
  *
@@ -16,6 +16,7 @@
 
 namespace JM\WebsocketChat;
 
+use JetBrains\PhpStorm\Pure;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use SplObjectStorage;
@@ -64,7 +65,7 @@ class Chat implements MessageComponentInterface
      *
      * @param Database $db Instance of Database
      */
-    public function __construct($db)
+    public function __construct(Database $db)
     {
         $this->clients = new SplObjectStorage;
         $this->db = $db;

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Database.php
  *
@@ -43,11 +43,12 @@ class Database extends PDO
      * @param string  $db       The database name
      */
     public function __construct($username = '',
-        $password = '',
-        $host = '',
-        $port = 3306,
-        $db = ''
-    ) {
+                                $password = '',
+                                $host = '',
+                                $port = 3306,
+                                $db = ''
+    )
+    {
         $dsn = 'mysql:dbname=' . $db . ';host=' . $host . ':' . $port;
         parent::__construct($dsn, $username, $password);
     }
@@ -55,19 +56,20 @@ class Database extends PDO
     /**
      * Insert a new record into the database.
      *
-     * @param mixed  $to_id      The user_id of who the message is targeted towards
-     * @param int    $from_id    The sending user_id
-     * @param string $message    The message being sent.
-     * @param string $ip_address The originating IP Address.
+     * @param mixed|int $to_id      The user_id of who the message is targeted towards
+     * @param int       $from_id    The sending user_id
+     * @param string    $message    The message being sent.
+     * @param string    $ip_address The originating IP Address.
      *
      * @return void
      */
     public function insert(
-        $to_id = 0,
-        $from_id = 0,
-        $message = '',
-        $ip_address = ''
-    ): void {
+        string $to_id = '0',
+        int    $from_id = 0,
+        string $message = '',
+        string $ip_address = ''
+    ): void
+    {
         $statement = $this->prepare(
             "INSERT INTO chat_interactions 
                           SET 

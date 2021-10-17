@@ -17,7 +17,6 @@
   },
   "require": {
     "cboden/ratchet": "v0.4.1",
-    "squizlabs/php_codesniffer": "*",
     "ext-openssl": "*",
     "ext-pdo": "*",
     "ext-json": "*",
