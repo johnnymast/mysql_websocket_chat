@@ -36,17 +36,17 @@ class Database extends PDO
     /**
      * Database constructor.
      *
-     * @param string  $username The username for the database
-     * @param string  $password The password for the database
-     * @param string  $host     The hostname for the database
-     * @param integer $port     The port for the database
-     * @param string  $db       The database name
+     * @param string $username The username for the database
+     * @param string $password The password for the database
+     * @param string $host     The hostname for the database
+     * @param int    $port     The port for the database
+     * @param string $db       The database name
      */
-    public function __construct($username = '',
-                                $password = '',
-                                $host = '',
-                                $port = 3306,
-                                $db = ''
+    public function __construct(string $username = '',
+                                string $password = '',
+                                string $host = '',
+                                int    $port = 3306,
+                                string $db = ''
     )
     {
         $dsn = 'mysql:dbname=' . $db . ';host=' . $host . ':' . $port;
@@ -56,15 +56,15 @@ class Database extends PDO
     /**
      * Insert a new record into the database.
      *
-     * @param mixed|int $to_id      The user_id of who the message is targeted towards
-     * @param int       $from_id    The sending user_id
-     * @param string    $message    The message being sent.
-     * @param string    $ip_address The originating IP Address.
+     * @param mixed  $to_id      The user_id of who the message is targeted towards
+     * @param int    $from_id    The sending user_id
+     * @param string $message    The message being sent.
+     * @param string $ip_address The originating IP Address.
      *
      * @return void
      */
     public function insert(
-        string $to_id = '0',
+        mixed  $to_id = 0,
         int    $from_id = 0,
         string $message = '',
         string $ip_address = ''
