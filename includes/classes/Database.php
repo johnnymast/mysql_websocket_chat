@@ -4,7 +4,7 @@
  *
  * The main configuration file for mysql_websocket_chat
  *
- * PHP version 7.2 and up.
+ * PHP version 8.0 and up.
  *
  * @category Configuration
  * @package  Mysql_Websocket_Chat

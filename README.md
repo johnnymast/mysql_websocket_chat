@@ -1,42 +1,20 @@
+# MYSQL WEBSOCKET CHAT
+
+This application is a boilerplate for a Websocket based chat application. You can use it as a starting off-point for your own applications. 
+
 [![Code Triagers Badge](https://www.codetriage.com/johnnymast/mysql_websocket_chat/badges/users.svg)](https://www.codetriage.com/johnnymast/mysql_websocket_chat)
 [![ESLint](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/ESLint.yaml/badge.svg)](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/ESLint.yaml)
 [![StyleLint](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/StyleLint.yaml/badge.svg)](https://github.com/johnnymast/mysql_websocket_chat/actions/workflows/StyleLint.yaml)
 
-# MYSQL WEBSOCKET CHAT
 
-Welcome to this Hackaton project I created for user hrushi on [phpclasses.org](http://www.phpclasses.org/recommend/754-I-need-to-create-realtime-user-to-user-chat.html). The idea was to create a web socket chat application
-that could be logging to a database. So here is what you need to get this up and running. ***Please note*** the minimum required PHP version is 7.4 this is because the dependencies this project has.
+### Step 1: install composer
 
-
-## Step 1: install composer
-
-First thing you have to do is installing composer on to your system. You can get composer [here](https://getcomposer.org/download/). Don't worry it might seem intimidating, but it is really not.
-
-## Step 2: Install the project 
-
-### Using composer
-
-Installing the project using composer is hands down the easiest way to get started. This method will download the project from GitHub
-and automatically install its dependencies for you. Presuming you installed composer (step 1) execute the following commands on the command-line.
+You can quickly install the boilerplate using composer like this.
 
 ```bash
 $ composer create-project johnnymast/mysql_websocket_chat chat
 $ cd chat
 ```
-
-<em>In the above example I am using a mac so my prompt will display different then you if you are on windows.</em>
-
-### Downloaded from phpclasses.org
-
-If you download this package in a zip file from [phpclasses.org](http://www.phpclasses.org/package/9947-PHP-Websocket-starter-project.html) you will have to extract the zip package to a location of your liking. Then 
-change directory into that directory and execute the following command on your prompt.
-
-```bash
-$ composer install
-```
-
-<em>In the above example I am using a mac so my prompt will display different then you if you are on windows.</em>
-
 
 ## Step 3: Configure the server
 

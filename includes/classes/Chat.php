@@ -4,7 +4,7 @@
  *
  * The main Chat controller for mysql_websocket_chat
  *
- * PHP version 7.2 and up.
+ * PHP version 8.0 and up.
  *
  * @category Configuration
  * @package  Mysql_Websocket_Chat
@@ -16,7 +16,7 @@
 
 namespace JM\WebsocketChat;
 
-use JetBrains\PhpStorm\Pure;
+use Exception;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use SplObjectStorage;
@@ -106,114 +106,114 @@ class Chat implements MessageComponentInterface
                  * build on that later.
                  */
                 switch ($package->type) {
-                case 'message':
-                    if ($from !== $client) {
-                        if (empty($package->to_user) == false
-                            && isset($package->to_user->id) == true
-                        ) {
-
-                            /**
-                             * Find the client to send the message to
-                             */
-                            foreach ($this->users as $resourceId => $user) {
+                    case 'message':
+                        if ($from !== $client) {
+                            if (empty($package->to_user) == false
+                                && isset($package->to_user->id) == true
+                            ) {
 
                                 /**
-                                 * Non target users will not see this message
-                                 * on their screens.
+                                 * Find the client to send the message to
                                  */
-                                if ($user['user']->id === $package->to_user->id) {
+                                foreach ($this->users as $resourceId => $user) {
 
                                     /**
-                                     * Defined in includes/config.php
+                                     * Non target users will not see this message
+                                     * on their screens.
                                      */
-                                    if (ENABLE_DATABASE == true) {
-                                        if (isset($package->user)
-                                            and is_object($package->user) == true
-                                            and isset($package->message) == true
-                                        ) {
-                                            /**
-                                             * Insert private chat
-                                             */
-                                            $this->db->insert(
-                                                $package->to_user->id,
-                                                $package->user->id,
-                                                $package->message,
-                                                $client->remoteAddress
-                                            );
+                                    if ($user['user']->id === $package->to_user->id) {
+
+                                        /**
+                                         * Defined in includes/config.php
+                                         */
+                                        if (ENABLE_DATABASE == true) {
+                                            if (isset($package->user)
+                                                and is_object($package->user) == true
+                                                and isset($package->message) == true
+                                            ) {
+                                                /**
+                                                 * Insert private chat
+                                                 */
+                                                $this->db->insert(
+                                                    $package->to_user->id,
+                                                    $package->user->id,
+                                                    $package->message,
+                                                    $client->remoteAddress
+                                                );
+                                            }
                                         }
+
+                                        $targetClient = $user['client'];
+                                        $targetClient->send($msg);
+                                        return;
+                                    }
+                                }
+                            } else {
+
+
+                                /**
+                                 * Defined in includes/config.php
+                                 */
+                                if (ENABLE_DATABASE == true) {
+                                    if (isset($package->user)
+                                        and is_object($package->user) == true
+                                        and isset($package->message)
+                                    ) {
+                                        /**
+                                         * Insert channel chat
+                                         */
+                                        $this->db->insert(
+                                            null,
+                                            $package->user->id,
+                                            $package->message,
+                                            $client->remoteAddress
+                                        );
+                                    }
+                                }
+                                $client->send($msg);
+                            }
+                        }
+                        break;
+                    case 'registration':
+                        $this->users[$from->resourceId] = [
+                            'user' => $package->user,
+                            'client' => $from
+                        ];
+                        break;
+                    case 'userlist':
+                        $list = [];
+                        foreach ($this->users as $resourceId => $value) {
+                            $list[] = $value['user'];
+                        }
+                        $new_package = [
+                            'users' => $list,
+                            'type' => 'userlist'
+                        ];
+                        $new_package = json_encode($new_package);
+                        $client->send($new_package);
+                        break;
+
+                    case 'typing':
+                        if ($from != $client) {
+                            if (empty($package->user) == false
+                                and isset($package->value) === true
+                            ) {
+                                /**
+                                 * Find the client to send the message to
+                                 */
+                                foreach ($this->users as $resourceId => $user) {
+                                    if ($resourceId == $from->resourceId) {
+                                        continue;
                                     }
 
                                     $targetClient = $user['client'];
                                     $targetClient->send($msg);
-                                    return;
                                 }
-                            }
-                        } else {
-
-
-                            /**
-                             * Defined in includes/config.php
-                             */
-                            if (ENABLE_DATABASE == true) {
-                                if (isset($package->user)
-                                    and is_object($package->user) == true
-                                    and isset($package->message)
-                                ) {
-                                    /**
-                                     * Insert channel chat
-                                     */
-                                    $this->db->insert(
-                                        null,
-                                        $package->user->id,
-                                        $package->message,
-                                        $client->remoteAddress
-                                    );
-                                }
-                            }
-                            $client->send($msg);
-                        }
-                    }
-                    break;
-                case 'registration':
-                    $this->users[$from->resourceId] = [
-                        'user' => $package->user,
-                        'client' => $from
-                    ];
-                    break;
-                case 'userlist':
-                    $list = [];
-                    foreach ($this->users as $resourceId => $value) {
-                        $list[] = $value['user'];
-                    }
-                    $new_package = [
-                        'users' => $list,
-                        'type' => 'userlist'
-                    ];
-                    $new_package = json_encode($new_package);
-                    $client->send($new_package);
-                    break;
-
-                case 'typing':
-                    if ($from != $client) {
-                        if (empty($package->user) == false
-                            and isset($package->value) === true
-                        ) {
-                            /**
-                             * Find the client to send the message to
-                             */
-                            foreach ($this->users as $resourceId => $user) {
-                                if ($resourceId == $from->resourceId) {
-                                    continue;
-                                }
-
-                                $targetClient = $user['client'];
-                                $targetClient->send($msg);
                             }
                         }
-                    }
-                    break;
-                default:
-                    throw new \Exception('Unexpected value');
+                        break;
+                    default:
+                        throw new \Exception('Unexpected value');
                 }
             }
         }
@@ -235,12 +235,12 @@ class Chat implements MessageComponentInterface
     /**
      * The onError callback. Will be called on you guessed it, an error :)
      *
-     * @param object     $conn The unique connection identifier.
-     * @param \Exception $e    The raised exception
+     * @param object    $conn The unique connection identifier.
+     * @param Exception $e    The raised exception
      *
      * @return void
      */
-    public function onError(object $conn, \Exception $e): void
+    public function onError(object $conn, Exception $e): void
     {
         unset($this->users[$conn->resourceId]);
         $conn->close();
