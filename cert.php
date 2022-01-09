@@ -1,18 +1,13 @@
 <?php
-/**
- * Cert.php
+/*
+ * This file is part of Mysql Websocket Chat.
  *
- * The main configuration file for mysql_websocket_chat
+ * (c) Johnny Mast <mastjohnny@gmail.com>
  *
- * PHP version 7.4 and up.
- *
- * @category Configuration
- * @package  Mysql_Websocket_Chat
- * @author   Johnny Mast <mastjohnny@gmail.com>
- * @license  https://opensource.org/licenses/MIT MIT
- * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    1.5
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
 require __DIR__ . '/vendor/autoload.php';
 
 use JM\WebsocketChat\Cert\OpenSSL;
@@ -44,8 +39,8 @@ try {
     // openssl s_client -connect 127.0.0.1:8090 < /dev/null 2>/dev/null | openssl x509 -fingerprint -noout -in /dev/stdin
 
 
-    $app = (new Application(__DIR__."/ssl"))
-        ->usage()
+    $app = new Application(__DIR__ . "/ssl")
+    $app->usage()
         ->run();
 
     exit;

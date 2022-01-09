@@ -1,15 +1,11 @@
 <?php
-/**
- * CLI.php
+/*
+ * This file is part of Mysql Websocket Chat.
  *
- * PHP version 7.4 and up.
+ * (c) Johnny Mast <mastjohnny@gmail.com>
  *
- * @category Security
- * @package  Mysql_Websocket_Chat
- * @author   Johnny Mast <mastjohnny@gmail.com>
- * @license  https://opensource.org/licenses/MIT MIT
- * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    1.5
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace JM\WebsocketChat\Cert;
@@ -21,9 +17,9 @@ use Ratchet\App;
  *
  * The main application logic for the ssl app for mysql_websocket_chat.
  *
- * PHP version 7.4 and up.
+ * PHP version 8.0 and up.
  *
- * @category Security
+ * @category OpenSSL
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT

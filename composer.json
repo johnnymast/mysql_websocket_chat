@@ -2,7 +2,7 @@
   "name": "johnnymast/mysql_websocket_chat",
   "description": "Quickly get a websocket chat up and running.",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Johnny Mast",

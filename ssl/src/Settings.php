@@ -1,15 +1,11 @@
 <?php
-/**
- * Settings.php
+/*
+ * This file is part of Mysql Websocket Chat.
  *
- * PHP version 7.4 and up.
+ * (c) Johnny Mast <mastjohnny@gmail.com>
  *
- * @category Security
- * @package  Mysql_Websocket_Chat
- * @author   Johnny Mast <mastjohnny@gmail.com>
- * @license  https://opensource.org/licenses/MIT MIT
- * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    1.5
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace JM\WebsocketChat\Cert;
@@ -19,9 +15,9 @@ namespace JM\WebsocketChat\Cert;
  *
  * Default settings for the Certificate builder for mysql_websocket_chat.
  *
- * PHP version 7.4 and up.
+ * PHP version 8.0 and up.
  *
- * @category Security
+ * @category Settings
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
@@ -36,14 +32,14 @@ class Settings
      *
      * @var array
      */
-    protected $fields = [];
+    protected array $fields = [];
 
     /**
      * CertInfo constructor.
      *
      * @param array $fields (optional) initialize the settings class with fields.
      */
-    public function __construct($fields = [])
+    public function __construct(array $fields = [])
     {
 
         $this->fields = [
@@ -55,7 +51,7 @@ class Settings
             "organizationalUnitName" => "",
             "emailAddress" => "",
         ];
-        if (is_array($fields) == true) {
+        if (is_array($fields) === true) {
             $this->fields = array_merge($this->fields, $fields);
         }
     }
@@ -65,19 +61,18 @@ class Settings
      * return the value of a field if () is added like domains().
      *
      * @param string $name      The name of the field
-     * @param string $arguments The arguments for the function
+     * @param array  $arguments The arguments for the function
      *
      * @return mixed
      */
-    function __call(string $name, string $arguments)
+    public function __call(string $name, array $arguments = [])
     {
-        if (isset($this->fields[$name]) == true) {
+        if (isset($this->fields[$name]) === true) {
             return $this->fields[$name];
         }
 
         return null;
     }
-
 
     /**
      * Return the value of a field.
@@ -88,7 +83,7 @@ class Settings
      */
     public function __get(string $name)
     {
-        if (isset($this->fields[$name]) == true) {
+        if (isset($this->fields[$name]) === true) {
             return $this->fields[$name];
         }
 
@@ -99,17 +94,29 @@ class Settings
      * Set a value.
      *
      * @param string $name  The name of the field name.
-     * @param mixed $value The value for the field.
+     * @param mixed  $value The value for the field.
      *
      * @return mixed
      */
-    public function __set(string $name, $value)
+    public function __set(string $name, mixed $value)
     {
-        if (isset($this->fields[$name]) == true) {
+        if (isset($this->fields[$name]) === true) {
             $this->fields[$name] = $value;
         }
 
         return $this->fields[$name];
+    }
+
+    /**
+     * Check to see if a field exists.
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+    public function __isset(string $name): bool
+    {
+        return (isset($this->fields[$name]) === true);
     }
 
     /**

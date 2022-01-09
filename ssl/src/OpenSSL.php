@@ -1,17 +1,11 @@
 <?php
-/**
- * OpenSSL.php
+/*
+ * This file is part of Mysql Websocket Chat.
  *
- * The main configuration file for mysql_websocket_chat
+ * (c) Johnny Mast <mastjohnny@gmail.com>
  *
- * PHP version 7.4 and up.
- *
- * @category Security
- * @package  Mysql_Websocket_Chat
- * @author   Johnny Mast <mastjohnny@gmail.com>
- * @license  https://opensource.org/licenses/MIT MIT
- * @link     https://github.com/johnnymast/mysql_websocket_chat
- * @since    1.5
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace JM\WebsocketChat\Cert;
@@ -23,9 +17,9 @@ use JM\WebsocketChat\Cert\FileIO;
  *
  * Certificate builder for mysql_websocket_chat
  *
- * PHP version 7.4 and up.
+ * PHP version 8.0 and up.
  *
- * @category Security
+ * @category OpenSSL
  * @package  Mysql_Websocket_Chat
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
@@ -40,30 +34,30 @@ class OpenSSL
      *
      * @var array
      */
-    protected $domains = [];
+    protected array $domains = [];
     
     /**
      * This will contain the configuration options.
      *
      * @var array
      */
-    protected $config = [];
+    protected array $config = [];
     
     /**
      * This information will be added to the certificate.
      *
      * @var array
      */
-    protected $certInfo;
+    protected array $certInfo;
     
     /**
      * OpenSSL constructor.
      *
-     * @param  array  $domains   An array of domains to create a ssl for
-     * @param  array  $certinfo  Information about the certificate
-     * @param  array  $config    Configuration for the certificate.
+     * @param array $domains  An array of domains to create a ssl for
+     * @param array $certinfo Information about the certificate
+     * @param array $config   Configuration for the certificate.
      */
-    public function __construct($domains = [], $certinfo = [], $config = [])
+    public function __construct(array $domains = [], array $certinfo = [], array $config = [])
     {
         $this->domains = $domains;
         $this->certInfo = $certinfo;
@@ -93,20 +87,18 @@ class OpenSSL
     /**
      * Create the bundle file.
      *
-     * @param  bool  $debug  Enable debugging for this function.
+     * @param bool $debug Enable debugging for this function.
      *
      * @return OpenSSL
      */
-    public function createBundle($debug = false): OpenSSL
+    public function createBundle(bool $debug = false): OpenSSL
     {
         $config = [
           'config' => $this->config['OPENSSL_CONFIG'],
           'digest_alg' => 'sha256',
         ];
-        
-        
+
         $csrConfig = $config + ['req_extensions' => 'v3_req'];
-        
         $certConfig = $config + ['x509_extensions' => 'usr_cert'];
 
         $privateKey = openssl_pkey_new([
@@ -115,8 +107,7 @@ class OpenSSL
           "private_key_type" => OPENSSL_KEYTYPE_RSA,
           "config" => $this->config['OPENSSL_CONFIG']
         ]);
-        
-        
+
         $dn = [
           "countryName" => "NL",
           "stateOrProvinceName" => "North Holland",
@@ -130,22 +121,10 @@ class OpenSSL
     
         $certificate = openssl_csr_sign($csr, null, $privateKey, $days=1825, $certConfig);
         
-//        print_r($csr);
-//        $certificate = openssl_csr_sign(
-//          $csr,
-//          $this->config['CA_CERT'],
-//        //  [$this->config['CA_KEY'], $this->config['CA_PASSPHRASE']],
-//          $privateKey,
-//          1825,
-//          $certConfig,
-//          rand(0, 10000)
-//        );
-//\
+
         $pem = [];
         openssl_csr_export($csr, $pem[0]);
         openssl_x509_export($certificate, $pem[1]);
-        $x = openssl_pkey_export($privateKey, $pem[2],  $this->config['CA_PASSPHRASE']);
-        var_dump($pem);
         $pem = implode($pem);
         
         if ($debug) {
@@ -160,7 +139,7 @@ class OpenSSL
     }
     
     /**
-     * Remove the create configuration file.
+     * Remove the created configuration file.
      *
      * @return $this
      */
